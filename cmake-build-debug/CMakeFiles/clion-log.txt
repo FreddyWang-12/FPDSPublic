@@ -1,0 +1,7 @@
+"C:\Program Files\JetBrains\CLion 2019.3.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\jonas\Desktop\DataStructures\FinalProject
+-- Setting up BOOST
+--  Includes - C:/Program Files/boost_1_60_0
+--  Library  - 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug
