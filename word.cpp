@@ -29,3 +29,7 @@ string word::findDoc(string docID) {
         return "Negative";
     }
 }
+
+string word::getWordData() {
+    return data;
+}

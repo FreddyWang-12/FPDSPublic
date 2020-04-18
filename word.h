@@ -19,6 +19,7 @@ public:
     word(string newOne);
     void addDoc(string docID);
     string findDoc(string docID);
+    string getWordData();
 };
 
 
