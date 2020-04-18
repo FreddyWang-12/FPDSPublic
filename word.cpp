@@ -20,6 +20,10 @@ void word::addDoc(string docID) {
     docIDs.push_back(docID);
 }
 
+void word::setWordData(string newOne) {
+    data = newOne;
+}
+
 string word::findDoc(string docID) {
     vector<string>::iterator it = find(docIDs.begin(), docIDs.end(), docID);
     if(it->data() == docID){
