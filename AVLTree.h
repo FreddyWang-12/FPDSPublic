@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "AVLNode.h"
-
+#include "Word.h"
 using namespace std;
 
 template <typename T>
@@ -20,14 +20,15 @@ private:
     void r1RightChild(AVLNode<T>*&);
     void r2RightChild(AVLNode<T>*&);
     void insertNode(T&,AVLNode<T> *&);
-
+    Word & getContent(Word&,AVLNode<Word>*);
 public:
     AVLTree();
     AVLTree(AVLNode<T>&);
     AVLTree(AVLTree<T>&);
     ~AVLTree();
     void dump();
-    AVLNode<T>* 
+    Word & getContent(Word&);
+
 };
 
 
@@ -135,6 +136,24 @@ void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
 
     node->height = max(height(node->left), height(node->right))+1;
 }
+
+//template <typename T>
+//Word & AVLTree<T>::getContent(Word & x, AVLNode<Word> * curNode) {
+//    while(curNode != nullptr){
+//        if( x < curNode->data){
+//            curNode = curNode->left;
+//        }else if(curNode->data < curNode){
+//            curNode = curNode->right;
+//        }else{
+//            return curNode->data;
+//        }
+//    }
+//}
+//
+//template <typename T>
+//Word& AVLTree<T>::getContent(Word &x) {
+//
+//}
 
 
 

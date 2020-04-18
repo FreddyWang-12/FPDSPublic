@@ -24,5 +24,5 @@ else()
     link_directories(${Boost_LIBRARY_DIRS})
 endif (NOT Boost_FOUND)
 
-add_executable(FinalProject main.cpp QueryEngine.cpp QueryEngine.h DocumentParser.cpp DocumentParser.h CSVReader.cpp CSVReader.h LinkedList.h hashTable.h porter2_stemmer.cpp porter2_stemmer.h stopword.txt AVLNode.h AVLTree.h)
+add_executable(FinalProject main.cpp QueryEngine.cpp QueryEngine.h DocumentParser.cpp DocumentParser.h CSVReader.cpp CSVReader.h LinkedList.h hashTable.h porter2_stemmer.cpp porter2_stemmer.h stopword.txt AVLNode.h AVLTree.h Word.cpp Word.h)
 
