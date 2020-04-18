@@ -254,6 +254,28 @@ emmintrin.h
 arm_neon.h
 -
 
+../util/hash.h
+array
+-
+cassert
+-
+cstdint
+-
+random
+-
+
+../util/string_view.h
+hash.h
+-
+experimental/string_view
+-
+algorithm
+-
+stdexcept
+-
+string
+-
+
 C:/Program Files/boost_1_60_0/boost/algorithm/string.hpp
 boost/algorithm/string/std_containers_traits.hpp
 -
@@ -5616,6 +5638,16 @@ boost/utility/enable_if.hpp
 
 C:/Program Files/boost_1_60_0/boost/version.hpp
 
+C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLNode.h
+
+C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLTree.h
+iostream
+-
+AVLNode.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLNode.h
+Word.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
+
 C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h
 iostream
 -
@@ -5663,15 +5695,35 @@ hashTable.h
 C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h
 CSVReader.h
 C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h
+porter2_stemmer.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.h
 vector
 C:/Users/jonas/Desktop/DataStructures/FinalProject/vector
 bits/stdc++.h
 -
+AVLTree.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLTree.h
 
 C:/Users/jonas/Desktop/DataStructures/FinalProject/LinkedList.h
 iostream
 -
 stdexcept
+-
+
+C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
+iostream
+-
+string
+-
+
+C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
+iostream
+-
+cstring
+-
+vector
+-
+algorithm
 -
 
 C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h
@@ -5681,4 +5733,36 @@ functional
 -
 LinkedList.h
 C:/Users/jonas/Desktop/DataStructures/FinalProject/LinkedList.h
+
+C:/Users/jonas/Desktop/DataStructures/FinalProject/main.cpp
+iostream
+-
+string
+-
+fstream
+C:/Users/jonas/Desktop/DataStructures/FinalProject/fstream
+QueryEngine.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
+DocumentParser.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.h
+CSVReader.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h
+vector
+C:/Users/jonas/Desktop/DataStructures/FinalProject/vector
+dirent.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/dirent.h
+AVLTree.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLTree.h
+Word.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
+unistd.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/unistd.h
+
+C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.h
+vector
+-
+string
+-
+string_view.h
+-
 

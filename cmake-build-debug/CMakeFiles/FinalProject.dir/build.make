@@ -112,12 +112,42 @@ CMakeFiles/FinalProject.dir/CSVReader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/CSVReader.cpp.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jonas\Desktop\DataStructures\FinalProject\CSVReader.cpp -o CMakeFiles\FinalProject.dir\CSVReader.cpp.s
 
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj: CMakeFiles/FinalProject.dir/flags.make
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj: CMakeFiles/FinalProject.dir/includes_CXX.rsp
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj: ../porter2_stemmer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\jonas\Desktop\DataStructures\FinalProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\FinalProject.dir\porter2_stemmer.cpp.obj -c C:\Users\jonas\Desktop\DataStructures\FinalProject\porter2_stemmer.cpp
+
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\jonas\Desktop\DataStructures\FinalProject\porter2_stemmer.cpp > CMakeFiles\FinalProject.dir\porter2_stemmer.cpp.i
+
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jonas\Desktop\DataStructures\FinalProject\porter2_stemmer.cpp -o CMakeFiles\FinalProject.dir\porter2_stemmer.cpp.s
+
+CMakeFiles/FinalProject.dir/Word.cpp.obj: CMakeFiles/FinalProject.dir/flags.make
+CMakeFiles/FinalProject.dir/Word.cpp.obj: CMakeFiles/FinalProject.dir/includes_CXX.rsp
+CMakeFiles/FinalProject.dir/Word.cpp.obj: ../Word.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\jonas\Desktop\DataStructures\FinalProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FinalProject.dir/Word.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\FinalProject.dir\Word.cpp.obj -c C:\Users\jonas\Desktop\DataStructures\FinalProject\Word.cpp
+
+CMakeFiles/FinalProject.dir/Word.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FinalProject.dir/Word.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\jonas\Desktop\DataStructures\FinalProject\Word.cpp > CMakeFiles\FinalProject.dir\Word.cpp.i
+
+CMakeFiles/FinalProject.dir/Word.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FinalProject.dir/Word.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\jonas\Desktop\DataStructures\FinalProject\Word.cpp -o CMakeFiles\FinalProject.dir\Word.cpp.s
+
 # Object files for target FinalProject
 FinalProject_OBJECTS = \
 "CMakeFiles/FinalProject.dir/main.cpp.obj" \
 "CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj" \
 "CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj" \
-"CMakeFiles/FinalProject.dir/CSVReader.cpp.obj"
+"CMakeFiles/FinalProject.dir/CSVReader.cpp.obj" \
+"CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj" \
+"CMakeFiles/FinalProject.dir/Word.cpp.obj"
 
 # External object files for target FinalProject
 FinalProject_EXTERNAL_OBJECTS =
@@ -126,11 +156,13 @@ FinalProject.exe: CMakeFiles/FinalProject.dir/main.cpp.obj
 FinalProject.exe: CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj
 FinalProject.exe: CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj
 FinalProject.exe: CMakeFiles/FinalProject.dir/CSVReader.cpp.obj
+FinalProject.exe: CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj
+FinalProject.exe: CMakeFiles/FinalProject.dir/Word.cpp.obj
 FinalProject.exe: CMakeFiles/FinalProject.dir/build.make
 FinalProject.exe: CMakeFiles/FinalProject.dir/linklibs.rsp
 FinalProject.exe: CMakeFiles/FinalProject.dir/objects1.rsp
 FinalProject.exe: CMakeFiles/FinalProject.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\jonas\Desktop\DataStructures\FinalProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable FinalProject.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\jonas\Desktop\DataStructures\FinalProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable FinalProject.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\FinalProject.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

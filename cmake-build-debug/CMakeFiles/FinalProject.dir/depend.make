@@ -534,6 +534,8 @@ CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/reader.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/stream.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/stringbuffer.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/writer.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../util/hash.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../util/string_view.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string.hpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1036,14 +1038,21 @@ CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/utility/identity_type.hpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/utility/result_of.hpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/version.hpp
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../AVLNode.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../AVLTree.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../CSVReader.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../DocumentParser.cpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../DocumentParser.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../LinkedList.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../Word.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../hashTable.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../porter2_stemmer.h
 
 CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj: ../QueryEngine.cpp
 CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj: ../QueryEngine.h
+
+CMakeFiles/FinalProject.dir/Word.cpp.obj: ../Word.cpp
+CMakeFiles/FinalProject.dir/Word.cpp.obj: ../Word.h
 
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/allocators.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/document.h
@@ -1071,6 +1080,8 @@ CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/reader.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/stream.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/stringbuffer.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/writer.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../util/hash.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../util/string_view.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string.hpp
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1573,10 +1584,19 @@ CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/u
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/utility/identity_type.hpp
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/utility/result_of.hpp
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/version.hpp
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../AVLNode.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../AVLTree.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../CSVReader.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../DocumentParser.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../LinkedList.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../QueryEngine.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../Word.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../hashTable.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../main.cpp
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../porter2_stemmer.h
+
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj: ../util/hash.h
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj: ../util/string_view.h
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj: ../porter2_stemmer.cpp
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj: ../porter2_stemmer.h
 

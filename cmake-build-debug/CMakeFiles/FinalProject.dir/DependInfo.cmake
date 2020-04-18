@@ -7,13 +7,16 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/CSVReader.cpp.obj"
   "C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj"
   "C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj"
+  "C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/Word.cpp.obj"
   "C:/Users/jonas/Desktop/DataStructures/FinalProject/main.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/main.cpp.obj"
+  "C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../rapidjson"
+  "../util"
   "C:/Program Files/boost_1_60_0"
   )
 

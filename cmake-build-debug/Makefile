@@ -203,6 +203,33 @@ QueryEngine.cpp.s:
 	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/QueryEngine.cpp.s
 .PHONY : QueryEngine.cpp.s
 
+Word.obj: Word.cpp.obj
+
+.PHONY : Word.obj
+
+# target to build an object file
+Word.cpp.obj:
+	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/Word.cpp.obj
+.PHONY : Word.cpp.obj
+
+Word.i: Word.cpp.i
+
+.PHONY : Word.i
+
+# target to preprocess a source file
+Word.cpp.i:
+	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/Word.cpp.i
+.PHONY : Word.cpp.i
+
+Word.s: Word.cpp.s
+
+.PHONY : Word.s
+
+# target to generate assembly for a file
+Word.cpp.s:
+	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/Word.cpp.s
+.PHONY : Word.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -230,6 +257,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+porter2_stemmer.obj: porter2_stemmer.cpp.obj
+
+.PHONY : porter2_stemmer.obj
+
+# target to build an object file
+porter2_stemmer.cpp.obj:
+	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj
+.PHONY : porter2_stemmer.cpp.obj
+
+porter2_stemmer.i: porter2_stemmer.cpp.i
+
+.PHONY : porter2_stemmer.i
+
+# target to preprocess a source file
+porter2_stemmer.cpp.i:
+	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.i
+.PHONY : porter2_stemmer.cpp.i
+
+porter2_stemmer.s: porter2_stemmer.cpp.s
+
+.PHONY : porter2_stemmer.s
+
+# target to generate assembly for a file
+porter2_stemmer.cpp.s:
+	$(MAKE) -f CMakeFiles\FinalProject.dir\build.make CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.s
+.PHONY : porter2_stemmer.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -248,9 +302,15 @@ help:
 	@echo ... QueryEngine.obj
 	@echo ... QueryEngine.i
 	@echo ... QueryEngine.s
+	@echo ... Word.obj
+	@echo ... Word.i
+	@echo ... Word.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... porter2_stemmer.obj
+	@echo ... porter2_stemmer.i
+	@echo ... porter2_stemmer.s
 .PHONY : help
 
 

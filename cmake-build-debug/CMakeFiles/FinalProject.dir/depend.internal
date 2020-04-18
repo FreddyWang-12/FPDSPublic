@@ -535,6 +535,8 @@ CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj
  ../rapidjson/stream.h
  ../rapidjson/stringbuffer.h
  ../rapidjson/writer.h
+ ../util/hash.h
+ ../util/string_view.h
  C:/Program Files/boost_1_60_0/boost/algorithm/string.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1037,14 +1039,21 @@ CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj
  C:/Program Files/boost_1_60_0/boost/utility/identity_type.hpp
  C:/Program Files/boost_1_60_0/boost/utility/result_of.hpp
  C:/Program Files/boost_1_60_0/boost/version.hpp
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLNode.h
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLTree.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.cpp
  C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/LinkedList.h
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.h
 CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj
  C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.cpp
  C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
+CMakeFiles/FinalProject.dir/Word.cpp.obj
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.cpp
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
 CMakeFiles/FinalProject.dir/main.cpp.obj
  ../rapidjson/allocators.h
  ../rapidjson/document.h
@@ -1072,6 +1081,8 @@ CMakeFiles/FinalProject.dir/main.cpp.obj
  ../rapidjson/stream.h
  ../rapidjson/stringbuffer.h
  ../rapidjson/writer.h
+ ../util/hash.h
+ ../util/string_view.h
  C:/Program Files/boost_1_60_0/boost/algorithm/string.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1574,9 +1585,18 @@ CMakeFiles/FinalProject.dir/main.cpp.obj
  C:/Program Files/boost_1_60_0/boost/utility/identity_type.hpp
  C:/Program Files/boost_1_60_0/boost/utility/result_of.hpp
  C:/Program Files/boost_1_60_0/boost/version.hpp
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLNode.h
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLTree.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/LinkedList.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/main.cpp
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.h
+CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.obj
+ ../util/hash.h
+ ../util/string_view.h
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.cpp
+ C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.h
