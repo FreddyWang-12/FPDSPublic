@@ -27,6 +27,7 @@ public:
     AVLTree(AVLTree<T>&);
     ~AVLTree();
     void dump();
+    AVLNode<T>* 
 };
 
 
@@ -73,14 +74,68 @@ void AVLTree<T>::dump() {
 
 
 template <typename T>
-void AVLTree<T>::r1LeftChild(AVLNode<T> *&b) {
-    AVLNode<T>* a = b->left;
-    b->left = a->right;
-    a->right = b;
-    b->height = max(height(b->left),height(b->right))+1;
-    a->height = max(height(a->left), b->height)+1;
-    b = a;
+void AVLTree<T>::r1LeftChild(AVLNode<T> *&x) {
+    AVLNode<T>* temp = x->left;
+    x->left = temp->right;
+    temp->right = x;
+    x->height = max(height(x->left),height(x->right))+1;
+    temp->height = max(height(temp->left), x->height)+1;
+    x = temp;
 }
+
+template <typename T>
+void AVLTree<T>::r1RightChild(AVLNode<T> *&x) {
+    AVLNode<T>* temp = x->right;
+    x->right = temp->left;
+    temp->left = x;
+    x->height = max(height(x->left),height(x->right))+1;
+    temp->height = max(height(temp->left),x->height)+1;
+    x = temp;
+}
+
+template <typename T>
+void AVLTree<T>::r2LeftChild(AVLNode<T> *&x) {
+    r1RightChild(x->left);
+    r1LeftChild(x);
+}
+
+template <typename T>
+void AVLTree<T>::r2RightChild(AVLNode<T> *&x) {
+    r1LeftChild(x->right);
+    r1RightChild(x);
+}
+
+template <typename T>
+void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
+    if(node == nullptr){
+        node = new AVLNode<T>(x, nullptr,nullptr);
+    }else if(x < node->data){
+        insertNode(x,node->left);
+        if(height(node->left)-height(node->right) == 2){
+            if(x < node->left->data){
+                ///CASE 1
+                r1LeftChild(node);
+            }else{
+                ///CASE 2
+                r2LeftChild(node);
+            }
+        }
+    }else if(node->data < x){
+        insertNode(x,node->right);
+        if(height(node->right)-height(node->left) == 2){
+            if(node->right->data < x){
+                ///Case 4
+                r1RightChild(node);
+            }else{
+                ///Case 3
+                r2RightChild(node);
+            }
+        }
+    }
+
+    node->height = max(height(node->left), height(node->right))+1;
+}
+
 
 
 #endif //FINALPROJECT_AVLTREE_H
