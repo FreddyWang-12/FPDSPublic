@@ -17,8 +17,10 @@
 #include <string>
 #include "hashTable.h"
 #include "CSVReader.h"
+#include "porter2_stemmer.h"
 #include "vector"
 #include <bits/stdc++.h>
+
 using namespace rapidjson;
 using namespace std;
 
@@ -29,6 +31,8 @@ private:
     string text;
     string bodytext;
     vector<string> token;
+    vector<string> stopwords;
+
 public:
     void parseDocument(string&);
     void printDocument(Document&);
@@ -36,6 +40,13 @@ public:
     void removeNONLettersandLowercase(string&);
     void tokenization(string&);
     void printToken();
+    void stemTokens();
+    void stemStopWords();
+    void getStopWords();
+    void printStopWords();
+    void removeStopWords();
+    void cleanVector();
+    void clearVector();
 
 };
 

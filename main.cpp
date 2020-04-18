@@ -5,18 +5,52 @@
 #include "DocumentParser.h"
 #include "CSVReader.h"
 #include "vector"
+#include "dirent.h"
+#include "unistd.h"
 using namespace std;
 
 
-int main() {
+int main(int argc, char* argv[]) {
 //    CSVReader reader(R"(C:\Users\jonas\Desktop\DataStructures\FinalProject\Data\metadata-cs2341)");
 //    reader.getData();
 //    reader.putInHashTable();
 //    reader.printVector();
     DocumentParser d;
-    string directory = "C:/Users/jonas/Desktop/DataStructures/FinalProject/Data/cs2341_data";
-    d.getDocumentsinDirectory(directory);
-    d.printToken();
+    ifstream fin;
+    string filepath;
+    DIR *dp;
+    struct dirent *dirp;
+    struct stat filestat;
+    dp = opendir(argv[1]);
+    if(dp == NULL){
+        cout << "Error("<< errno <<") opening " << argv[1] << endl;
+    }
+    string directory = argv[1];
+//    while(dirp = readdir(dp)){
+    int count = 0;
+    while(count != 2){
+        dirp = readdir(dp);
+        filepath = directory + "/" + dirp->d_name;
+        if(stat(filepath.c_str(), &filestat)) continue;
+        if(S_ISDIR(filestat.st_mode)) continue;
+        string sha = dirp->d_name;
+//        string get = sha.erase(sha.find("."));
+//        string get = sha.erase(sha.find('.')-4);
+//        if(csvreader.ifExists(get)){
+        d.parseDocument(filepath);
+        d.stemTokens();
+        d.getStopWords();
+        d.stemStopWords();
+        d.removeStopWords();
+        d.cleanVector();
+//        d.printToken();
+        d.clearVector();
+//        }
+        count++;
+    }
+
+
+
 
 
 

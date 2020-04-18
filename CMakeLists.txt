@@ -1,9 +1,13 @@
 cmake_minimum_required(VERSION 3.15)
 project(FinalProject)
-
+set(EXE_NAME FinalProject)
+set(input01 " ")
+set(input02 " ")
 set(CMAKE_CXX_STANDARD 14)
 file(COPY rapidjson/ DESTINATION ./rapidjson)
 include_directories(rapidjson)
+file(COPY util/ DESTINATION ./util)
+include_directories(util)
 SET (BOOST_ROOT "C:/Program Files/boost_1_60_0")
 SET (BOOST_INCLUDEDIR "C:/Program Files/boost_1_60_0/boost")
 SET (BOOST_LIBRARYDIR "C:/Program Files/boost_1_60_0/libs")
@@ -20,5 +24,5 @@ else()
     link_directories(${Boost_LIBRARY_DIRS})
 endif (NOT Boost_FOUND)
 
-add_executable(FinalProject main.cpp QueryEngine.cpp QueryEngine.h DocumentParser.cpp DocumentParser.h CSVReader.cpp CSVReader.h LinkedList.h hashTable.h)
+add_executable(FinalProject main.cpp QueryEngine.cpp QueryEngine.h DocumentParser.cpp DocumentParser.h CSVReader.cpp CSVReader.h LinkedList.h hashTable.h porter2_stemmer.cpp porter2_stemmer.h stopword.txt AVLNode.h AVLTree.h)
 

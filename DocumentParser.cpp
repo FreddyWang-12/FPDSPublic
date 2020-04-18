@@ -82,7 +82,7 @@ void DocumentParser::getDocumentsinDirectory(string& directory) {
 
 //    while(dirp = readdir(dp)){
 int count = 0;
-    while(count != 1){
+    while(count != 3){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -136,3 +136,69 @@ void DocumentParser::printToken() {
         cout << token[i] << endl;
     }
 }
+
+void DocumentParser::stemTokens() {
+    for(int i = 0; i < token.size(); i++){
+        Porter2Stemmer::trim(token[i]);
+        Porter2Stemmer::stem(token[i]);
+    }
+}
+
+void DocumentParser::stemStopWords() {
+    for(int i = 0; i < stopwords.size(); i++){
+        Porter2Stemmer::trim(stopwords[i]);
+        Porter2Stemmer::stem(stopwords[i]);
+    }
+}
+
+
+
+void DocumentParser::getStopWords() {
+    ifstream file;
+    string buffer;
+    file.open("../stopword.txt");
+    if(!file){
+        cout << "StopWords Did Not Open or DNE!" << endl;
+    }
+    while(!file.eof()){
+        getline(file,buffer,'\n');
+        stopwords.push_back(buffer);
+    }
+    file.close();
+}
+
+void DocumentParser::printStopWords() {
+    for(int i = 0; i < stopwords.size(); i++){
+        cout << stopwords[i] << endl;
+    }
+}
+
+void DocumentParser::removeStopWords(){
+    string::iterator it, iter;
+for(unsigned int i = 0; i < token.size(); i++){
+    for(unsigned int j = 0; j < stopwords.size(); j++){
+        if(token.at(i) == stopwords.at(j)){
+            token.at(i).erase();
+        }else{
+            continue;
+        }
+    }
+}
+}
+
+
+void DocumentParser::cleanVector() {
+ vector<string> temp;
+    for(int i = 0; i < token.size(); i++){
+        if(!token[i].empty()){
+            temp.push_back(token[i]);
+        }
+    }
+    token = temp;
+}
+
+void DocumentParser::clearVector() {
+    token.clear();
+}
+
+
