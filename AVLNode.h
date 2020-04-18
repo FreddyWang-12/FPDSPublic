@@ -7,6 +7,7 @@
 using namespace std;
 template <typename T>
 class AVLNode {
+    template <class U> friend class AVLTree;
 private:
     T data;
     AVLNode<T> *left;

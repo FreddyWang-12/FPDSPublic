@@ -28,6 +28,8 @@ public:
     ~AVLTree();
     void dump();
     Word & getContent(Word&);
+    void addNode(T&);
+
 
 };
 
@@ -136,7 +138,11 @@ void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
 
     node->height = max(height(node->left), height(node->right))+1;
 }
-
+template <typename T>
+void AVLTree<T>::addNode(T & info) {
+    insertNode(info,cur);
+}
+//
 //template <typename T>
 //Word & AVLTree<T>::getContent(Word & x, AVLNode<Word> * curNode) {
 //    while(curNode != nullptr){

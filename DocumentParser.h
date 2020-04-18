@@ -47,6 +47,7 @@ public:
     void removeStopWords();
     void cleanVector();
     void clearVector();
+    void insertIntoAVLTree();
 
 };
 

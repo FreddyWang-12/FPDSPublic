@@ -6,6 +6,8 @@
 #include "CSVReader.h"
 #include "vector"
 #include "dirent.h"
+#include "AVLTree.h"
+#include "Word.h"
 #include "unistd.h"
 using namespace std;
 
@@ -15,6 +17,8 @@ int main(int argc, char* argv[]) {
 //    reader.getData();
 //    reader.putInHashTable();
 //    reader.printVector();
+    AVLTree<Word> tree;
+    Word words;
     DocumentParser d;
     ifstream fin;
     string filepath;
@@ -43,6 +47,7 @@ int main(int argc, char* argv[]) {
         d.stemStopWords();
         d.removeStopWords();
         d.cleanVector();
+        
 //        d.printToken();
         d.clearVector();
 //        }

@@ -202,3 +202,8 @@ void DocumentParser::clearVector() {
 }
 
 
+void DocumentParser::insertIntoAVLTree() {
+
+}
+
+
