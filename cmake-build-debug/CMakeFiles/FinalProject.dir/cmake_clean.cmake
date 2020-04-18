@@ -1,12 +1,12 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/FinalProject.dir/CSVReader.cpp.obj"
-  "CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj"
-  "CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj"
-  "CMakeFiles/FinalProject.dir/main.cpp.obj"
-  "FinalProject.exe"
-  "FinalProject.exe.manifest"
+  "CMakeFiles/FinalProject.dir/CSVReader.cpp.o"
+  "CMakeFiles/FinalProject.dir/DocumentParser.cpp.o"
+  "CMakeFiles/FinalProject.dir/QueryEngine.cpp.o"
+  "CMakeFiles/FinalProject.dir/Word.cpp.o"
+  "CMakeFiles/FinalProject.dir/main.cpp.o"
+  "CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.o"
+  "FinalProject"
   "FinalProject.pdb"
-  "libFinalProject.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

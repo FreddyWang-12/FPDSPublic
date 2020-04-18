@@ -8,110 +8,133 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug"/>
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FinalProject">
-				<Option output="C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/FinalProject.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson"/>
-					<Add directory="C:/Program Files/boost_1_60_0"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 FinalProject"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FinalProject/fast">
-				<Option output="C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/FinalProject.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson"/>
-					<Add directory="C:/Program Files/boost_1_60_0"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 FinalProject/fast"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug"/>
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FinalProject">
+				<Option output="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/FinalProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/rapidjson"/>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/util"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 FinalProject"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FinalProject/fast">
+				<Option output="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/FinalProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/rapidjson"/>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/util"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 FinalProject/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.cpp">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/AVLNode.h">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/AVLTree.h">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.cpp">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/CSVReader.cpp">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.h">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/CSVReader.h">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/LinkedList.h">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.cpp">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.cpp">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.h">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/LinkedList.h">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.cpp">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/main.cpp">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.h">
 			<Option target="FinalProject"/>
 		</Unit>
-		<Unit filename="C:/Users/jonas/Desktop/DataStructures/FinalProject/CMakeLists.txt">
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/Word.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/Word.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/hashTable.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/main.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/porter2_stemmer.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/porter2_stemmer.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/stopword.txt">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

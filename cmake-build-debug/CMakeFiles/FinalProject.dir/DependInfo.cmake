@@ -4,17 +4,19 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/CSVReader.cpp.obj"
-  "C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj"
-  "C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj"
-  "C:/Users/jonas/Desktop/DataStructures/FinalProject/main.cpp" "C:/Users/jonas/Desktop/DataStructures/FinalProject/cmake-build-debug/CMakeFiles/FinalProject.dir/main.cpp.obj"
+  "/Users/frederickwang/Documents/GitHub/FPDS/CSVReader.cpp" "/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/CMakeFiles/FinalProject.dir/CSVReader.cpp.o"
+  "/Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.cpp" "/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/CMakeFiles/FinalProject.dir/DocumentParser.cpp.o"
+  "/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.cpp" "/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/CMakeFiles/FinalProject.dir/QueryEngine.cpp.o"
+  "/Users/frederickwang/Documents/GitHub/FPDS/Word.cpp" "/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/CMakeFiles/FinalProject.dir/Word.cpp.o"
+  "/Users/frederickwang/Documents/GitHub/FPDS/main.cpp" "/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/CMakeFiles/FinalProject.dir/main.cpp.o"
+  "/Users/frederickwang/Documents/GitHub/FPDS/porter2_stemmer.cpp" "/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/CMakeFiles/FinalProject.dir/porter2_stemmer.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../rapidjson"
-  "C:/Program Files/boost_1_60_0"
+  "../util"
   )
 
 # Targets to which this target links.

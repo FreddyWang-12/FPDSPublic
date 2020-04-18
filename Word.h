@@ -19,10 +19,17 @@ private:
 public:
     Word();
     Word(string newOne);
+    ~Word();
+    Word(const Word& other);
+    Word& operator = (const Word& copy);
+
+    int operator < (const Word& other);
+    int operator > (const Word& other);
     void addDoc(string docID);
     void setWordData(string newOne);
     string findDoc(string docID);
-    string getWordData();
+    string& getWordData();
+    vector<string>& getDocs();
 };
 
 
