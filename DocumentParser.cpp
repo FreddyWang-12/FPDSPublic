@@ -202,8 +202,10 @@ void DocumentParser::clearVector() {
 }
 
 
-void DocumentParser::insertIntoAVLTree() {
-
+void DocumentParser::insertIntoAVLTree(AVLTree<string>& avl) {
+    for(int i = 0; i < token.size(); i++){
+        avl.addNode(token[i]);
+    }
 }
 
 

@@ -29,6 +29,7 @@ public:
     void dump();
     Word & getContent(Word&);
     void addNode(T&);
+    int height(AVLNode<T>*);
 
 
 };
@@ -109,6 +110,15 @@ void AVLTree<T>::r2RightChild(AVLNode<T> *&x) {
 }
 
 template <typename T>
+int AVLTree<T>::height(AVLNode<T>* currentNode) {
+    if(currentNode == nullptr){
+        return 0;
+    }else{
+        return currentNode->height;
+    }
+}
+
+template <typename T>
 void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
     if(node == nullptr){
         node = new AVLNode<T>(x, nullptr,nullptr);
@@ -134,7 +144,7 @@ void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
                 r2RightChild(node);
             }
         }
-    }
+    }else{};
 
     node->height = max(height(node->left), height(node->right))+1;
 }

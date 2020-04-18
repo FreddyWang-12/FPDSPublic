@@ -20,6 +20,7 @@
 #include "porter2_stemmer.h"
 #include "vector"
 #include <bits/stdc++.h>
+#include "AVLTree.h"
 
 using namespace rapidjson;
 using namespace std;
@@ -47,7 +48,7 @@ public:
     void removeStopWords();
     void cleanVector();
     void clearVector();
-    void insertIntoAVLTree();
+    void insertIntoAVLTree(AVLTree<string> &);
 
 };
 

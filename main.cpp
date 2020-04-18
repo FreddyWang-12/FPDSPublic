@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
 //    reader.getData();
 //    reader.putInHashTable();
 //    reader.printVector();
-    AVLTree<Word> tree;
+    AVLTree<string> tree;
     Word words;
     DocumentParser d;
     ifstream fin;
@@ -47,7 +47,8 @@ int main(int argc, char* argv[]) {
         d.stemStopWords();
         d.removeStopWords();
         d.cleanVector();
-        
+        d.insertIntoAVLTree(tree);
+
 //        d.printToken();
         d.clearVector();
 //        }
