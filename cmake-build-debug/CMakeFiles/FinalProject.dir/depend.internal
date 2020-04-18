@@ -509,6 +509,32 @@ CMakeFiles/FinalProject.dir/CSVReader.cpp.obj
  C:/Users/jonas/Desktop/DataStructures/FinalProject/LinkedList.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj
+ ../rapidjson/allocators.h
+ ../rapidjson/document.h
+ ../rapidjson/encodedstream.h
+ ../rapidjson/encodings.h
+ ../rapidjson/error/error.h
+ ../rapidjson/filereadstream.h
+ ../rapidjson/internal/biginteger.h
+ ../rapidjson/internal/clzll.h
+ ../rapidjson/internal/diyfp.h
+ ../rapidjson/internal/dtoa.h
+ ../rapidjson/internal/ieee754.h
+ ../rapidjson/internal/itoa.h
+ ../rapidjson/internal/meta.h
+ ../rapidjson/internal/pow10.h
+ ../rapidjson/internal/stack.h
+ ../rapidjson/internal/strfunc.h
+ ../rapidjson/internal/strtod.h
+ ../rapidjson/internal/swap.h
+ ../rapidjson/memorystream.h
+ ../rapidjson/msinttypes/inttypes.h
+ ../rapidjson/msinttypes/stdint.h
+ ../rapidjson/rapidjson.h
+ ../rapidjson/reader.h
+ ../rapidjson/stream.h
+ ../rapidjson/stringbuffer.h
+ ../rapidjson/writer.h
  C:/Program Files/boost_1_60_0/boost/algorithm/string.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1016,36 +1042,36 @@ CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj
  C:/Users/jonas/Desktop/DataStructures/FinalProject/DocumentParser.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/LinkedList.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/allocators.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/document.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/encodedstream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/encodings.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/error/error.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/filereadstream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/biginteger.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/clzll.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/diyfp.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/dtoa.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/ieee754.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/itoa.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/meta.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/pow10.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/stack.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/strfunc.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/strtod.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/swap.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/memorystream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/msinttypes/inttypes.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/msinttypes/stdint.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/rapidjson.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/reader.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/stream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/stringbuffer.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/writer.h
 CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj
  C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.cpp
  C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
 CMakeFiles/FinalProject.dir/main.cpp.obj
+ ../rapidjson/allocators.h
+ ../rapidjson/document.h
+ ../rapidjson/encodedstream.h
+ ../rapidjson/encodings.h
+ ../rapidjson/error/error.h
+ ../rapidjson/filereadstream.h
+ ../rapidjson/internal/biginteger.h
+ ../rapidjson/internal/clzll.h
+ ../rapidjson/internal/diyfp.h
+ ../rapidjson/internal/dtoa.h
+ ../rapidjson/internal/ieee754.h
+ ../rapidjson/internal/itoa.h
+ ../rapidjson/internal/meta.h
+ ../rapidjson/internal/pow10.h
+ ../rapidjson/internal/stack.h
+ ../rapidjson/internal/strfunc.h
+ ../rapidjson/internal/strtod.h
+ ../rapidjson/internal/swap.h
+ ../rapidjson/memorystream.h
+ ../rapidjson/msinttypes/inttypes.h
+ ../rapidjson/msinttypes/stdint.h
+ ../rapidjson/rapidjson.h
+ ../rapidjson/reader.h
+ ../rapidjson/stream.h
+ ../rapidjson/stringbuffer.h
+ ../rapidjson/writer.h
  C:/Program Files/boost_1_60_0/boost/algorithm/string.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
  C:/Program Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1554,29 +1580,3 @@ CMakeFiles/FinalProject.dir/main.cpp.obj
  C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/hashTable.h
  C:/Users/jonas/Desktop/DataStructures/FinalProject/main.cpp
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/allocators.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/document.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/encodedstream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/encodings.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/error/error.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/filereadstream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/biginteger.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/clzll.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/diyfp.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/dtoa.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/ieee754.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/itoa.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/meta.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/pow10.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/stack.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/strfunc.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/strtod.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/internal/swap.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/memorystream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/msinttypes/inttypes.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/msinttypes/stdint.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/rapidjson.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/reader.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/stream.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/stringbuffer.h
- C:/Users/jonas/Desktop/DataStructures/FinalProject/rapidjson/include/rapidjson/writer.h

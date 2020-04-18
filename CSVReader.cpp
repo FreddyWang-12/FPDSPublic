@@ -47,6 +47,7 @@ void CSVReader::putInHashTable() {
     for(int i = 0; i < sha.size(); i++){
         hash.addNewKey(sha[i],has_pdf_parse[i]);
     }
+//   cout << hash.getData(sha[1]);
 }
 
 string CSVReader::getHashValue(string & arg) {
@@ -55,6 +56,9 @@ string CSVReader::getHashValue(string & arg) {
 }
 
 bool CSVReader::ifExists(string &data) {
-    return hash.findKey(data);
+    if(hash.getData(data) == "Negative"){
+        return false;
+    }
+    return true;
 }
 

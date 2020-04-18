@@ -4,10 +4,10 @@
 
 #ifndef FINALPROJECT_DOCUMENTPARSER_H
 #define FINALPROJECT_DOCUMENTPARSER_H
-#include "rapidjson\include\rapidjson\document.h"
-#include "rapidjson\include\rapidjson\writer.h"
-#include "rapidjson\include\rapidjson\filereadstream.h"
-#include "rapidjson/include/rapidjson/stringbuffer.h"
+#include "document.h"
+#include "writer.h"
+#include "filereadstream.h"
+#include "stringbuffer.h"
 #include "fstream"
 #include "dirent.h"
 #include "unistd.h"
@@ -17,15 +17,26 @@
 #include <string>
 #include "hashTable.h"
 #include "CSVReader.h"
+#include "vector"
+#include <bits/stdc++.h>
 using namespace rapidjson;
 using namespace std;
 
 class DocumentParser {
+private:
+    string paperid;
+    string title ;
+    string text;
+    string bodytext;
+    vector<string> token;
 public:
     void parseDocument(string&);
     void printDocument(Document&);
     void getDocumentsinDirectory(string&);
-    void csvParse();
+    void removeNONLettersandLowercase(string&);
+    void tokenization(string&);
+    void printToken();
+
 };
 
 

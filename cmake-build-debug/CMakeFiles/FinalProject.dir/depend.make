@@ -508,6 +508,32 @@ CMakeFiles/FinalProject.dir/CSVReader.cpp.obj: ../CSVReader.h
 CMakeFiles/FinalProject.dir/CSVReader.cpp.obj: ../LinkedList.h
 CMakeFiles/FinalProject.dir/CSVReader.cpp.obj: ../hashTable.h
 
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/allocators.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/document.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/encodedstream.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/encodings.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/error/error.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/filereadstream.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/biginteger.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/clzll.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/diyfp.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/dtoa.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/ieee754.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/itoa.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/meta.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/pow10.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/stack.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/strfunc.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/strtod.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/internal/swap.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/memorystream.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/msinttypes/inttypes.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/msinttypes/stdint.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/rapidjson.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/reader.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/stream.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/stringbuffer.h
+CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/writer.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string.hpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1015,36 +1041,36 @@ CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../DocumentParser.cpp
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../DocumentParser.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../LinkedList.h
 CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../hashTable.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/allocators.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/document.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/encodedstream.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/encodings.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/error/error.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/filereadstream.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/biginteger.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/clzll.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/diyfp.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/dtoa.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/ieee754.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/itoa.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/meta.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/pow10.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/stack.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/strfunc.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/strtod.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/internal/swap.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/memorystream.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/msinttypes/inttypes.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/msinttypes/stdint.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/rapidjson.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/reader.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/stream.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/stringbuffer.h
-CMakeFiles/FinalProject.dir/DocumentParser.cpp.obj: ../rapidjson/include/rapidjson/writer.h
 
 CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj: ../QueryEngine.cpp
 CMakeFiles/FinalProject.dir/QueryEngine.cpp.obj: ../QueryEngine.h
 
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/allocators.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/document.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/encodedstream.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/encodings.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/error/error.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/filereadstream.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/biginteger.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/clzll.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/diyfp.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/dtoa.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/ieee754.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/itoa.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/meta.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/pow10.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/stack.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/strfunc.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/strtod.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/internal/swap.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/memorystream.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/msinttypes/inttypes.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/msinttypes/stdint.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/rapidjson.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/reader.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/stream.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/stringbuffer.h
+CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/writer.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string.hpp
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/case_conv.hpp
 CMakeFiles/FinalProject.dir/main.cpp.obj: C:/Program\ Files/boost_1_60_0/boost/algorithm/string/classification.hpp
@@ -1553,30 +1579,4 @@ CMakeFiles/FinalProject.dir/main.cpp.obj: ../LinkedList.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../QueryEngine.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../hashTable.h
 CMakeFiles/FinalProject.dir/main.cpp.obj: ../main.cpp
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/allocators.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/document.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/encodedstream.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/encodings.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/error/error.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/filereadstream.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/biginteger.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/clzll.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/diyfp.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/dtoa.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/ieee754.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/itoa.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/meta.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/pow10.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/stack.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/strfunc.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/strtod.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/internal/swap.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/memorystream.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/msinttypes/inttypes.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/msinttypes/stdint.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/rapidjson.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/reader.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/stream.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/stringbuffer.h
-CMakeFiles/FinalProject.dir/main.cpp.obj: ../rapidjson/include/rapidjson/writer.h
 

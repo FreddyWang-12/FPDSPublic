@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 project(FinalProject)
 
 set(CMAKE_CXX_STANDARD 14)
+file(COPY rapidjson/ DESTINATION ./rapidjson)
+include_directories(rapidjson)
 SET (BOOST_ROOT "C:/Program Files/boost_1_60_0")
 SET (BOOST_INCLUDEDIR "C:/Program Files/boost_1_60_0/boost")
 SET (BOOST_LIBRARYDIR "C:/Program Files/boost_1_60_0/libs")

@@ -8,18 +8,15 @@
 using namespace std;
 
 
-
-using namespace std;
-
 int main() {
-    CSVReader reader(R"(C:\Users\jonas\Desktop\DataStructures\FinalProject\Data\metadata.csv)");
-    reader.getData();
-    reader.putInHashTable();
+//    CSVReader reader(R"(C:\Users\jonas\Desktop\DataStructures\FinalProject\Data\metadata-cs2341)");
+//    reader.getData();
+//    reader.putInHashTable();
 //    reader.printVector();
     DocumentParser d;
-    string directory = "C:/Users/jonas/Desktop/DataStructures/FinalProject/Data/biorxiv_medrxiv/biorxiv_medrxiv/pdf_json";
+    string directory = "C:/Users/jonas/Desktop/DataStructures/FinalProject/Data/cs2341_data";
     d.getDocumentsinDirectory(directory);
-
+    d.printToken();
 
 
 

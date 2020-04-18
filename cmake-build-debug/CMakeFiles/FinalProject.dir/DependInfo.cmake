@@ -13,6 +13,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../rapidjson"
   "C:/Program Files/boost_1_60_0"
   )
 
