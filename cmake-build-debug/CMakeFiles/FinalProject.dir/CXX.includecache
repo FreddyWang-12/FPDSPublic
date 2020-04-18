@@ -5648,6 +5648,10 @@ C:/Users/jonas/Desktop/DataStructures/FinalProject/AVLNode.h
 Word.h
 C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
 
+C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.cpp
+CSVReader.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h
+
 C:/Users/jonas/Desktop/DataStructures/FinalProject/CSVReader.h
 iostream
 -
@@ -5710,11 +5714,21 @@ iostream
 stdexcept
 -
 
+C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.cpp
+QueryEngine.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
+cstring
+C:/Users/jonas/Desktop/DataStructures/FinalProject/cstring
+
 C:/Users/jonas/Desktop/DataStructures/FinalProject/QueryEngine.h
 iostream
 -
 string
 -
+
+C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.cpp
+Word.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
 
 C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
 iostream
@@ -5757,6 +5771,16 @@ Word.h
 C:/Users/jonas/Desktop/DataStructures/FinalProject/Word.h
 unistd.h
 C:/Users/jonas/Desktop/DataStructures/FinalProject/unistd.h
+
+C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.cpp
+algorithm
+-
+utility
+-
+unordered_map
+-
+porter2_stemmer.h
+C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.h
 
 C:/Users/jonas/Desktop/DataStructures/FinalProject/porter2_stemmer.h
 vector

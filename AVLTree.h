@@ -20,14 +20,14 @@ private:
     void r1RightChild(AVLNode<T>*&);
     void r2RightChild(AVLNode<T>*&);
     void insertNode(T&,AVLNode<T> *&);
-    Word & getContent(Word&,AVLNode<Word>*);
+    T& getContent(T&,AVLNode<T>*);
 public:
     AVLTree();
     AVLTree(AVLNode<T>&);
     AVLTree(AVLTree<T>&);
     ~AVLTree();
     void dump();
-    Word & getContent(Word&);
+    T& getContent(T&);
     void addNode(T&);
     int height(AVLNode<T>*);
 
@@ -152,24 +152,24 @@ template <typename T>
 void AVLTree<T>::addNode(T & info) {
     insertNode(info,cur);
 }
-//
-//template <typename T>
-//Word & AVLTree<T>::getContent(Word & x, AVLNode<Word> * curNode) {
-//    while(curNode != nullptr){
-//        if( x < curNode->data){
-//            curNode = curNode->left;
-//        }else if(curNode->data < curNode){
-//            curNode = curNode->right;
-//        }else{
-//            return curNode->data;
-//        }
-//    }
-//}
-//
-//template <typename T>
-//Word& AVLTree<T>::getContent(Word &x) {
-//
-//}
+
+template <typename T>
+T& AVLTree<T>::getContent(T& x, AVLNode<T> * curNode) {
+    while(curNode != nullptr){
+        if( x < curNode->data){
+            curNode = curNode->left;
+        }else if(curNode->data < curNode){
+            curNode = curNode->right;
+        }else{
+            return curNode->data;
+        }
+    }
+}
+
+template <typename T>
+T& AVLTree<T>::getContent(T& x) {
+    return getContent(x, cur);
+}
 
 
 
