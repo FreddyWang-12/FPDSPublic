@@ -187,7 +187,6 @@ void DocumentParser::removeStopWords(){
     }
 }
 
-
 void DocumentParser::cleanVector() {
  vector<string> temp;
     for(int i = 0; i < token.size(); i++){
@@ -235,3 +234,11 @@ int DocumentParser::getTokenVecSize() {
     return token.size();
 }
 
+bool DocumentParser::findInStopWord(string& x){
+    for(int i = 0; i < 1160; i++){
+        if(x == stopwords[i]){
+            return true;
+        }
+    }
+    return false;
+}

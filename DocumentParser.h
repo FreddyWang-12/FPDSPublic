@@ -136,6 +136,7 @@ public:
     void cleanVector();
     void clearVector();
     void insertIntoAVLTree(AVLTree<Word> &);
+    bool findInStopWord(string& x);
 
     //void insertIntoAVLTree(AVLTree<Word>&, Word&);
     void tokenToWords(Word&);
