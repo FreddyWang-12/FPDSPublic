@@ -14,6 +14,7 @@ template <typename T>
 class AVLTree{
 private:
     AVLNode<T>* cur;
+    int size;
     void dump(AVLNode<T>*&);
     void r1LeftChild(AVLNode<T>*&);
     void r2LeftChild(AVLNode<T>*&);
@@ -33,8 +34,7 @@ public:
     void addFirstNodes(T&);
     int height(AVLNode<T>*);
     bool isEmpty();
-
-
+    int getSize();
 };
 template <typename T>
 bool AVLTree<T>::isEmpty() {
@@ -155,7 +155,7 @@ void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
             }
         }
     }else{};
-
+    size++;
     node->height = max(height(node->left), height(node->right))+1;
 }
 template <typename T>
@@ -179,6 +179,11 @@ T& AVLTree<T>::getContent(T& x, AVLNode<T> * curNode) {
 template <typename T>
 Word& AVLTree<T>::getContent(Word& x) {
     return getContent(x, cur);
+}
+
+template <typename T>
+int AVLTree<T>::getSize() {
+    return size;
 }
 
 //template <typename T>

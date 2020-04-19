@@ -105,7 +105,7 @@ void DocumentParser::removeNONLettersandLowercase(string &data) {
         for(int i = 0; i < data.length(); i++) {
             if(isspace(data[i])){
                 continue;
-            }else if(data[i] < 'A' || data[i] > 'Z' && data[i] < 'a' || data[i] > 'z'){
+            }else if(data[i] < 'A' || data[i] > 'Z'&& data[i] < 'a' || data[i] > 'z'){
                 data.erase(i,1);
                 i--;
             }
@@ -175,15 +175,16 @@ void DocumentParser::printStopWords() {
 
 void DocumentParser::removeStopWords(){
     string::iterator it, iter;
-for(unsigned int i = 0; i < token.size(); i++){
-    for(unsigned int j = 0; j < stopwords.size(); j++){
-        if(token.at(i) == stopwords.at(j)){
-            token.at(i).erase();
-        }else{
-            continue;
+    for(unsigned int i = 0; i < token.size(); i++){
+        for(unsigned int j = 0; j < stopwords.size(); j++){
+            if(token.at(i) == stopwords.at(j)){
+                token.at(i).erase();
+            }
+            else{
+                continue;
+            }
         }
     }
-}
 }
 
 
@@ -206,13 +207,14 @@ void DocumentParser::clearVector() {
 
 
 void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
-    for(int i = 0; i < token.size(); i++){
-        Word newWord(token[i], paperid);
-        if(avl.getContent(newWord).getWordData() == token[i]) {
-            avl.addNode(newWord);
+    for(int i = 0; i < vecOfWords.size(); i++){
+        if(avl.getContent(vecOfWords[i]).getWordData() == token[i]) {
+            if (avl.getContent(vecOfWords[i]).findDoc(paperid) != paperid){
+                avl.getContent(vecOfWords[i]).getDocs().push_back(paperid);
+            }
         }
         else{
-            avl.getContent(newWord).getDocs().push_back(paperid);
+            avl.addNode(vecOfWords[i]);
         }
     }
 }
@@ -226,7 +228,7 @@ void DocumentParser::tokenToWords(Word& obj) {
 }
 
 
-void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj, Word & words) {
+void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
     for(int i = 0; i < vecOfWords.size(); i++){
         obj.addNode(vecOfWords[i]);
     }

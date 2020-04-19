@@ -53,10 +53,10 @@ public:
     void clearVector();
     void insertIntoAVLTree(AVLTree<Word> &);
 
-    void insertIntoAVLTree(AVLTree<Word>&, Word&);
+    //void insertIntoAVLTree(AVLTree<Word>&, Word&);
     void tokenToWords(Word&);
-    void addFirstWordsToAVL(Word&);
-    void initialAdditonToAVLTree(AVLTree<Word>&, Word&);
+    void addFirstWordsToAVL(AVLTree<Word> & obj, Word & words);
+    void initialAdditonToAVLTree(AVLTree<Word>&);
     int getTokenVecSize();
 
 };

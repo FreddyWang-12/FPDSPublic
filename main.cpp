@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     string directory = argv[1];
 //    while(dirp = readdir(dp)){
     int count = 0;
-    while(count != 10){
+    while(count != 20){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -51,11 +51,11 @@ int main(int argc, char* argv[]) {
         d.tokenToWords(words);
         int first = 0;
         while(first != 1){
-            d.initialAdditonToAVLTree(tree,words);
+            d.initialAdditonToAVLTree(tree);
             first++;
         }
         
-        d.insertIntoAVLTree(tree,words);
+        d.insertIntoAVLTree(tree);
 //        d.printToken();
         d.clearVector();
 //        }
