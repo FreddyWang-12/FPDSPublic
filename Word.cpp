@@ -12,6 +12,10 @@ Word::Word(){
 Word::Word(string newOne){
     data = newOne;
 }
+Word::Word(string word, string docID){
+    data = word;
+    this->addDoc(docID);
+}
 
 void Word::addDoc(string docID) {
     docIDs.push_back(docID);

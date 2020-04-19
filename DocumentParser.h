@@ -22,6 +22,7 @@
 #include "Word.h"
 //#include <bits/stdc++.h>
 #include "AVLTree.h"
+#include "Word.h"
 
 using namespace rapidjson;
 using namespace std;
@@ -34,6 +35,7 @@ private:
     string bodytext;
     vector<string> token;
     vector<string> stopwords;
+    vector<Word> vecOfWords;
 
 public:
     void parseDocument(string&);
@@ -50,6 +52,12 @@ public:
     void cleanVector();
     void clearVector();
     void insertIntoAVLTree(AVLTree<Word> &);
+
+    void insertIntoAVLTree(AVLTree<Word>&, Word&);
+    void tokenToWords(Word&);
+    void addFirstWordsToAVL(Word&);
+    void initialAdditonToAVLTree(AVLTree<Word>&, Word&);
+    int getTokenVecSize();
 
 };
 

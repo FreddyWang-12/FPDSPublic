@@ -21,19 +21,29 @@ private:
     void r2RightChild(AVLNode<T>*&);
     void insertNode(T&,AVLNode<T> *&);
     T& getContent(T&,AVLNode<T>*);
+    void printNode(ofstream&,AVLNode<T>*);
 public:
     AVLTree();
     AVLTree(AVLNode<T>&);
     AVLTree(AVLTree<T>&);
     ~AVLTree();
     void dump();
-    T& getContent(T&);
+    Word & getContent(Word &);
     void addNode(T&);
+    void addFirstNodes(T&);
     int height(AVLNode<T>*);
+    bool isEmpty();
 
 
 };
-
+template <typename T>
+bool AVLTree<T>::isEmpty() {
+    if(cur == nullptr){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 template <typename T>
 AVLTree<T>::AVLTree() {
@@ -158,7 +168,7 @@ T& AVLTree<T>::getContent(T& x, AVLNode<T> * curNode) {
     while(curNode != nullptr){
         if( x < curNode->data){
             curNode = curNode->left;
-        }else if(curNode->data < curNode){
+        }else if(curNode->data < x){
             curNode = curNode->right;
         }else{
             return curNode->data;
@@ -167,10 +177,27 @@ T& AVLTree<T>::getContent(T& x, AVLNode<T> * curNode) {
 }
 
 template <typename T>
-T& AVLTree<T>::getContent(T& x) {
+Word& AVLTree<T>::getContent(Word& x) {
     return getContent(x, cur);
 }
 
+//template <typename T>
+//void AVLTree<T>::printNode(ofstream& out,AVLNode<T> *nodey) {
+//    if(nodey != nullptr){
+//        printNode(out ,nodey->left);
+//        out << nodey->data << endl;
+//        printNode(out ,nodey->right);
+//    }
+//}
+//
+//template <typename T>
+//void AVLTree<T>::printTree(ofstream& outt) {
+//    if(cur == nullptr){
+//        cout << "The AVL Tree IS EMPTY!" << endl;
+//    }else{
+//        printNode(outt,cur);
+//    }
+//}
 
 
 #endif //FINALPROJECT_AVLTREE_H

@@ -17,9 +17,10 @@ int main(int argc, char* argv[]) {
 //    reader.getData();
 //    reader.putInHashTable();
 //    reader.printVector();
-    AVLTree<string> tree;
+    AVLTree<Word> tree;
     Word words;
     DocumentParser d;
+    ofstream out;
     ifstream fin;
     string filepath;
     DIR *dp;
@@ -32,7 +33,7 @@ int main(int argc, char* argv[]) {
     string directory = argv[1];
 //    while(dirp = readdir(dp)){
     int count = 0;
-    while(count != 2){
+    while(count != 10){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -47,8 +48,14 @@ int main(int argc, char* argv[]) {
         d.stemStopWords();
         d.removeStopWords();
         d.cleanVector();
-        d.insertIntoAVLTree(tree);
-
+        d.tokenToWords(words);
+        int first = 0;
+        while(first != 1){
+            d.initialAdditonToAVLTree(tree,words);
+            first++;
+        }
+        
+        d.insertIntoAVLTree(tree,words);
 //        d.printToken();
         d.clearVector();
 //        }
