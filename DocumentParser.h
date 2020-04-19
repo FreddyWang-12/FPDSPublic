@@ -19,6 +19,7 @@
 #include "CSVReader.h"
 #include "porter2_stemmer.h"
 #include "vector"
+#include "Word.h"
 //#include <bits/stdc++.h>
 #include "AVLTree.h"
 
@@ -48,7 +49,7 @@ public:
     void removeStopWords();
     void cleanVector();
     void clearVector();
-    void insertIntoAVLTree(AVLTree<string> &);
+    void insertIntoAVLTree(AVLTree<Word> &);
 
 };
 

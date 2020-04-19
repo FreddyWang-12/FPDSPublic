@@ -19,6 +19,7 @@ private:
 public:
     Word();
     Word(string newOne);
+    Word(string word, string docID);
     ~Word();
     Word(const Word& other);
     Word& operator = (const Word& copy);
