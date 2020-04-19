@@ -29,11 +29,6 @@ Word::Word(const Word& other){
     docIDs = other.docIDs;
 }
 
-Word::Word(string word, string docID){
-    data = word;
-    this->addDoc(docID);
-}
-
 Word& Word::operator = (const Word& copy){
     data = copy.data;
     docIDs = copy.docIDs;
