@@ -27,7 +27,7 @@ public:
     AVLTree(AVLTree<T>&);
     ~AVLTree();
     void dump();
-    T& getContent(T&);
+    Word & getContent(Word &);
     void addNode(T&);
     int height(AVLNode<T>*);
 
@@ -167,7 +167,7 @@ T& AVLTree<T>::getContent(T& x, AVLNode<T> * curNode) {
 }
 
 template <typename T>
-T& AVLTree<T>::getContent(T& x) {
+Word& AVLTree<T>::getContent(Word& x) {
     return getContent(x, cur);
 }
 

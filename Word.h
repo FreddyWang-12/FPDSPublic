@@ -18,7 +18,8 @@ private:
 
 public:
     Word();
-    Word(string newOne);
+    Word(string);
+    Word(string,string);
     ~Word();
     Word(const Word& other);
     Word& operator = (const Word& copy);

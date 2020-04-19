@@ -201,10 +201,18 @@ void DocumentParser::clearVector() {
     token.clear();
 }
 
+//
+//void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
+//    for(int i = 0; i < token.size(); i++){
+//        if(avl.getContent(token[i]))
+////        avl.addNode(token[i]);
+//    }
+//}
 
-void DocumentParser::insertIntoAVLTree(AVLTree<string>& avl) {
+
+void DocumentParser::tokenToWords(Word& obj) {
     for(int i = 0; i < token.size(); i++){
-        avl.addNode(token[i]);
+        obj = Word(token[i],paperid);
     }
 }
 

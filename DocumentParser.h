@@ -21,6 +21,7 @@
 #include "vector"
 #include <bits/stdc++.h>
 #include "AVLTree.h"
+#include "Word.h"
 
 using namespace rapidjson;
 using namespace std;
@@ -48,7 +49,8 @@ public:
     void removeStopWords();
     void cleanVector();
     void clearVector();
-    void insertIntoAVLTree(AVLTree<string> &);
+    void insertIntoAVLTree(AVLTree<Word>&);
+    void tokenToWords(Word&);
 
 };
 
