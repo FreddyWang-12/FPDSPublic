@@ -33,11 +33,12 @@ private:
     string title ;
     string text;
     string bodytext;
+    string matterWords;
+    string temp;
     string allDocText;
     vector<string> token;
     vector<string> stopwords;
     vector<Word> vecOfWords;
-    string temp;
     string stopword[1160] = {"0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4", "ab", "able", "about",
                               "above", "abst", "ac", "accordance", "according", "accordingly", "across", "act", "actually",
                               "ad", "added", "adj", "ae", "af", "affected", "affecting", "affects", "after", "afterwards",
@@ -134,19 +135,21 @@ public:
     void addStrings();
     void printToken();
     void trimTokens();
-    void stemTokens();
     void printStopWords();
     void removeStopWords();
     void cleanVector();
     void clearVector();
-    void insertIntoAVLTree(AVLTree<Word>&, Word&);
-    void tokenToWords(Word&);
+    void insertIntoAVLTree(AVLTree<Word>&);
+    void tokenToWords();
     void addFirstWordsToAVL(Word&);
-    void initialAdditonToAVLTree(AVLTree<Word>&, Word&);
+    void initialAdditonToAVLTree(AVLTree<Word>&);
     int getTokenVecSize();
     void printallDocText();
     bool findInStopWord(string&);
     void freeMem();
+    void deleteAllDocText();
+    void clearTokenVec();
+    void stemDoc();
 
 };
 

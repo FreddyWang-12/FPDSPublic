@@ -1,15 +1,15 @@
 #include <iostream>
 #include <string>
-#include "fstream"
 #include "QueryEngine.h"
 #include "DocumentParser.h"
 #include "CSVReader.h"
-#include "vector"
 #include "dirent.h"
 #include "AVLTree.h"
 #include "Word.h"
 #include "unistd.h"
+#include "chrono"
 using namespace std;
+using namespace std::chrono;
 
 
 int main(int argc, char* argv[]) {
@@ -17,11 +17,11 @@ int main(int argc, char* argv[]) {
 //    reader.getData();
 //    reader.putInHashTable();
 //    reader.printVector();
+    auto start = high_resolution_clock::now();
     AVLTree<Word> tree;
-    Word words;
+//    Word words;
     DocumentParser d;
     ofstream out;
-    ifstream fin;
     string filepath;
     DIR *dp;
     struct dirent *dirp;
@@ -31,40 +31,36 @@ int main(int argc, char* argv[]) {
         cout << "Error("<< errno <<") opening " << argv[1] << endl;
     }
     string directory = argv[1];
-//    while(dirp = readdir(dp)){
     int count = 0;
-    while(count != 20){
+//    while(dirp = readdir(dp)){
+    while(count != 50){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
         if(S_ISDIR(filestat.st_mode)) continue;
-        string sha = dirp->d_name;
-//        string get = sha.erase(sha.find("."));
-//        string get = sha.erase(sha.find('.')-4);
-//        if(csvreader.ifExists(get)){
         d.parseDocument(filepath);
-        d.trimTokens();
         d.addStrings();
+        d.trimTokens();
         d.tokenization();
-        d.stemTokens();
-//        d.tokenToWords(words);
-//        int first = 0;
-//        while(first != 1){
-            d.initialAdditonToAVLTree(tree,words);
-//            first++;
-//        }
-//
-//            d.insertIntoAVLTree(tree, words);
+        d.deleteAllDocText();
+        d.tokenToWords();
+        d.clearTokenVec();
 
-////        d.printToken();
+        if(tree.isEmpty()){
+            d.initialAdditonToAVLTree(tree);
+        }else {
+            d.insertIntoAVLTree(tree);
+        }
+
         d.clearVector();
         d.freeMem();
-//        }
         count++;
     }
     closedir(dp);
-
-
+    cout << "Total AVL Tree Nodes = " << tree.getSize() << endl;
+    auto stop = high_resolution_clock::now();
+auto duration = duration_cast<seconds>(stop-start);
+cout << "Time Take For Program: " << duration.count() << " secounds" << endl;
 //QueryEngine a;
 //string search = "virus AND jonas NOT ezra";
 //a.prefixIndentifier(search);

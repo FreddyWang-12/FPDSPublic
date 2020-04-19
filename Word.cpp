@@ -54,8 +54,8 @@ void Word::setWordData(string newOne) {
 }
 
 string Word::findDoc(string docID) {
-    for(int i = 0; i < docIDs.size(); i++){
-        if(docIDs[i] == docID){
+    for(const auto & i : docIDs){
+        if(i == docID){
             return docID;
         }
     }

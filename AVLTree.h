@@ -23,6 +23,7 @@ private:
     T& getContent(T&,AVLNode<T>*);
     void printNode(ofstream&,AVLNode<T>*);
     bool ifExists(T&,AVLNode<T>*);
+    int size = 0;
 public:
     AVLTree();
     AVLTree(AVLNode<T>&);
@@ -35,6 +36,7 @@ public:
     int height(AVLNode<T>*);
     bool isEmpty();
     bool ifExists(T&);
+    int getSize();
 
 
 };
@@ -159,6 +161,7 @@ void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
     }else{};
 
     node->height = max(height(node->left), height(node->right))+1;
+    size++;
 }
 template <typename T>
 void AVLTree<T>::addNode(T & info) {
@@ -199,6 +202,11 @@ bool AVLTree<T>::ifExists(T& x, AVLNode<T>* nody){
 template <typename T>
 bool AVLTree<T>::ifExists(T &x) {
     return ifExists(x,cur);
+}
+
+template <typename T>
+int AVLTree<T>::getSize() {
+    return size;
 }
 
 

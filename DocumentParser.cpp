@@ -99,7 +99,9 @@ int count = 0;
     closedir(dp);
 }
 
-
+void DocumentParser::stemDoc() {
+    Porter2Stemmer::stem(matterWords);
+}
 void DocumentParser::removeNONLettersandLowercase(string &data) {
     int tempCount = 0;
         for(int i = 0; i < data.length(); i++) {
@@ -118,11 +120,13 @@ void DocumentParser::removeNONLettersandLowercase(string &data) {
 
 void DocumentParser::tokenization() {
     stringstream check(allDocText);
-    while(getline(check,temp,' ')){
+    while(!check.eof()){
+        getline(check,temp,' ');
         if(findInStopWord(temp) || temp.empty()){
             continue;
         }else{
-            stemTokens();
+//            matterWords += " " + temp;
+            Porter2Stemmer::stem(temp);
             token.push_back(temp);
         }
     }
@@ -138,17 +142,10 @@ void DocumentParser::printToken() {
 }
 
 void DocumentParser::trimTokens() {
-        Porter2Stemmer::trim(title);
-
-        Porter2Stemmer::trim(text);
-
-        Porter2Stemmer::trim(bodytext);
+        Porter2Stemmer::trim(allDocText);
 
 }
 
-void DocumentParser::stemTokens() {
-            Porter2Stemmer::stem(temp);
-}
 
 
 
@@ -183,40 +180,34 @@ void DocumentParser::cleanVector() {
 }
 
 void DocumentParser::clearVector() {
-    token.clear();
     vecOfWords.clear();
 }
 
 
-void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl, Word& obj) {
-    for(int i = 0; i < token.size(); i++){
-        if(avl.ifExists(obj = Word(token[i],paperid))){
-            if(avl.getContent(obj).findDoc(paperid) != paperid){
-                avl.getContent(obj).addDoc(paperid);
+void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
+    for(int i = 0; i < vecOfWords.size(); i++){
+        if(avl.ifExists(vecOfWords[i])){
+            if(avl.getContent(vecOfWords[i]).findDoc(paperid) != paperid){
+                avl.getContent(vecOfWords[i]).addDoc(paperid);
             }
         }else{
-            avl.addNode(obj);
+            avl.addNode(vecOfWords[i]);
         }
     }
 }
 
 
-void DocumentParser::tokenToWords(Word& obj) {
+void DocumentParser::tokenToWords() {
     for(int i = 0; i < token.size(); i++){
-        obj = Word(token[i],paperid);
-        vecOfWords.push_back(obj);
+        vecOfWords.emplace_back(token[i],paperid);
     }
 }
 
 
-void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj, Word & words) {
-    if(obj.isEmpty()) {
-        for (int i = 0; i < token.size(); i++) {
-            obj.addNode(words = Word(token[i],paperid));
+void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
+        for (auto & vecOfWord : vecOfWords) {
+            obj.addNode(vecOfWord);
         }
-    }else{
-        insertIntoAVLTree(obj,words);
-    }
 }
 
 int DocumentParser::getTokenVecSize() {
@@ -233,17 +224,25 @@ void DocumentParser::addStrings() {
 }
 
 bool DocumentParser::findInStopWord(string& x){
-    for(int i = 0; i < 1160; i++){
-        if(x == stopword[i]){
+    for(const auto & i : stopword){
+        if(x == i){
             return true;
         }
     }
     return false;
 }
 void DocumentParser::freeMem(){
+    paperid.clear();
+}
+
+void DocumentParser::deleteAllDocText() {
     allDocText.clear();
     text.clear();
     bodytext.clear();
     title.clear();
-    paperid.clear();
+}
+
+
+void DocumentParser::clearTokenVec() {
+    token.clear();
 }
