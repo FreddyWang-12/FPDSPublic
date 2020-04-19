@@ -199,21 +199,37 @@ void DocumentParser::cleanVector() {
 
 void DocumentParser::clearVector() {
     token.clear();
+    vecOfWords.clear();
 }
 
-//
-//void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
-//    for(int i = 0; i < token.size(); i++){
-//        if(avl.getContent(token[i]))
-////        avl.addNode(token[i]);
-//    }
-//}
+
+void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl, Word& obj) {
+    for(int i = 0; i < vecOfWords.size(); i++){
+       if(avl.getContent(obj).getWordData() == token[i]){
+           avl.addNode(obj);
+       }
+       else{
+           avl.getContent(obj).addDoc(paperid);
+       }
+    }
+}
 
 
 void DocumentParser::tokenToWords(Word& obj) {
     for(int i = 0; i < token.size(); i++){
         obj = Word(token[i],paperid);
+        vecOfWords.push_back(obj);
     }
 }
 
+
+void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj, Word & words) {
+    for(int i = 0; i < vecOfWords.size(); i++){
+        obj.addNode(vecOfWords[i]);
+    }
+}
+
+int DocumentParser::getTokenVecSize() {
+    return token.size();
+}
 

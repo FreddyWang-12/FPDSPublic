@@ -34,6 +34,7 @@ private:
     string bodytext;
     vector<string> token;
     vector<string> stopwords;
+    vector<Word> vecOfWords;
 
 public:
     void parseDocument(string&);
@@ -49,8 +50,11 @@ public:
     void removeStopWords();
     void cleanVector();
     void clearVector();
-    void insertIntoAVLTree(AVLTree<Word>&);
+    void insertIntoAVLTree(AVLTree<Word>&, Word&);
     void tokenToWords(Word&);
+    void addFirstWordsToAVL(Word&);
+    void initialAdditonToAVLTree(AVLTree<Word>&, Word&);
+    int getTokenVecSize();
 
 };
 
