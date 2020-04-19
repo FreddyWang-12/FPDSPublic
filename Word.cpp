@@ -35,6 +35,10 @@ Word& Word::operator = (const Word& copy){
     return *this;
 }
 
+bool Word::operator == (const Word& other){
+    return false;
+}
+
 int Word::operator < (const Word& other){
     if(data < other.data){
         return true;
@@ -53,14 +57,14 @@ void Word::setWordData(string newOne) {
     data = newOne;
 }
 
-string Word::findDoc(string docID) {
+string& Word::findDoc(string& docID) {
     //vector<string>::iterator it = find(docIDs.begin(), docIDs.end(), docID);
     for(int i = 0; i < docIDs.size(); i++) {
         if (docIDs[i] == docID) {
             return docID;
         }
     }
-    return "Negative";
+    return negative;
 }
 
 string& Word::getWordData() {

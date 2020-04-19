@@ -14,6 +14,7 @@ using namespace std;
 class Word {
 private:
     string data;
+    string negative = "Negative";
     vector<string> docIDs;
 
 public:
@@ -23,12 +24,13 @@ public:
     ~Word();
     Word(const Word& other);
     Word& operator = (const Word& copy);
+    bool operator == (const Word& other);
 
     int operator < (const Word& other);
     int operator > (const Word& other);
     void addDoc(string docID);
     void setWordData(string newOne);
-    string findDoc(string docID);
+    string& findDoc(string& docID);
     string& getWordData();
     vector<string>& getDocs();
 };
