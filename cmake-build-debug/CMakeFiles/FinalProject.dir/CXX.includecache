@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.cpp
+QueryEngine.h
+/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.h
+cstring
+/Users/frederickwang/Documents/GitHub/FPDS/cstring
+
+/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.h
+iostream
+-
+string
+-
+

@@ -35,5 +35,5 @@ void QueryEngine::prefixIndentifier(string &arg) {
 //
 //}
 string QueryEngine::parseString(string& arg) {
-
+    return "null";
 }

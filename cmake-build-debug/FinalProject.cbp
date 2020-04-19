@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="FinalProject"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FinalProject">
+				<Option output="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/FinalProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/rapidjson"/>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/util"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 FinalProject"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FinalProject/fast">
+				<Option output="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/FinalProject" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/rapidjson"/>
+					<Add directory="/Users/frederickwang/Documents/GitHub/FPDS/util"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 FinalProject/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/AVLNode.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/AVLTree.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/CSVReader.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/CSVReader.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/LinkedList.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/QueryEngine.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/Word.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/Word.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/hashTable.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/main.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/porter2_stemmer.cpp">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/porter2_stemmer.h">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/stopword.txt">
+			<Option target="FinalProject"/>
+		</Unit>
+		<Unit filename="/Users/frederickwang/Documents/GitHub/FPDS/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

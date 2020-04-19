@@ -4,10 +4,10 @@
 
 #ifndef FINALPROJECT_DOCUMENTPARSER_H
 #define FINALPROJECT_DOCUMENTPARSER_H
-#include "document.h"
-#include "writer.h"
-#include "filereadstream.h"
-#include "stringbuffer.h"
+#include "rapidjson/include/rapidjson/document.h"
+#include "rapidjson/include/rapidjson/writer.h"
+#include "rapidjson/include/rapidjson/stringbuffer.h"
+#include "rapidjson/include/rapidjson/filereadstream.h"
 #include "fstream"
 #include "dirent.h"
 #include "unistd.h"
@@ -19,7 +19,7 @@
 #include "CSVReader.h"
 #include "porter2_stemmer.h"
 #include "vector"
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
 #include "AVLTree.h"
 
 using namespace rapidjson;
