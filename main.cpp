@@ -33,7 +33,8 @@ int main(int argc, char* argv[]) {
     string directory = argv[1];
 //    while(dirp = readdir(dp)){
     int count = 0;
-    while(count != 20){
+    d.stemStopWords();
+    while(count != 100){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -44,8 +45,7 @@ int main(int argc, char* argv[]) {
 //        if(csvreader.ifExists(get)){
         d.parseDocument(filepath);
         d.stemTokens();
-        d.getStopWords();
-        d.stemStopWords();
+        //d.getStopWords();
         d.removeStopWords();
         d.cleanVector();
         d.tokenToWords(words);

@@ -54,10 +54,6 @@ boost/algorithm/string.hpp
 hashTable.h
 /Users/frederickwang/Documents/GitHub/FPDS/hashTable.h
 
-/Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.cpp
-DocumentParser.h
-/Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.h
-
 /Users/frederickwang/Documents/GitHub/FPDS/DocumentParser.h
 rapidjson/include/rapidjson/document.h
 /Users/frederickwang/Documents/GitHub/FPDS/rapidjson/include/rapidjson/document.h

@@ -145,7 +145,7 @@ void DocumentParser::stemTokens() {
 }
 
 void DocumentParser::stemStopWords() {
-    for(int i = 0; i < stopwords.size(); i++){
+    for(int i = 0; i < 1160; i++){
         Porter2Stemmer::trim(stopwords[i]);
         Porter2Stemmer::stem(stopwords[i]);
     }
@@ -153,7 +153,7 @@ void DocumentParser::stemStopWords() {
 
 
 
-void DocumentParser::getStopWords() {
+/*void DocumentParser::getStopWords() {
     ifstream file;
     string buffer;
     file.open("../stopword.txt");
@@ -165,10 +165,10 @@ void DocumentParser::getStopWords() {
         stopwords.push_back(buffer);
     }
     file.close();
-}
+}*/
 
 void DocumentParser::printStopWords() {
-    for(int i = 0; i < stopwords.size(); i++){
+    for(int i = 0; i < 1160; i++){
         cout << stopwords[i] << endl;
     }
 }
@@ -176,8 +176,8 @@ void DocumentParser::printStopWords() {
 void DocumentParser::removeStopWords(){
     string::iterator it, iter;
     for(unsigned int i = 0; i < token.size(); i++){
-        for(unsigned int j = 0; j < stopwords.size(); j++){
-            if(token.at(i) == stopwords.at(j)){
+        for(unsigned int j = 0; j < 1160; j++){
+            if(token.at(i) == stopwords[j]){
                 token.at(i).erase();
             }
             else{
@@ -202,9 +202,6 @@ void DocumentParser::clearVector() {
     token.clear();
     vecOfWords.clear();
 }
-
-
-
 
 void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
     for(int i = 0; i < vecOfWords.size(); i++){

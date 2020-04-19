@@ -130,7 +130,7 @@ public:
     void printToken();
     void stemTokens();
     void stemStopWords();
-    void getStopWords();
+    //void getStopWords();
     void printStopWords();
     void removeStopWords();
     void cleanVector();
