@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     string directory = argv[1];
 //    while(dirp = readdir(dp)){
     int count = 0;
-    while(count != 10){
+    while(count != 20){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -43,28 +43,26 @@ int main(int argc, char* argv[]) {
 //        string get = sha.erase(sha.find('.')-4);
 //        if(csvreader.ifExists(get)){
         d.parseDocument(filepath);
+        d.trimTokens();
+        d.addStrings();
+        d.tokenization();
         d.stemTokens();
-        d.getStopWords();
-        d.stemStopWords();
-        d.removeStopWords();
-        d.cleanVector();
-        d.tokenToWords(words);
-        int first = 0;
-        while(first != 1){
+//        d.tokenToWords(words);
+//        int first = 0;
+//        while(first != 1){
             d.initialAdditonToAVLTree(tree,words);
-            first++;
-        }
-        
-        d.insertIntoAVLTree(tree,words);
-//        d.printToken();
+//            first++;
+//        }
+//
+//            d.insertIntoAVLTree(tree, words);
+
+////        d.printToken();
         d.clearVector();
+        d.freeMem();
 //        }
         count++;
     }
-
-
-
-
+    closedir(dp);
 
 
 //QueryEngine a;

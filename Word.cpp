@@ -54,13 +54,12 @@ void Word::setWordData(string newOne) {
 }
 
 string Word::findDoc(string docID) {
-    vector<string>::iterator it = find(docIDs.begin(), docIDs.end(), docID);
-    if(it->data() == docID){
-        return docID;
+    for(int i = 0; i < docIDs.size(); i++){
+        if(docIDs[i] == docID){
+            return docID;
+        }
     }
-    else{
-        return "Negative";
-    }
+    return "Negative";
 }
 
 string& Word::getWordData() {

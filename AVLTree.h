@@ -22,6 +22,7 @@ private:
     void insertNode(T&,AVLNode<T> *&);
     T& getContent(T&,AVLNode<T>*);
     void printNode(ofstream&,AVLNode<T>*);
+    bool ifExists(T&,AVLNode<T>*);
 public:
     AVLTree();
     AVLTree(AVLNode<T>&);
@@ -33,6 +34,7 @@ public:
     void addFirstNodes(T&);
     int height(AVLNode<T>*);
     bool isEmpty();
+    bool ifExists(T&);
 
 
 };
@@ -180,6 +182,25 @@ template <typename T>
 Word& AVLTree<T>::getContent(Word& x) {
     return getContent(x, cur);
 }
+
+template <typename T>
+bool AVLTree<T>::ifExists(T& x, AVLNode<T>* nody){
+    if(nody == nullptr){
+        return false;
+    }else if (x < nody->data){
+        return ifExists(x,nody->left);
+    }else if(nody->data < x){
+        return ifExists(x,nody->right);
+    }else{
+        return true;
+    }
+}
+
+template <typename T>
+bool AVLTree<T>::ifExists(T &x) {
+    return ifExists(x,cur);
+}
+
 
 //template <typename T>
 //void AVLTree<T>::printNode(ofstream& out,AVLNode<T> *nodey) {

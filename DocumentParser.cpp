@@ -18,8 +18,8 @@ void DocumentParser::parseDocument(string& file) {
     assert(d["metadata"]["title"].IsString());
      paperid = d["paper_id"].GetString();
      title = d["metadata"]["title"].GetString();
-    removeNONLettersandLowercase(title);
-    tokenization(title);
+//    removeNONLettersandLowercase(title);
+//    tokenization(title);
 //    cout << title << endl;
 //    cout << d["paper_id"].GetString() << endl;
 //    cout << d["metadata"]["title"].GetString() << endl;
@@ -31,9 +31,9 @@ void DocumentParser::parseDocument(string& file) {
 
             if(textObj.HasMember("text")){
                 const Value& testString = textObj["text"];
-                text = testString.GetString();
-                removeNONLettersandLowercase(text);
-                tokenization(text);
+                text = text + testString.GetString();
+//                removeNONLettersandLowercase(text);
+//                tokenization(text);
 //                cout << text << endl;
             }
 
@@ -47,9 +47,9 @@ void DocumentParser::parseDocument(string& file) {
             const Value& body_text_OBJ = body_text_array[j];
             if(body_text_OBJ.HasMember("text")){
                 const Value& body_text_String = body_text_OBJ["text"];
-                bodytext = body_text_String.GetString();
-                removeNONLettersandLowercase(bodytext);
-                tokenization(bodytext);
+                bodytext = bodytext + body_text_String.GetString();
+//                removeNONLettersandLowercase(bodytext);
+//                tokenization(bodytext);
 //                cout << bodytext << endl;
             }
         }
@@ -91,7 +91,7 @@ int count = 0;
 //        string get = sha.erase(sha.find("."));
 //        string get = sha.erase(sha.find('.')-4);
 //        if(csvreader.ifExists(get)){
-            this->parseDocument(filepath);
+            parseDocument(filepath);
 //        }
         count++;
     }
@@ -116,13 +116,13 @@ void DocumentParser::removeNONLettersandLowercase(string &data) {
 }
 
 
-void DocumentParser::tokenization(string& data) {
-    stringstream check(data);
-    string temp;
+void DocumentParser::tokenization() {
+    stringstream check(allDocText);
     while(getline(check,temp,' ')){
-        if(temp.empty()){
+        if(findInStopWord(temp) || temp.empty()){
             continue;
         }else{
+            stemTokens();
             token.push_back(temp);
         }
     }
@@ -137,35 +137,20 @@ void DocumentParser::printToken() {
     }
 }
 
+void DocumentParser::trimTokens() {
+        Porter2Stemmer::trim(title);
+
+        Porter2Stemmer::trim(text);
+
+        Porter2Stemmer::trim(bodytext);
+
+}
+
 void DocumentParser::stemTokens() {
-    for(int i = 0; i < token.size(); i++){
-        Porter2Stemmer::trim(token[i]);
-        Porter2Stemmer::stem(token[i]);
-    }
-}
-
-void DocumentParser::stemStopWords() {
-    for(int i = 0; i < stopwords.size(); i++){
-        Porter2Stemmer::trim(stopwords[i]);
-        Porter2Stemmer::stem(stopwords[i]);
-    }
+            Porter2Stemmer::stem(temp);
 }
 
 
-
-void DocumentParser::getStopWords() {
-    ifstream file;
-    string buffer;
-    file.open("../stopword.txt");
-    if(!file){
-        cout << "StopWords Did Not Open or DNE!" << endl;
-    }
-    while(!file.eof()){
-        getline(file,buffer,'\n');
-        stopwords.push_back(buffer);
-    }
-    file.close();
-}
 
 void DocumentParser::printStopWords() {
     for(int i = 0; i < stopwords.size(); i++){
@@ -204,13 +189,14 @@ void DocumentParser::clearVector() {
 
 
 void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl, Word& obj) {
-    for(int i = 0; i < vecOfWords.size(); i++){
-       if(avl.getContent(obj).getWordData() == token[i]){
-           avl.addNode(obj);
-       }
-       else{
-           avl.getContent(obj).addDoc(paperid);
-       }
+    for(int i = 0; i < token.size(); i++){
+        if(avl.ifExists(obj = Word(token[i],paperid))){
+            if(avl.getContent(obj).findDoc(paperid) != paperid){
+                avl.getContent(obj).addDoc(paperid);
+            }
+        }else{
+            avl.addNode(obj);
+        }
     }
 }
 
@@ -224,8 +210,12 @@ void DocumentParser::tokenToWords(Word& obj) {
 
 
 void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj, Word & words) {
-    for(int i = 0; i < vecOfWords.size(); i++){
-        obj.addNode(vecOfWords[i]);
+    if(obj.isEmpty()) {
+        for (int i = 0; i < token.size(); i++) {
+            obj.addNode(words = Word(token[i],paperid));
+        }
+    }else{
+        insertIntoAVLTree(obj,words);
     }
 }
 
@@ -233,3 +223,27 @@ int DocumentParser::getTokenVecSize() {
     return token.size();
 }
 
+void DocumentParser::printallDocText() {
+    cout << allDocText << endl;
+}
+
+
+void DocumentParser::addStrings() {
+    allDocText = title + text + bodytext;
+}
+
+bool DocumentParser::findInStopWord(string& x){
+    for(int i = 0; i < 1160; i++){
+        if(x == stopword[i]){
+            return true;
+        }
+    }
+    return false;
+}
+void DocumentParser::freeMem(){
+    allDocText.clear();
+    text.clear();
+    bodytext.clear();
+    title.clear();
+    paperid.clear();
+}
