@@ -6,7 +6,6 @@
 #include "dirent.h"
 #include "AVLTree.h"
 #include "Word.h"
-#include "unistd.h"
 #include "chrono"
 using namespace std;
 using namespace std::chrono;
@@ -33,7 +32,7 @@ int main(int argc, char* argv[]) {
     string directory = argv[1];
     int count = 0;
 //    while(dirp = readdir(dp)){
-    while(count != 50){
+    while(count != 2){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -42,9 +41,9 @@ int main(int argc, char* argv[]) {
         d.addStrings();
         d.trimTokens();
         d.tokenization();
-        d.deleteAllDocText();
+//        d.deleteAllDocText();
         d.tokenToWords();
-        d.clearTokenVec();
+//        d.clearTokenVec();
 
         if(tree.isEmpty()){
             d.initialAdditonToAVLTree(tree);

@@ -32,9 +32,6 @@ void DocumentParser::parseDocument(string& file) {
             if(textObj.HasMember("text")){
                 const Value& testString = textObj["text"];
                 text = text + testString.GetString();
-//                removeNONLettersandLowercase(text);
-//                tokenization(text);
-//                cout << text << endl;
             }
 
         }
