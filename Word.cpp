@@ -58,10 +58,9 @@ string Word::findDoc(string docID) {
     for(int i = 0; i < docIDs.size(); i++) {
         if (docIDs[i] == docID) {
             return docID;
-        } else {
-            return "Negative";
         }
     }
+    return "Negative";
 }
 
 string& Word::getWordData() {
