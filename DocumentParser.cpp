@@ -10,6 +10,7 @@ void DocumentParser::parseDocument(string& file) {
     FileReadStream is(fp,readingBuffer, sizeof(readingBuffer));
     Document d;
     d.ParseStream(is);
+    string title,text,bodytext;
     assert(d.IsObject());
     assert(d.HasMember("paper_id"));
     assert(d["paper_id"].IsString());
@@ -45,6 +46,7 @@ void DocumentParser::parseDocument(string& file) {
     }
 
     fclose(fp);
+    addStrings(title,text,bodytext);
 }
 
 
@@ -132,8 +134,8 @@ void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
 }
 
 
-void DocumentParser::addStrings() {
-    allDocText = title + text + bodytext;
+void DocumentParser::addStrings(string&a,string&b,string&c) {
+    allDocText = a + b + c;
 }
 
 bool DocumentParser::findInStopWord(string& x){
@@ -145,9 +147,9 @@ void DocumentParser::freeMem(){
 
 void DocumentParser::deleteAllDocText() {
     allDocText.clear();
-    text.clear();
-    bodytext.clear();
-    title.clear();
+//    text.clear();
+//    bodytext.clear();
+//    title.clear();
 }
 
 

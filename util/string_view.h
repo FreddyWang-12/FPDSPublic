@@ -10,7 +10,7 @@
 #ifndef META_UTIL_STRING_VIEW_H_
 #define META_UTIL_STRING_VIEW_H_
 
-#include <hash.h>
+#include "hash.h"
 
 #if META_HAS_EXPERIMENTAL_STRING_VIEW
 #include <experimental/string_view>

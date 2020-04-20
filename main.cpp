@@ -31,11 +31,11 @@ int main(int argc, char* argv[]) {
     }
     string directory = argv[1];
     string search_word = argv[2];
-//    int count = 0;
-    dirp = readdir(dp);
-    while(dirp){
-//    while(count != 1000){
-//        dirp = readdir(dp);
+    int count = 0;
+//    dirp = readdir(dp);
+//    while(dirp){
+    while(count != 1000){
+        dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         string sha = dirp->d_name;
         string extension;
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
         if(stat(filepath.c_str(), &filestat)) continue;
         if(S_ISDIR(filestat.st_mode)) continue;
             d.parseDocument(filepath);
-            d.addStrings();
+//            d.addStrings();
             d.trimTokens();
             d.tokenization();
             d.deleteAllDocText();
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
 
             d.clearVector();
             d.freeMem();
-//            count++;
+            count++;
         }
         dirp = readdir(dp);
     }
