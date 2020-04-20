@@ -18,11 +18,6 @@ void DocumentParser::parseDocument(string& file) {
     assert(d["metadata"]["title"].IsString());
      paperid = d["paper_id"].GetString();
      title = d["metadata"]["title"].GetString();
-//    removeNONLettersandLowercase(title);
-//    tokenization(title);
-//    cout << title << endl;
-//    cout << d["paper_id"].GetString() << endl;
-//    cout << d["metadata"]["title"].GetString() << endl;
     if(d.HasMember("abstract")){
         const Value& paper_abstract_array = d["abstract"];
         assert(d["abstract"].IsArray());
@@ -45,25 +40,13 @@ void DocumentParser::parseDocument(string& file) {
             if(body_text_OBJ.HasMember("text")){
                 const Value& body_text_String = body_text_OBJ["text"];
                 bodytext = bodytext + body_text_String.GetString();
-//                removeNONLettersandLowercase(bodytext);
-//                tokenization(bodytext);
-//                cout << bodytext << endl;
             }
         }
     }
 
-//    this->printDocument(d);
-
     fclose(fp);
 }
 
-
-void DocumentParser::printDocument(Document& data) {
-    StringBuffer bufStream;
-    Writer<StringBuffer> writer(bufStream);
-    data.Accept(writer);
-    cout << bufStream.GetString() << endl;
-}
 
 
 void DocumentParser::getDocumentsinDirectory(string& directory) {
@@ -96,24 +79,6 @@ int count = 0;
     closedir(dp);
 }
 
-void DocumentParser::stemDoc() {
-    Porter2Stemmer::stem(matterWords);
-}
-void DocumentParser::removeNONLettersandLowercase(string &data) {
-    int tempCount = 0;
-        for(int i = 0; i < data.length(); i++) {
-            if(isspace(data[i])){
-                continue;
-            }else if(data[i] < 'A' || data[i] > 'Z' && data[i] < 'a' || data[i] > 'z'){
-                data.erase(i,1);
-                i--;
-            }
-        }
-        for(char & j : data){
-            j = tolower(j);
-        }
-}
-
 
 void DocumentParser::tokenization() {
     stringstream check(allDocText);
@@ -130,50 +95,9 @@ void DocumentParser::tokenization() {
 
 }
 
-
-
-void DocumentParser::printToken() {
-    for(int i = 0; i < token.size(); i++){
-        cout << token[i] << endl;
-    }
-}
-
 void DocumentParser::trimTokens() {
     Porter2Stemmer::trim(allDocText);
 
-}
-
-
-
-
-void DocumentParser::printStopWords() {
-    for(int i = 0; i < stopwords.size(); i++){
-        cout << stopwords[i] << endl;
-    }
-}
-
-void DocumentParser::removeStopWords(){
-    string::iterator it, iter;
-for(unsigned int i = 0; i < token.size(); i++){
-    for(unsigned int j = 0; j < stopwords.size(); j++){
-        if(token.at(i) == stopwords.at(j)){
-            token.at(i).erase();
-        }else{
-            continue;
-        }
-    }
-}
-}
-
-
-void DocumentParser::cleanVector() {
- vector<string> temp;
-    for(int i = 0; i < token.size(); i++){
-        if(!token[i].empty()){
-            temp.push_back(token[i]);
-        }
-    }
-    token = temp;
 }
 
 void DocumentParser::clearVector() {
@@ -207,14 +131,6 @@ void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
         }
 }
 
-int DocumentParser::getTokenVecSize() {
-    return token.size();
-}
-
-void DocumentParser::printallDocText() {
-    cout << allDocText << endl;
-}
-
 
 void DocumentParser::addStrings() {
     allDocText = title + text + bodytext;
@@ -238,3 +154,4 @@ void DocumentParser::deleteAllDocText() {
 void DocumentParser::clearTokenVec() {
     token.clear();
 }
+

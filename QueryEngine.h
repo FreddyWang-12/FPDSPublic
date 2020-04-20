@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include "cstring"
+#include "porter2_stemmer.h"
 using namespace std;
 
 class QueryEngine{
@@ -11,10 +13,8 @@ private:
 public:
     QueryEngine();
     QueryEngine(QueryEngine&);
-    void removeStopWords();
     void prefixIndentifier(string&);
-    void rankRelevancy();
-    string parseString(string&);
+    void trimandstemSearchWord(string&);
 
 };
 

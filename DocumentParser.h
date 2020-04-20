@@ -16,7 +16,6 @@
 #include <algorithm>
 #include <string>
 #include "hashTable.h"
-#include "CSVReader.h"
 #include "porter2_stemmer.h"
 #include "vector"
 #include <bits/stdc++.h>
@@ -128,29 +127,18 @@ private:
 
 public:
     void parseDocument(string&);
-    void printDocument(Document&);
-    void getDocumentsinDirectory(string&);
-    void removeNONLettersandLowercase(string&);
     void tokenization();
     void addStrings();
-    void printToken();
     void trimTokens();
-    void printStopWords();
-    void removeStopWords();
-    void cleanVector();
     void clearVector();
     void insertIntoAVLTree(AVLTree<Word>&);
     void tokenToWords();
-    void addFirstWordsToAVL(Word&);
     void initialAdditonToAVLTree(AVLTree<Word>&);
-    int getTokenVecSize();
-    void printallDocText();
     bool findInStopWord(string&);
     void freeMem();
     void deleteAllDocText();
     void clearTokenVec();
-    void stemDoc();
-    void getWordDocuments();
+    void getDocumentsinDirectory(string&);
 
 };
 

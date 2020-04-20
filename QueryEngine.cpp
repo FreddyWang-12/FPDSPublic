@@ -31,9 +31,8 @@ void QueryEngine::prefixIndentifier(string &arg) {
     }
 
 }
-//void QueryEngine::removeStopWords() {
-//
-//}
-string QueryEngine::parseString(string& arg) {
 
+void QueryEngine::trimandstemSearchWord(string &word) {
+    Porter2Stemmer::trim(word);
+    Porter2Stemmer::stem(word);
 }
