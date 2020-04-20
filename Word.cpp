@@ -17,7 +17,7 @@ Word::Word(string word, string docID){
     this->addDoc(docID);
 }
 
-void Word::addDoc(string docID) {
+void Word::addDoc(string& docID) {
     docIDs.push_back(docID);
 }
 
@@ -53,13 +53,13 @@ void Word::setWordData(string newOne) {
     data = newOne;
 }
 
-string Word::findDoc(string docID) {
+bool Word::findDoc(string& docID) {
     for(const auto & i : docIDs){
         if(i == docID){
-            return docID;
+            return true;
         }
     }
-    return "Negative";
+    return false;
 }
 
 string& Word::getWordData() {
@@ -68,4 +68,14 @@ string& Word::getWordData() {
 
 vector<string>& Word::getDocs(){
     return docIDs;
+}
+
+void Word::printDocs() {
+    for(int i = 0; i < docIDs.size(); i++){
+        cout << docIDs[i] << endl;
+    }
+}
+
+int Word::getDocSize() {
+    return docIDs.size();
 }

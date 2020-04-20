@@ -26,9 +26,11 @@ public:
 
     int operator < (const Word& other);
     int operator > (const Word& other);
-    void addDoc(string docID);
+    void addDoc(string& docID);
+    int getDocSize();
+    void printDocs();
     void setWordData(string newOne);
-    string findDoc(string docID);
+    bool findDoc(string& );
     string& getWordData();
     vector<string>& getDocs();
 };

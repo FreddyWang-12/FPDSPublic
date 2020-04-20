@@ -30,10 +30,11 @@ int main(int argc, char* argv[]) {
         cout << "Error("<< errno <<") opening " << argv[1] << endl;
     }
     string directory = argv[1];
+    string search_word = argv[2];
     int count = 0;
-//    while(dirp = readdir(dp)){
-    while(count != 2){
-        dirp = readdir(dp);
+    while(dirp = readdir(dp)){
+//    while(count != 1000){
+//        dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
         if(S_ISDIR(filestat.st_mode)) continue;
@@ -41,9 +42,9 @@ int main(int argc, char* argv[]) {
         d.addStrings();
         d.trimTokens();
         d.tokenization();
-//        d.deleteAllDocText();
+        d.deleteAllDocText();
         d.tokenToWords();
-//        d.clearTokenVec();
+        d.clearTokenVec();
 
         if(tree.isEmpty()){
             d.initialAdditonToAVLTree(tree);
@@ -57,6 +58,10 @@ int main(int argc, char* argv[]) {
     }
     closedir(dp);
     cout << "Total AVL Tree Nodes = " << tree.getSize() << endl;
+    Word& find = tree.getContent(search_word);
+    cout << "Command Line Word Doc Amount: " << find.getDocSize();
+    cout << "Commands Line Words Associative Documents: " << endl;
+    find.printDocs();
     auto stop = high_resolution_clock::now();
 auto duration = duration_cast<seconds>(stop-start);
 cout << "Time Take For Program: " << duration.count() << " secounds" << endl;

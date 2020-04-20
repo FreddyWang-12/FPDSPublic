@@ -39,7 +39,7 @@ private:
     vector<string> token;
     vector<string> stopwords;
     vector<Word> vecOfWords;
-    string stopword[1160] = {"0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4", "ab", "able", "about",
+    vector<string> stopword = {"0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4", "ab", "able", "about",
                               "above", "abst", "ac", "accordance", "according", "accordingly", "across", "act", "actually",
                               "ad", "added", "adj", "ae", "af", "affected", "affecting", "affects", "after", "afterwards",
                               "ag", "again", "against", "ah", "ain", "ain't", "aj", "al", "all", "allow", "allows", "almost",
@@ -150,6 +150,7 @@ public:
     void deleteAllDocText();
     void clearTokenVec();
     void stemDoc();
+    void getWordDocuments();
 
 };
 

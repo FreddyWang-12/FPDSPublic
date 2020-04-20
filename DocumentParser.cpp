@@ -139,7 +139,7 @@ void DocumentParser::printToken() {
 }
 
 void DocumentParser::trimTokens() {
-        Porter2Stemmer::trim(allDocText);
+    Porter2Stemmer::trim(allDocText);
 
 }
 
@@ -184,7 +184,7 @@ void DocumentParser::clearVector() {
 void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
     for(int i = 0; i < vecOfWords.size(); i++){
         if(avl.ifExists(vecOfWords[i])){
-            if(avl.getContent(vecOfWords[i]).findDoc(paperid) != paperid){
+            if(!avl.getContent(vecOfWords[i]).findDoc(paperid)){
                 avl.getContent(vecOfWords[i]).addDoc(paperid);
             }
         }else{
@@ -221,12 +221,7 @@ void DocumentParser::addStrings() {
 }
 
 bool DocumentParser::findInStopWord(string& x){
-    for(const auto & i : stopword){
-        if(x == i){
-            return true;
-        }
-    }
-    return false;
+    return binary_search(stopword.begin(), stopword.end(), x);
 }
 void DocumentParser::freeMem(){
     paperid.clear();
