@@ -91,7 +91,7 @@ void DocumentParser::tokenization() {
         }else{
 //            matterWords += " " + temp;
             Porter2Stemmer::stem(temp);
-            token.push_back(temp);
+            vecOfWords.emplace_back(temp,paperid);
         }
     }
 
@@ -108,23 +108,17 @@ void DocumentParser::clearVector() {
 
 
 void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
-    for(int i = 0; i < vecOfWords.size(); i++){
-        if(avl.ifExists(vecOfWords[i])){
-            if(!avl.getContent(vecOfWords[i]).findDoc(paperid)){
-                avl.getContent(vecOfWords[i]).addDoc(paperid);
+    for(auto & vecOfWord : vecOfWords){
+        if(avl.ifExists(vecOfWord)){
+            if(!avl.getContent(vecOfWord).findDoc(paperid)){
+                avl.getContent(vecOfWord).addDoc(paperid);
             }
         }else{
-            avl.addNode(vecOfWords[i]);
+            avl.addNode(vecOfWord);
         }
     }
 }
 
-
-void DocumentParser::tokenToWords() {
-    for(int i = 0; i < token.size(); i++){
-        vecOfWords.emplace_back(token[i],paperid);
-    }
-}
 
 
 void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
@@ -147,13 +141,7 @@ void DocumentParser::freeMem(){
 
 void DocumentParser::deleteAllDocText() {
     allDocText.clear();
-//    text.clear();
-//    bodytext.clear();
-//    title.clear();
 }
 
 
-void DocumentParser::clearTokenVec() {
-    token.clear();
-}
 

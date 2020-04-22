@@ -54,12 +54,6 @@ void Word::setWordData(string newOne) {
 }
 
 bool Word::findDoc(string& docID) {
-//    for(const auto & i : docIDs){
-//        if(i == docID){
-//            return true;
-//        }
-//    }
-//    return false;
     return binary_search(docIDs.begin(),docIDs.end(),docID);
 }
 

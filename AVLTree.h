@@ -38,6 +38,7 @@ public:
     bool isEmpty();
     bool ifExists(T&);
     int getSize();
+    void getTreeSize();
 
 
 };
@@ -213,6 +214,11 @@ bool AVLTree<T>::ifExists(T &x) {
 template <typename T>
 int AVLTree<T>::getSize() {
     return size;
+}
+
+template <typename T>
+void AVLTree<T>::getTreeSize() {
+    cout << "Total AVL Tree Nodes = " << getSize() << endl;
 }
 
 

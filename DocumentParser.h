@@ -29,12 +29,8 @@ using namespace std;
 class DocumentParser {
 private:
     string paperid;
-//    string title ;
-//    string text;
-//    string bodytext;
     string temp;
     string allDocText;
-    vector<string> token;
     vector<Word> vecOfWords;
     vector<string> stopword = {"0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4", "ab", "able", "about",
                               "above", "abst", "ac", "accordance", "according", "accordingly", "across", "act", "actually",
@@ -130,12 +126,10 @@ public:
     void trimTokens();
     void clearVector();
     void insertIntoAVLTree(AVLTree<Word>&);
-    void tokenToWords();
     void initialAdditonToAVLTree(AVLTree<Word>&);
     bool findInStopWord(string&);
     void freeMem();
     void deleteAllDocText();
-    void clearTokenVec();
     void getDocumentsinDirectory(string&);
 
 };
