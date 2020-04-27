@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 //    while(dirp = readdir(dp)){
     int count = 0;
     d.stemStopWords();
-    while(count != 100){
+    while(count != 10){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;

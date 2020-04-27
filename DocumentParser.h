@@ -33,7 +33,7 @@ private:
     string title ;
     string text;
     string bodytext;
-    vector<string> token;
+    set<string> token;
     vector<Word> vecOfWords;
     string stopwords[1160] = {"0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4", "ab", "able", "about",
                              "above", "abst", "ac", "accordance", "according", "accordingly", "across", "act", "actually",

@@ -123,7 +123,7 @@ void DocumentParser::tokenization(string& data) {
         if(temp.empty()){
             continue;
         }else{
-            token.push_back(temp);
+            token.insert(temp);
         }
     }
 
@@ -132,17 +132,19 @@ void DocumentParser::tokenization(string& data) {
 
 
 void DocumentParser::printToken() {
-    for(int i = 0; i < token.size(); i++){
-        cout << token[i] << endl;
+    std::set<string>::iterator it;
+    for(it = token.begin(); it != token.end(); ++it){
+        cout << *it << endl;
     }
 }
 
-void DocumentParser::stemTokens() {
-    for(int i = 0; i < token.size(); i++){
-        Porter2Stemmer::trim(token[i]);
-        Porter2Stemmer::stem(token[i]);
+/*void DocumentParser::stemTokens() {
+    std::set<string>::iterator it;
+    for(it = token.begin(); it != token.end(); ++it){
+        Porter2Stemmer::trim(*it);
+        Porter2Stemmer::stem(*it);
     }
-}
+}*/
 
 void DocumentParser::stemStopWords() {
     for(int i = 0; i < 1160; i++){
