@@ -42,14 +42,17 @@ public:
     hashTable<V, K>& operator = (const hashTable<V,K> &copy);
 
     void addNewKey(V val, K data);
-    bool empty();
-    bool findKey(V val);
     void deleteKey(V val);
-    K getData(V val);
     void resize();
     void clear();
-    int getPositionOf(V val);
+
+    bool empty();
+    bool findKey(V val);
+
+    K getData(V val);
     K findGivenData(V val, K data);
+
+    int getPositionOf(V val);
     int getSize();
     int getCapacity();
 };
