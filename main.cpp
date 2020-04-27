@@ -72,11 +72,11 @@ int main(int argc, char* argv[]) {
 //string search = "virus AND jonas NOT ezra";
 //a.prefixIndentifier(search);
 
-    auto start = high_resolution_clock::now();
-    QueryEngine engine;
-    engine.getDirectoryandParse(argv[1]);
-    engine.trimandstemSearchWord(argv[2]);
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<seconds>(stop-start);
-    cout << "Time Take For Program: " << duration.count() << " seconds " << endl;
+//    auto start = high_resolution_clock::now();
+//    QueryEngine engine;
+//    engine.getDirectoryandParse(argv[1]);
+//    engine.trimandstemSearchWord(argv[2]);
+//    auto stop = high_resolution_clock::now();
+//    auto duration = duration_cast<seconds>(stop-start);
+//    cout << "Time Take For Program: " << duration.count() << " seconds " << endl;
 }

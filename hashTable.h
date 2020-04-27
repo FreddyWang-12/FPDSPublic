@@ -42,6 +42,7 @@ public:
     hashTable<V, K>& operator = (const hashTable<V,K> &copy);
 
     void addNewKey(V val, K data);
+    bool empty();
     bool findKey(V val);
     void deleteKey(V val);
     K getData(V val);
@@ -236,6 +237,14 @@ int hashTable<V,K>::getSize() {
 template <class V, class K>
 int hashTable<V,K>::getCapacity() {
     return capacity;
+}
+
+template <class V, class K>
+bool hashTable<V,K>::empty() {
+    if(size == 0){
+        return true;
+    }
+    return false;
 }
 
 #endif //UNTITLED_HASHTABLE_H
