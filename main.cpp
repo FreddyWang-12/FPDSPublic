@@ -13,6 +13,7 @@ using namespace std;
 
 
 int main(int argc, char* argv[]) {
+
 //    CSVReader reader(R"(C:\Users\jonas\Desktop\DataStructures\FinalProject\Data\metadata-cs2341)");
 //    reader.getData();
 //    reader.putInHashTable();
@@ -70,4 +71,12 @@ int main(int argc, char* argv[]) {
 //QueryEngine a;
 //string search = "virus AND jonas NOT ezra";
 //a.prefixIndentifier(search);
+
+    auto start = high_resolution_clock::now();
+    QueryEngine engine;
+    engine.getDirectoryandParse(argv[1]);
+    engine.trimandstemSearchWord(argv[2]);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<seconds>(stop-start);
+    cout << "Time Take For Program: " << duration.count() << " seconds " << endl;
 }
