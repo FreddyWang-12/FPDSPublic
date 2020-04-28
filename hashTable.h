@@ -44,7 +44,6 @@ public:
 
     void addNewKey(V val, K data);
     void deleteKey(V val);
-    void resize();
     void clear();
 
     bool empty();
@@ -58,12 +57,14 @@ public:
     int getCapacity();
 };
 
+
 template <class V, class K>
 hashTable<V, K>::hashTable(){
     size = 0;
     capacity = 250000;
     table = new LinkedList<key>[capacity];
 }
+
 
 template <class V, class K>
 hashTable<V,K>::hashTable(int capac){
@@ -72,12 +73,14 @@ hashTable<V,K>::hashTable(int capac){
     table = new LinkedList<key>[capac];
 }
 
+
 template <class V, class K>
 hashTable<V,K>::~hashTable(){
     if(table != nullptr){
         delete[] table;
     }
 }
+
 
 template <class V, class K>
 hashTable<V, K>::hashTable (const hashTable<V, K> &copy){
@@ -88,6 +91,7 @@ hashTable<V, K>::hashTable (const hashTable<V, K> &copy){
         table[i] = copy.table[i];
     }
 }
+
 
 template <class V, class K>
 hashTable<V, K>& hashTable<V, K>:: operator = (const hashTable<V,K> &copy){
@@ -103,11 +107,9 @@ hashTable<V, K>& hashTable<V, K>:: operator = (const hashTable<V,K> &copy){
     return *this;
 }
 
+
 template <class V, class K>
 void hashTable<V,K>::addNewKey(V val, K data){
-//    hash<V> newHash;
-//    int hasCode = newHash(val)%capacity;
-//    table[hasCode].add(key(val,data));
     key newKey(val, data);
     hash<V> newHash;
     int hashCode = newHash(val)%capacity;
@@ -119,12 +121,8 @@ void hashTable<V,K>::addNewKey(V val, K data){
         table[hashCode].add(newKey);
     }
     size++;
-//    if(this->findKey(val)){
-//        cout << "TRUE";
-//    }else{
-//        cout << "FALSE";
-//    }
 }
+
 
 template <class V, class K>
 bool hashTable<V, K>::findKey(V val) {
@@ -218,18 +216,6 @@ K hashTable<V,K>::findGivenData(V val, K data){
     }
     cout << "Data not found" << endl;
     return -1;
-}
-
-template <class V, class K>
-void hashTable<V,K>::resize(){
-    key* temp = new key[capacity * 2];
-    for(int i = 0; i < capacity; i++){
-        temp[i] = table[i];
-    }
-
-    capacity *= 2;
-    delete[] table;
-    table = temp;
 }
 
 template <class V, class K>
