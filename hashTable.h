@@ -15,8 +15,8 @@ class hashTable {
         V value;
         K data;
         key(){
-            value = -1;
-            data = -1;
+            value = V();
+            data = K();
         }
         key(V newVal, K newData){
             value = newVal;
