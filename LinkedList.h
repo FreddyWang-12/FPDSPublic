@@ -97,6 +97,10 @@ LinkedList<T>& LinkedList<T>::operator = (const LinkedList<T> &copy){
         mainNode = nullptr;
     }
 
+    if(copy.mainNode == nullptr){
+        return *this;
+    }
+
     mainNode = new node(copy.mainNode->data);
     if(copy.mainNode->nextNode != nullptr) {
         node *temp = copy.mainNode->nextNode;
