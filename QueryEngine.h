@@ -9,18 +9,20 @@
 #include "AVLTree.h"
 #include "DocumentParser.h"
 #include "QueryEngine.h"
+#include "hashTable.h"
 using namespace std;
 
 class QueryEngine{
 private:
     string userSearch;
     AVLTree<Word> tree;
-    DocumentParser d;
+    hashTable<string,string> tableofHash;
 public:
     QueryEngine();
     QueryEngine(QueryEngine&);
     void prefixIndentifier(string&);
-    void trimandstemSearchWord(char*);
+    void trimandstemSearchWord(string&);
+    void wordanAuthorSearchWord(string&);
     void getDirectoryandParse(char*);
 
 };

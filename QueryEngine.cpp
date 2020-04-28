@@ -1,5 +1,5 @@
 #include "QueryEngine.h"
-#include "cstring"
+
 
 QueryEngine::QueryEngine() {}
 
@@ -32,18 +32,18 @@ void QueryEngine::prefixIndentifier(string &arg) {
 
 }
 
-void QueryEngine::trimandstemSearchWord(char* word) {
-    string searchterm = word;
-    Porter2Stemmer::trim(searchterm);
-    Porter2Stemmer::stem(searchterm);
-    Word& find = tree.getContent(searchterm);
-    cout << word << " Documents Amount: " << find.getDocSize() << endl;
+void QueryEngine::trimandstemSearchWord(string& searchWord) {
+    Porter2Stemmer::trim(searchWord);
+    Porter2Stemmer::stem(searchWord);
+    Word& find = tree.getContent(searchWord);
+    cout << searchWord << " Documents Amount: " << find.getDocSize() << endl;
     cout << "Commands Line Words Associative Documents: " << endl;
     find.printDocs();
 }
 
 
 void QueryEngine::getDirectoryandParse(char* fileDirectory) {
+    DocumentParser d;
     ofstream out;
     string filepath;
     string directory = fileDirectory;
@@ -55,10 +55,10 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
         cout << "Error("<< errno <<") opening " << fileDirectory << endl;
     }
     int count = 0;
-    dirp = readdir(dp);
-    while(dirp){
-//    while(count != 10){
-//        dirp = readdir(dp);
+//    dirp = readdir(dp);
+//    while(dirp){
+    while(count != 100){
+        dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         string sha = dirp->d_name;
         string extension;
@@ -78,6 +78,8 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
             } else {
                 d.insertIntoAVLTree(tree);
             }
+            d.stemtrimAuthorNames();
+            d.initialAuthorInserttoHashTable(tableofHash);
 
             d.clearVector();
             count++;
@@ -86,4 +88,29 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
     }
     closedir(dp);
 
+}
+
+void QueryEngine::wordanAuthorSearchWord(string &searchWord) {
+    vector<string> finalVec;
+    Porter2Stemmer::trim(searchWord);
+    stringstream check(searchWord);
+    string temp;
+    getline(check,temp,' ');
+    Porter2Stemmer::stem(temp);
+    Word& find = tree.getContent(temp);
+    getline(check,temp,' ');
+    getline(check,temp,' ');
+    Porter2Stemmer::stem(temp);
+    vector<string>& tempVec = find.getDocs();
+    for(const auto & i : tempVec){
+        if(temp == tableofHash.findGivenData(temp,i)){
+            finalVec.push_back(i);
+        }
+    }
+
+    cout << searchWord << " Documents Amount: " << finalVec.size() << endl;
+    cout << "Documents Relevent to Author and Search Only: " << endl;
+    for(const auto & t : finalVec){
+        cout << t << endl;
+    }
 }

@@ -26,11 +26,11 @@
 using namespace rapidjson;
 using namespace std;
 
-class DocumentParser {
+class DocumentParser{
 private:
     string paperid;
-    string temp;
     string allDocText;
+    vector<string> lastname_author;
     vector<Word> vecOfWords;
     vector<string> stopword = {"0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4", "ab", "able", "about",
                               "above", "abst", "ac", "accordance", "according", "accordingly", "across", "act", "actually",
@@ -129,7 +129,9 @@ public:
     void initialAdditonToAVLTree(AVLTree<Word>&);
     bool findInStopWord(string&);
     void freeMem();
+    void stemtrimAuthorNames();
     void deleteAllDocText();
+    void initialAuthorInserttoHashTable(hashTable<string,string>&);
     void getDocumentsinDirectory(string&);
 
 };

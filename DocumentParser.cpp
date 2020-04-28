@@ -11,6 +11,7 @@ void DocumentParser::parseDocument(string& file) {
     Document d;
     d.ParseStream(is);
     string title,text,bodytext;
+    string lastname{};
     assert(d.IsObject());
     assert(d.HasMember("paper_id"));
     assert(d["paper_id"].IsString());
@@ -43,6 +44,22 @@ void DocumentParser::parseDocument(string& file) {
                 bodytext = bodytext + body_text_String.GetString();
             }
         }
+    }
+    const Value& authors_array = d["metadata"]["authors"];
+    assert(authors_array.IsArray());
+    for(SizeType t = 0; t < authors_array.Size(); t++){
+        const Value& authors_array_OBJ = authors_array[t];
+        if(authors_array_OBJ.HasMember("last")){
+            const Value& authors_last = authors_array_OBJ["last"];
+            lastname = authors_last.GetString();
+            lastname_author.push_back(lastname);
+        }
+//        Porter2Stemmer::trim(firstname);
+//        Porter2Stemmer::trim(lastname);
+//        Porter2Stemmer::stem(firstname);
+//        Porter2Stemmer::stem(lastname);
+//        Author authors(firstname,lastname,paperid);
+
     }
 
     fclose(fp);
@@ -84,6 +101,7 @@ int count = 0;
 
 void DocumentParser::tokenization() {
     stringstream check(allDocText);
+    string temp;
     while(!check.eof()){
         getline(check,temp,' ');
         if(findInStopWord(temp) || temp.empty()){
@@ -104,6 +122,7 @@ void DocumentParser::trimTokens() {
 
 void DocumentParser::clearVector() {
     vecOfWords.clear();
+    lastname_author.clear();
 }
 
 
@@ -141,6 +160,19 @@ void DocumentParser::freeMem(){
 
 void DocumentParser::deleteAllDocText() {
     allDocText.clear();
+}
+
+void DocumentParser::initialAuthorInserttoHashTable(hashTable<string,string>& hash) {
+    for(int i = 0; i < lastname_author.size(); i++){
+        hash.addNewKey(lastname_author[i],paperid);
+    }
+}
+
+void DocumentParser::stemtrimAuthorNames() {
+    for(auto & i : lastname_author){
+        Porter2Stemmer::trim(i);
+        Porter2Stemmer::stem(i);
+    }
 }
 
 

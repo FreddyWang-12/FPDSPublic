@@ -1,7 +1,3 @@
-//
-// Created by Frederick Wang on 4/11/20.
-//
-
 #ifndef UNTITLED_HASHTABLE_H
 #define UNTITLED_HASHTABLE_H
 #include <iostream>
@@ -15,8 +11,8 @@ class hashTable {
         V value;
         K data;
         key(){
-            value = -1;
-            data = -1;
+            value = V();
+            data = K();
         }
         key(V newVal, K newData){
             value = newVal;
@@ -37,28 +33,42 @@ private:
 
 public:
     hashTable<V, K>();
+    hashTable<V, K>(int capac);
     ~hashTable();
     hashTable<V, K> (const hashTable<V, K> &copy);
     hashTable<V, K>& operator = (const hashTable<V,K> &copy);
 
     void addNewKey(V val, K data);
-    bool findKey(V val);
     void deleteKey(V val);
-    K getData(V val);
-    void resize();
     void clear();
-    int getPositionOf(V val);
+
+    bool empty();
+    bool findKey(V val);
+
+    K getData(V val);
     K findGivenData(V val, K data);
+
+    int getPositionOf(V val);
     int getSize();
     int getCapacity();
 };
 
+
 template <class V, class K>
 hashTable<V, K>::hashTable(){
     size = 0;
-    capacity = 2000;
+    capacity = 250000;
     table = new LinkedList<key>[capacity];
 }
+
+
+template <class V, class K>
+hashTable<V,K>::hashTable(int capac){
+    size = 0;
+    capacity = capac;
+    table = new LinkedList<key>[capac];
+}
+
 
 template <class V, class K>
 hashTable<V,K>::~hashTable(){
@@ -66,6 +76,7 @@ hashTable<V,K>::~hashTable(){
         delete[] table;
     }
 }
+
 
 template <class V, class K>
 hashTable<V, K>::hashTable (const hashTable<V, K> &copy){
@@ -76,6 +87,7 @@ hashTable<V, K>::hashTable (const hashTable<V, K> &copy){
         table[i] = copy.table[i];
     }
 }
+
 
 template <class V, class K>
 hashTable<V, K>& hashTable<V, K>:: operator = (const hashTable<V,K> &copy){
@@ -91,28 +103,16 @@ hashTable<V, K>& hashTable<V, K>:: operator = (const hashTable<V,K> &copy){
     return *this;
 }
 
+
 template <class V, class K>
 void hashTable<V,K>::addNewKey(V val, K data){
-//    hash<V> newHash;
-//    int hasCode = newHash(val)%capacity;
-//    table[hasCode].add(key(val,data));
-    key newKey(val, data);
     hash<V> newHash;
     int hashCode = newHash(val)%capacity;
 
-    if(table[hashCode].isEmpty()){
-        table[hashCode].add(newKey);
-    }
-    else {
-        table[hashCode].add(newKey);
-    }
+    table[hashCode].add(key(val,data));
     size++;
-//    if(this->findKey(val)){
-//        cout << "TRUE";
-//    }else{
-//        cout << "FALSE";
-//    }
 }
+
 
 template <class V, class K>
 bool hashTable<V, K>::findKey(V val) {
@@ -192,7 +192,7 @@ K hashTable<V,K>::findGivenData(V val, K data){
     int hashCode = getPositionOf(val);
     if(table[hashCode].isEmpty()){
         cout << "No Value Here" << endl;
-        return -1;
+        return K();
     }
     table[hashCode].resetIter();
     if(table[hashCode].currIterValue().data == data && table[hashCode].currIterValue().value == val){
@@ -205,19 +205,7 @@ K hashTable<V,K>::findGivenData(V val, K data){
         }
     }
     cout << "Data not found" << endl;
-    return -1;
-}
-
-template <class V, class K>
-void hashTable<V,K>::resize(){
-    key* temp = new key[capacity * 2];
-    for(int i = 0; i < capacity; i++){
-        temp[i] = table[i];
-    }
-
-    capacity *= 2;
-    delete[] table;
-    table = temp;
+    return K();
 }
 
 template <class V, class K>
@@ -236,6 +224,14 @@ int hashTable<V,K>::getSize() {
 template <class V, class K>
 int hashTable<V,K>::getCapacity() {
     return capacity;
+}
+
+template <class V, class K>
+bool hashTable<V,K>::empty() {
+    if(size == 0){
+        return true;
+    }
+    return false;
 }
 
 #endif //UNTITLED_HASHTABLE_H
