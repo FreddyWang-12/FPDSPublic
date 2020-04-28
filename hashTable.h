@@ -114,12 +114,7 @@ void hashTable<V,K>::addNewKey(V val, K data){
     hash<V> newHash;
     int hashCode = newHash(val)%capacity;
 
-    if(table[hashCode].isEmpty()){
-        table[hashCode].add(newKey);
-    }
-    else {
-        table[hashCode].add(newKey);
-    }
+    table[hashCode].add(newKey);
     size++;
 }
 
