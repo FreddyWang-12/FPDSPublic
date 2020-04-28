@@ -37,6 +37,7 @@ private:
 
 public:
     hashTable<V, K>();
+    hashTable<V, K>(int capac);
     ~hashTable();
     hashTable<V, K> (const hashTable<V, K> &copy);
     hashTable<V, K>& operator = (const hashTable<V,K> &copy);
@@ -60,8 +61,15 @@ public:
 template <class V, class K>
 hashTable<V, K>::hashTable(){
     size = 0;
-    capacity = 2000;
+    capacity = 250000;
     table = new LinkedList<key>[capacity];
+}
+
+template <class V, class K>
+hashTable<V,K>::hashTable(int capac){
+    size = 0;
+    capacity = capac;
+    table = new LinkedList<key>[capac];
 }
 
 template <class V, class K>
