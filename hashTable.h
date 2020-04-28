@@ -93,6 +93,12 @@ bool hashTable<V, K>::emptyAt(V val) {
 }
 
 template <class V, class K>
+LinkedList<K>& hashTable<V,K>:: getDataList(V val){
+    int hashCode = getPositionOf(val);
+    return table[hashCode];
+}
+
+template <class V, class K>
 int hashTable<V,K>::getPositionOf(V val){
     hash<V> hashValue;
     int hashCode = hashValue(val)%capacity;
