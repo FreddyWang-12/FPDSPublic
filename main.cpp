@@ -14,10 +14,10 @@ int main(int argc, char* argv[]) {
 //    cout << "Select 1 to Search ";
 //    cin >> choice;
 //    if(choice == 1){
-        string searchTerm;
-        cout << "Search For: ";
-        getline (cin,searchTerm);
-        cout << searchTerm;
+        string searchTerm = argv[2];
+//        cout << "Search For: ";
+//        getline (cin,searchTerm);
+//        cout << searchTerm;
         int found;
         found = searchTerm.find("AUTHOR");
         if(found != string::npos){
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
         }
         found = searchTerm.find("AND");
         if(found!=string::npos){
-            cout << "Contains AND";
+            engine.andSearch(searchTerm);
         }
         found = searchTerm.find("NOT");
         if(found != string::npos){
@@ -37,11 +37,11 @@ int main(int argc, char* argv[]) {
         }
         found = searchTerm.find("OR");
         if(found != string::npos){
-            cout << "Contains OR";
+           engine.orSearch(searchTerm);
         }
-        if(found == string::npos){
-            engine.trimandstemSearchWord(searchTerm);
-        }
+//        if(found == string::npos){
+//            engine.trimandstemSearchWord(searchTerm);
+//        }
 
 //    }else{
 //        cout << "Select 1 to Search ";

@@ -133,6 +133,7 @@ public:
     void deleteAllDocText();
     void initialAuthorInserttoHashTable(hashTable<string,string>&);
     void getDocumentsinDirectory(string&);
+    void findSameOccurance(vector<string>&, vector<string>&);
 
 };
 

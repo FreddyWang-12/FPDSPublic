@@ -1,7 +1,3 @@
-//
-// Created by Frederick Wang on 3/26/20.
-//
-
 #ifndef S20_PA04_FLIGHTPLANNER_LINKEDLIST_H
 #define S20_PA04_FLIGHTPLANNER_LINKEDLIST_H
 
@@ -72,15 +68,20 @@ LinkedList<T>::~LinkedList<T>(){
 
 template<class T>
 LinkedList<T>::LinkedList(const LinkedList<T> &copy){
-    mainNode = new node(copy.mainNode->data);
-    if(copy.mainNode->nextNode != nullptr) {
-        node *temp = copy.mainNode->nextNode;
-        while (temp->nextNode != nullptr) {
-            T dat = temp->data;
-            this->add(dat);
-            temp = temp->nextNode;
+    if(copy.mainNode == nullptr){
+        mainNode == nullptr;
+    }
+    else {
+        mainNode = new node(copy.mainNode->data);
+        if (copy.mainNode->nextNode != nullptr) {
+            node *temp = copy.mainNode->nextNode;
+            while (temp->nextNode != nullptr) {
+                T dat = temp->data;
+                this->add(dat);
+                temp = temp->nextNode;
+            }
+            add(temp->data);
         }
-        add(temp->data);
     }
     iter = mainNode;
 }
@@ -96,7 +97,9 @@ LinkedList<T>& LinkedList<T>::operator = (const LinkedList<T> &copy){
     if(mainNode != nullptr){
         mainNode = nullptr;
     }
-
+    if(copy.mainNode == nullptr){
+        return *this;
+    }
     mainNode = new node(copy.mainNode->data);
     if(copy.mainNode->nextNode != nullptr) {
         node *temp = copy.mainNode->nextNode;
@@ -108,7 +111,6 @@ LinkedList<T>& LinkedList<T>::operator = (const LinkedList<T> &copy){
         add(temp->data);
     }
     iter = mainNode;
-
     return *this;
 }
 
@@ -310,7 +312,6 @@ bool LinkedList<T>::findValue(T value) {
             return true;
         }
     }
-    resetIter();
     return false;
 }
 

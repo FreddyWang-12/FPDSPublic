@@ -81,7 +81,7 @@ void DocumentParser::getDocumentsinDirectory(string& directory) {
 
 //    while(dirp = readdir(dp)){
 int count = 0;
-    while(count != 3){
+    while(count != 100){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -169,11 +169,12 @@ void DocumentParser::initialAuthorInserttoHashTable(hashTable<string,string>& ha
 }
 
 void DocumentParser::stemtrimAuthorNames() {
-    for(auto & i : lastname_author){
-        Porter2Stemmer::trim(i);
-        Porter2Stemmer::stem(i);
+    for(int i = 0; i < lastname_author.size(); i++){
+        Porter2Stemmer::trim(lastname_author[i]);
+        Porter2Stemmer::stem(lastname_author[i]);
     }
 }
+
 
 
 

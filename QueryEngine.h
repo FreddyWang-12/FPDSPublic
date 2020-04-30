@@ -14,6 +14,7 @@ using namespace std;
 
 class QueryEngine{
 private:
+    vector<string> finalVec;
     string userSearch;
     AVLTree<Word> tree;
     hashTable<string,string> tableofHash;
@@ -23,8 +24,9 @@ public:
     void prefixIndentifier(string&);
     void trimandstemSearchWord(string&);
     void wordanAuthorSearchWord(string&);
+    void andSearch(string&);
     void getDirectoryandParse(char*);
-
+    void orSearch(string&);
 };
 
 

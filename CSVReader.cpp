@@ -49,16 +49,16 @@ void CSVReader::putInHashTable() {
     }
 //   cout << hash.getData(sha[1]);
 }
-
-string CSVReader::getHashValue(string & arg) {
-    string temp = hash.getData(arg);
-    return temp;
-}
-
-bool CSVReader::ifExists(string &data) {
-    if(hash.getData(data) == "Negative"){
-        return false;
-    }
-    return true;
-}
-
+//
+//string CSVReader::getHashValue(string & arg) {
+//    string temp = hash.getData(arg);
+//    return temp;
+//}
+//
+//bool CSVReader::ifExists(string &data) {
+//    if(hash.getData(data) == "Negative"){
+//        return false;
+//    }
+//    return true;
+//}
+//
