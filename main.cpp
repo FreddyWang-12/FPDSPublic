@@ -15,30 +15,31 @@ int main(int argc, char* argv[]) {
 //    cin >> choice;
 //    if(choice == 1){
         string searchTerm = argv[2];
+    engine.andNotSearch(searchTerm);
 //        cout << "Search For: ";
 //        getline (cin,searchTerm);
 //        cout << searchTerm;
-        int found;
-        found = searchTerm.find("AUTHOR");
-        if(found != string::npos){
-            engine.wordanAuthorSearchWord(searchTerm);
-        }
-        found = searchTerm.find("AND" && "NOT");
-        if(found != string::npos){
-            cout << "Contains AND-NOT";
-        }
-        found = searchTerm.find("AND");
-        if(found!=string::npos){
-            engine.andSearch(searchTerm);
-        }
-        found = searchTerm.find("NOT");
-        if(found != string::npos){
-            cout << "Countains NOT";
-        }
-        found = searchTerm.find("OR");
-        if(found != string::npos){
-           engine.orSearch(searchTerm);
-        }
+//        int found;
+//        found = searchTerm.find("AUTHOR");
+//        if(found != string::npos){
+//            engine.wordanAuthorSearchWord(searchTerm);
+//        }
+//        found = searchTerm.find("AND" && "NOT");
+//        if(found != string::npos){
+//            engine.andNotSearch(searchTerm);
+//        }
+//        found = searchTerm.find("AND");
+//        if(found!=string::npos){
+//            engine.andSearch(searchTerm);
+//        }
+//        found = searchTerm.find("NOT");
+//        if(found != string::npos){
+//            cout << "Countains NOT";
+//        }
+//        found = searchTerm.find("OR");
+//        if(found != string::npos){
+//           engine.orSearch(searchTerm);
+//        }
 //        if(found == string::npos){
 //            engine.trimandstemSearchWord(searchTerm);
 //        }

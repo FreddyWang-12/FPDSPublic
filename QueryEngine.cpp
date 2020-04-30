@@ -132,23 +132,26 @@ void QueryEngine::andSearch(string &searchword) {
     Porter2Stemmer::stem(temp);
     Word& find2 = tree.getContent(temp);
     vector<string>& tempVec2 = find2.getDocs();
-    if(tempVec1.size() > tempVec2.size()){
-        for(int i =0; i < tempVec1.size(); i++){
-            for(int j = 0; j < tempVec2.size(); j++){
-                if(tempVec1[i] == tempVec2[j]){
-                    finalVec.push_back(tempVec1[i]);
-                }
-            }
-        }
-    }else{
-        for(int i =0; i < tempVec2.size(); i++){
-            for(int j = 0; j < tempVec1.size(); j++){
-                if(tempVec2[i] == tempVec1[j]){
-                    finalVec.push_back(tempVec2[i]);
-                }
-            }
-        }
-    }
+    sort(tempVec1.begin(),tempVec1.end());
+    sort(tempVec2.begin(),tempVec2.end());
+    set_intersection(tempVec1.begin(),tempVec1.end(),tempVec2.begin(),tempVec2.end(),back_inserter(finalVec));
+//    if(tempVec1.size() > tempVec2.size()){
+//        for(int i =0; i < tempVec1.size(); i++){
+//            for(int j = 0; j < tempVec2.size(); j++){
+//                if(tempVec1[i] == tempVec2[j]){
+//                    finalVec.push_back(tempVec1[i]);
+//                }
+//            }
+//        }
+//    }else{
+//        for(int i =0; i < tempVec2.size(); i++){
+//            for(int j = 0; j < tempVec1.size(); j++){
+//                if(tempVec2[i] == tempVec1[j]){
+//                    finalVec.push_back(tempVec2[i]);
+//                }
+//            }
+//        }
+//    }
     cout << searchword << " Documents Amount: " << finalVec.size() << endl;
     cout << "All Documents That Contain Both Search Words" << endl;
     for(int i =0; i < finalVec.size(); i++){
@@ -170,16 +173,56 @@ void QueryEngine::orSearch(string & searchTer) {
     Porter2Stemmer::stem(temp);
     Word& find2 = tree.getContent(temp);
     vector<string>& tempVec2 = find2.getDocs();
+    sort(tempVec1.begin(),tempVec1.end());
+    sort(tempVec2.begin(),tempVec2.end());
+    set_union(tempVec1.begin(),tempVec1.end(),tempVec2.begin(),tempVec2.end(),back_inserter(finalVec));
     int bigBoy = tempVec1.size() + tempVec2.size();
     cout << searchTer << " Documents Amount: " << bigBoy << endl;
     cout << "All Documents That Contain Both Search Words" << endl;
-    for(int i =0; i < tempVec1.size(); i++){
-        cout << tempVec1.at(i) << endl;
-    }
-    for(int i =0; i < tempVec2.size(); i++){
-        cout << tempVec2.at(i) << endl;
+    for(int i = 0; i < finalVec.size(); i++){
+        cout << finalVec.at(i) << endl;
     }
 
 
+}
+
+void QueryEngine::andNotSearch(string & termSearchy) {
+    finalVec.clear();
+    vector<string> wordHolder;
+    Porter2Stemmer::trim(termSearchy);
+    stringstream check(termSearchy);
+    string temp;
+    getline(check,temp,' ');
+    getline(check,temp,' ');
+    Porter2Stemmer::stem(temp);
+    Word& find1 = tree.getContent(temp);
+    vector<string>& tempVec1 = find1.getDocs();
+    getline(check,temp,' ');
+    Porter2Stemmer::stem(temp);
+    Word& find2 = tree.getContent(temp);
+    vector<string>& tempVec2 = find2.getDocs();
+    getline(check,temp,' ');
+    getline(check,temp,' ');
+    Word& find3 = tree.getContent(temp);
+    vector<string>& tempVec3 = find2.getDocs();
+    sort(tempVec1.begin(),tempVec1.end());
+    sort(tempVec2.begin(),tempVec2.end());
+    sort(tempVec3.begin(),tempVec3.end());
+    set_intersection(tempVec1.begin(),tempVec1.end(),tempVec2.begin(),tempVec2.end(),back_inserter(wordHolder));
+    set_difference(wordHolder.begin(),wordHolder.end(),tempVec3.begin(),tempVec3.end(),back_inserter(finalVec));
+    cout << termSearchy << " Documents Amount: " << finalVec.size() << endl;
+    cout << "All Documents That Contain Both Search Words and Not the others" << endl;
+    for(int i = 0; i < finalVec.size(); i++){
+        cout << finalVec.at(i) << endl;
+    }
+
+}
+
+string QueryEngine::searchPhrase(string & x) {
+   if(binary_search(searchPrases.begin(),searchPrases.end(),x)){
+       return x;
+   }else {
+       return "NULL";
+   }
 }
 

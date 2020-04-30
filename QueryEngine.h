@@ -18,6 +18,7 @@ private:
     string userSearch;
     AVLTree<Word> tree;
     hashTable<string,string> tableofHash;
+    vector<string> searchPrases = {"and","author","not","or"};
 public:
     QueryEngine();
     QueryEngine(QueryEngine&);
@@ -27,6 +28,8 @@ public:
     void andSearch(string&);
     void getDirectoryandParse(char*);
     void orSearch(string&);
+    void andNotSearch(string&);
+    string searchPhrase(string&);
 };
 
 
