@@ -14,6 +14,7 @@ template <typename T>
 class AVLTree{
 private:
     AVLNode<T>* cur;
+    int size;
     void dump(AVLNode<T>*&);
     void r1LeftChild(AVLNode<T>*&);
     void r2LeftChild(AVLNode<T>*&);
@@ -22,25 +23,19 @@ private:
     void insertNode(T&,AVLNode<T> *&);
     T& getContent(T&,AVLNode<T>*);
     void printNode(ofstream&,AVLNode<T>*);
-    bool ifExists(T&,AVLNode<T>*);
-    int size = 0;
 public:
     AVLTree();
     AVLTree(AVLNode<T>&);
     AVLTree(AVLTree<T>&);
     ~AVLTree();
     void dump();
-    Word & getContent(Word &);
-    Word& getContent(string&);
+    T& getContent(T&);
     void addNode(T&);
     void addFirstNodes(T&);
     int height(AVLNode<T>*);
+    int getHeight();
     bool isEmpty();
-    bool ifExists(T&);
     int getSize();
-    void getTreeSize();
-
-
 };
 template <typename T>
 bool AVLTree<T>::isEmpty() {
@@ -54,6 +49,7 @@ bool AVLTree<T>::isEmpty() {
 template <typename T>
 AVLTree<T>::AVLTree() {
     cur = nullptr;
+    size = 0;
 }
 
 
@@ -66,6 +62,7 @@ AVLTree<T>::AVLTree(AVLNode<T> &x) {
 template <typename T>
 AVLTree<T>::AVLTree(AVLTree<T> &x) {
     *this = x;
+    size = x.size;
 }
 
 
@@ -83,6 +80,7 @@ void AVLTree<T>::dump(AVLNode<T> *&x) {
         delete x;
     }
     x = nullptr;
+    size = 0;
 }
 
 
@@ -161,13 +159,12 @@ void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
             }
         }
     }else{};
-
     node->height = max(height(node->left), height(node->right))+1;
-    size++;
 }
 template <typename T>
 void AVLTree<T>::addNode(T & info) {
     insertNode(info,cur);
+    size++;
 }
 
 template <typename T>
@@ -184,43 +181,14 @@ T& AVLTree<T>::getContent(T& x, AVLNode<T> * curNode) {
 }
 
 template <typename T>
-Word& AVLTree<T>::getContent(Word& x) {
+T& AVLTree<T>::getContent(T& x) {
     return getContent(x, cur);
-}
-template <typename T>
-Word& AVLTree<T>::getContent(string& x) {
-    Word words(x);
-    return getContent(words, cur);
-}
-
-template <typename T>
-bool AVLTree<T>::ifExists(T& x, AVLNode<T>* nody){
-    if(nody == nullptr){
-        return false;
-    }else if (x < nody->data){
-        return ifExists(x,nody->left);
-    }else if(nody->data < x){
-        return ifExists(x,nody->right);
-    }else{
-        return true;
-    }
-}
-
-template <typename T>
-bool AVLTree<T>::ifExists(T &x) {
-    return ifExists(x,cur);
 }
 
 template <typename T>
 int AVLTree<T>::getSize() {
     return size;
 }
-
-template <typename T>
-void AVLTree<T>::getTreeSize() {
-    cout << "Total AVL Tree Nodes = " << getSize() << endl;
-}
-
 
 //template <typename T>
 //void AVLTree<T>::printNode(ofstream& out,AVLNode<T> *nodey) {

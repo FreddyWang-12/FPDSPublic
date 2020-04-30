@@ -72,15 +72,20 @@ LinkedList<T>::~LinkedList<T>(){
 
 template<class T>
 LinkedList<T>::LinkedList(const LinkedList<T> &copy){
-    mainNode = new node(copy.mainNode->data);
-    if(copy.mainNode->nextNode != nullptr) {
-        node *temp = copy.mainNode->nextNode;
-        while (temp->nextNode != nullptr) {
-            T dat = temp->data;
-            this->add(dat);
-            temp = temp->nextNode;
+    if(copy.mainNode == nullptr){
+        mainNode = nullptr;
+    }
+    else {
+        mainNode = new node(copy.mainNode->data);
+        if (copy.mainNode->nextNode != nullptr) {
+            node *temp = copy.mainNode->nextNode;
+            while (temp->nextNode != nullptr) {
+                T dat = temp->data;
+                this->add(dat);
+                temp = temp->nextNode;
+            }
+            add(temp->data);
         }
-        add(temp->data);
     }
     iter = mainNode;
 }
@@ -95,6 +100,10 @@ LinkedList<T>& LinkedList<T>::operator = (const LinkedList<T> &copy){
     }
     if(mainNode != nullptr){
         mainNode = nullptr;
+    }
+
+    if(copy.mainNode == nullptr){
+        return *this;
     }
 
     mainNode = new node(copy.mainNode->data);
