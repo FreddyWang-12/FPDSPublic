@@ -15,7 +15,6 @@ void DocumentParser::parseDocument(string& file) {
     assert(d.IsObject());
     assert(d.HasMember("paper_id"));
     assert(d["paper_id"].IsString());
-//    assert(d.IsObject());
     assert(d.HasMember("metadata"));
     assert(d["metadata"]["title"].IsString());
      paperid = d["paper_id"].GetString();
@@ -33,7 +32,6 @@ void DocumentParser::parseDocument(string& file) {
 
         }
     }
-//    cout << text;
     if(d.HasMember("body_text")){
         const Value& body_text_array = d["body_text"];
         assert(d["body_text"].IsArray());
@@ -54,12 +52,6 @@ void DocumentParser::parseDocument(string& file) {
             lastname = authors_last.GetString();
             lastname_author.push_back(lastname);
         }
-//        Porter2Stemmer::trim(firstname);
-//        Porter2Stemmer::trim(lastname);
-//        Porter2Stemmer::stem(firstname);
-//        Porter2Stemmer::stem(lastname);
-//        Author authors(firstname,lastname,paperid);
-
     }
 
     fclose(fp);
@@ -87,14 +79,9 @@ int count = 0;
         if(stat(filepath.c_str(), &filestat)) continue;
         if(S_ISDIR(filestat.st_mode)) continue;
         string sha = dirp->d_name;
-//        string get = sha.erase(sha.find("."));
-//        string get = sha.erase(sha.find('.')-4);
-//        if(csvreader.ifExists(get)){
-            parseDocument(filepath);
-//        }
+        parseDocument(filepath);
         count++;
     }
-
     closedir(dp);
 }
 
@@ -107,12 +94,11 @@ void DocumentParser::tokenization() {
         if(findInStopWord(temp) || temp.empty()){
             continue;
         }else{
-//            matterWords += " " + temp;
+            ++wordFreq[temp];
             Porter2Stemmer::stem(temp);
             vecOfWords.emplace_back(temp,paperid);
         }
     }
-
 }
 
 void DocumentParser::trimTokens() {
@@ -141,9 +127,9 @@ void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
 
 
 void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
-        for (auto & vecOfWord : vecOfWords) {
-            obj.addNode(vecOfWord);
-        }
+    for (auto & vecOfWord : vecOfWords) {
+        obj.addNode(vecOfWord);
+    }
 }
 
 
@@ -175,6 +161,21 @@ void DocumentParser::stemtrimAuthorNames() {
     }
 }
 
+void DocumentParser::addUniqueWords(int &unique) {
+    unique += vecOfWords.size();
+}
 
+void DocumentParser::sortWordFreq() {
+    copy(wordFreq.begin(), wordFreq.end(), back_inserter(sortedWordFreq));
+    sort(sortedWordFreq.begin(), sortedWordFreq.end(), sorter);
+}
 
+void DocumentParser::printMostFreqWords(){
+    for(int i = 0; i < 50; i++){
+        cout << sortedWordFreq[i].first << endl;
+    }
+}
 
+vector<pair<string, int>>& DocumentParser::getSortFreqWords(){
+    return sortedWordFreq;
+}

@@ -14,22 +14,20 @@ using namespace std;
 
 class QueryEngine{
 private:
+    int allArticlesIndexed;
+    int totalUniqueWords;
     vector<string> finalVec;
     string userSearch;
     AVLTree<Word> tree;
     hashTable<string,string> tableofHash;
-    vector<string> searchPrases = {"and","author","not","or"};
+    vector<pair<string, int>> wordFreq;
 public:
     QueryEngine();
     QueryEngine(QueryEngine&);
-    void prefixIndentifier(string&);
-    void trimandstemSearchWord(string&);
-    void wordanAuthorSearchWord(string&);
-    void andSearch(string&);
     void getDirectoryandParse(char*);
-    void orSearch(string&);
-    void andNotSearch(string&);
-    string searchPhrase(string&);
+
+    void searchQuery(string& query);
+    void printStatistics();
 };
 
 

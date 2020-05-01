@@ -4,10 +4,10 @@
 
 #ifndef FINALPROJECT_DOCUMENTPARSER_H
 #define FINALPROJECT_DOCUMENTPARSER_H
-#include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/filereadstream.h"
-#include "rapidjson/stringbuffer.h"
+#include "rapidjson/include/rapidjson/document.h"
+#include "rapidjson/include/rapidjson/writer.h"
+#include "rapidjson/include/rapidjson/stringbuffer.h"
+#include "rapidjson/include/rapidjson/filereadstream.h"
 #include "fstream"
 #include "dirent.h"
 #include "unistd.h"
@@ -18,10 +18,12 @@
 #include "hashTable.h"
 #include "porter2_stemmer.h"
 #include "vector"
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
+#include <sstream>
 #include "AVLTree.h"
 #include "Word.h"
 #include "cstring"
+#include <map>
 
 using namespace rapidjson;
 using namespace std;
@@ -32,6 +34,15 @@ private:
     string allDocText;
     vector<string> lastname_author;
     vector<Word> vecOfWords;
+
+    map<string, int> wordFreq;
+    vector<pair<string, int>> sortedWordFreq;
+    typedef std::function<bool(std::pair<string, int>, std::pair<string, int>)> compare;
+    compare sorter =
+            [](std::pair<string, int> one, std::pair<string, int> two){
+                return one.second > two.second;
+            };
+
     vector<string> stopword = {"0o", "0s", "3a", "3b", "3d", "6b", "6o", "a", "a1", "a2", "a3", "a4", "ab", "able", "about",
                               "above", "abst", "ac", "accordance", "according", "accordingly", "across", "act", "actually",
                               "ad", "added", "adj", "ae", "af", "affected", "affecting", "affects", "after", "afterwards",
@@ -134,7 +145,10 @@ public:
     void initialAuthorInserttoHashTable(hashTable<string,string>&);
     void getDocumentsinDirectory(string&);
     void findSameOccurance(vector<string>&, vector<string>&);
-
+    void addUniqueWords(int& unique);
+    void sortWordFreq();
+    void printMostFreqWords();
+    vector<pair<string, int>>& getSortFreqWords();
 };
 
 
