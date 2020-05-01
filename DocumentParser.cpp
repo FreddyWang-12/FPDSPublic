@@ -52,17 +52,15 @@ void DocumentParser::parseDocument(string& file) {
         if(authors_array_OBJ.HasMember("last")){
             const Value& authors_last = authors_array_OBJ["last"];
             lastname = authors_last.GetString();
+            Porter2Stemmer::trim(lastname);
+            Porter2Stemmer::stem(lastname);
             lastname_author.push_back(lastname);
         }
-//        Porter2Stemmer::trim(firstname);
-//        Porter2Stemmer::trim(lastname);
-//        Porter2Stemmer::stem(firstname);
-//        Porter2Stemmer::stem(lastname);
-//        Author authors(firstname,lastname,paperid);
-
     }
 
     fclose(fp);
+//    allDocText = title + text + bodytext;
+//    Porter2Stemmer::trim(allDocText);
     addStrings(title,text,bodytext);
 }
 
@@ -107,12 +105,19 @@ void DocumentParser::tokenization() {
         if(findInStopWord(temp) || temp.empty()){
             continue;
         }else{
-//            matterWords += " " + temp;
-            Porter2Stemmer::stem(temp);
-            vecOfWords.emplace_back(temp,paperid);
+                Porter2Stemmer::stem(temp);
+                frequency[temp]++;
+//                vecOfWords.emplace_back(temp,paperid);
         }
     }
 
+}
+
+void DocumentParser::setupVecofWords() {
+    map<string,int>::iterator itter;
+    for(auto const& x : frequency){
+        vecOfWords.emplace_back(x.first,paperid,x.second);
+    }
 }
 
 void DocumentParser::trimTokens() {
@@ -123,8 +128,24 @@ void DocumentParser::trimTokens() {
 void DocumentParser::clearVector() {
     vecOfWords.clear();
     lastname_author.clear();
+    frequency.clear();
 }
-
+int DocumentParser::gettheFrequency(){
+    int count = 0;
+    for(int i = 0; i < vecOfWords.size(); i++){
+        string temp = vecOfWords[i].getWord();
+        stringstream get(allDocText);
+        while(!get.eof()){
+            if(allDocText == temp){
+                count++;
+            }
+        }
+        if(count >= 1){
+            vecOfWords[i].addFrequency(count);
+            count = 0;
+        }
+    }
+}
 
 void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
     for(auto & vecOfWord : vecOfWords){
@@ -141,8 +162,8 @@ void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
 
 
 void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
-        for (auto & vecOfWord : vecOfWords) {
-            obj.addNode(vecOfWord);
+        for (int i = 0; i < vecOfWords.size(); i++) {
+            obj.addNode(vecOfWords[i]);
         }
 }
 

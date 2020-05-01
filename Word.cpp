@@ -12,6 +12,12 @@ Word::Word(){
 Word::Word(string newOne){
     data = newOne;
 }
+Word::Word(string word, string docID, int x){
+    data = word;
+    this->addDoc(docID);
+    this->addFrequency(x);
+}
+
 Word::Word(string word, string docID){
     data = word;
     this->addDoc(docID);
@@ -21,8 +27,11 @@ void Word::addDoc(string& docID) {
     docIDs.push_back(docID);
 }
 
-Word::~Word(){
+void Word::addFrequency(int& x) {
+    frequency.push_back(x);
 }
+
+Word::~Word()= default;
 
 Word::Word(const Word& other){
     data = other.data;
@@ -54,6 +63,7 @@ void Word::setWordData(string newOne) {
 }
 
 bool Word::findDoc(string& docID) {
+//    sort(docIDs.begin(),docIDs.end());
     return binary_search(docIDs.begin(),docIDs.end(),docID);
 }
 
@@ -74,3 +84,23 @@ void Word::printDocs() {
 int Word::getDocSize() {
     return docIDs.size();
 }
+
+string& Word::getWord() {
+    return data;
+}
+
+//void Word::insertintoMap(string & newword, int & x) {
+//    auto it = frequency.end();
+//    frequency.insert(it,{newword,x});
+//}
+//
+//map<string, int> &Word::getMap() {
+//    return frequency;
+//}
+
+
+//void Word::sortMaxtoMin() {
+//    sort(.begin(),docFrequency.end(),[](auto &left, auto &right){
+//       return left.second < right.second;
+//    });
+//}

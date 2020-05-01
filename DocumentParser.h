@@ -28,6 +28,7 @@ using namespace std;
 
 class DocumentParser{
 private:
+    map<string,int> frequency;
     string paperid;
     string allDocText;
     vector<string> lastname_author;
@@ -133,8 +134,8 @@ public:
     void deleteAllDocText();
     void initialAuthorInserttoHashTable(hashTable<string,string>&);
     void getDocumentsinDirectory(string&);
-    void findSameOccurance(vector<string>&, vector<string>&);
-
+    int gettheFrequency();
+    void setupVecofWords();
 };
 
 

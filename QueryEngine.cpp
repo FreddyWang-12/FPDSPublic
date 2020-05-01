@@ -7,40 +7,6 @@ QueryEngine::QueryEngine(QueryEngine &data) {
     userSearch = data.userSearch;
 }
 
-void QueryEngine::prefixIndentifier(string &arg) {
-    int found;
-    found = arg.find("AUTHOR");
-    if(found != string::npos){
-        cout << "Contains Author";
-    }
-    found = arg.find("AND" && "NOT");
-    if(found != string::npos){
-        cout << "Contains AND-NOT";
-    }
-    found = arg.find("AND");
-    if(found!=string::npos){
-        cout << "Contains AND";
-    }
-    found = arg.find("NOT");
-    if(found != string::npos){
-        cout << "Countains NOT";
-    }
-    found = arg.find("OR");
-    if(found != string::npos){
-        cout << "Contains OR";
-    }
-
-}
-
-void QueryEngine::trimandstemSearchWord(string& searchWord) {
-    Porter2Stemmer::trim(searchWord);
-    Porter2Stemmer::stem(searchWord);
-    Word& find = tree.getContent(searchWord);
-    cout << searchWord << " Documents Amount: " << find.getDocSize() << endl;
-    cout << "Commands Line Words Associative Documents: " << endl;
-    find.printDocs();
-}
-
 
 void QueryEngine::getDirectoryandParse(char* fileDirectory) {
     DocumentParser d;
@@ -71,17 +37,13 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
             d.parseDocument(filepath);
             d.trimTokens();
             d.tokenization();
-            d.deleteAllDocText();
-
+            d.setupVecofWords();
             if (tree.isEmpty()) {
                 d.initialAdditonToAVLTree(tree);
             } else {
                 d.insertIntoAVLTree(tree);
             }
-
-            d.stemtrimAuthorNames();
             d.initialAuthorInserttoHashTable(tableofHash);
-
             d.clearVector();
             count++;
         }
@@ -91,138 +53,83 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
 
 }
 
-void QueryEngine::wordanAuthorSearchWord(string &searchWord) {
+
+void QueryEngine::searchQuery(string &query) {
     finalVec.clear();
-    Porter2Stemmer::trim(searchWord);
-    stringstream check(searchWord);
+    Porter2Stemmer::trim(query);
+    stringstream parse(query);
     string temp;
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    Word& find = tree.getContent(temp);
-    getline(check,temp,' ');
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    vector<string>& tempVec = find.getDocs();
-    if(!tableofHash.emptyAt(temp)) {
-        LinkedList<string>& docs = tableofHash.getDataList(temp);
-        for (int i = 0; i < tempVec.size(); i++) {
-            if (docs.findValue(tempVec.at(i))) {
-                finalVec.push_back(tempVec[i]);
+    getline(parse, temp, ' ');
+    if(temp == "and"){
+        vector<string> tempFinal;
+        while(getline(parse, temp, ' ') && temp != "author" && temp != "not"){
+            Porter2Stemmer::stem(temp);
+            Word& find = tree.getContent(temp);
+            vector<string>& tempVec = find.getDocs();
+            Porter2Stemmer::stem(temp);
+            sort(tempVec.begin(),tempVec.end());
+            if(tempFinal.empty()){
+                tempFinal = tempVec;
+            }
+            else{
+                sort(tempFinal.begin(), tempFinal.end());
+                set_intersection(tempFinal.begin(),tempFinal.end(),tempVec.begin(),tempVec.end(),back_inserter(finalVec));
             }
         }
     }
-    cout << searchWord << " Documents Amount: " << finalVec.size() << endl;
-    cout << "Documents Relevent to Author and Search Only: " << endl;
-    for(const auto t : finalVec){
-        cout << t << endl;
+    else if(temp == "or"){
+        vector<string> tempFinal;
+        while(getline(parse, temp, ' ') && temp != "author" && temp != "not") {
+            Porter2Stemmer::stem(temp);
+            Word &find = tree.getContent(temp);
+            vector<string> &tempVec = find.getDocs();
+            sort(tempVec.begin(), tempVec.end());
+            if(tempFinal.empty()){
+                tempFinal = tempVec;
+            }
+            else{
+                sort(tempFinal.begin(), tempFinal.end());
+                set_union(tempVec.begin(),tempVec.end(),tempFinal.begin(),tempFinal.end(),back_inserter(finalVec));
+            }
+        }
     }
-}
-
-void QueryEngine::andSearch(string &searchword) {
-    finalVec.clear();
-    Porter2Stemmer::trim(searchword);
-    stringstream check(searchword);
-    string temp;
-    getline(check,temp,' ');
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    Word& find1 = tree.getContent(temp);
-    vector<string>& tempVec1 = find1.getDocs();
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    Word& find2 = tree.getContent(temp);
-    vector<string>& tempVec2 = find2.getDocs();
-    sort(tempVec1.begin(),tempVec1.end());
-    sort(tempVec2.begin(),tempVec2.end());
-    set_intersection(tempVec1.begin(),tempVec1.end(),tempVec2.begin(),tempVec2.end(),back_inserter(finalVec));
-//    if(tempVec1.size() > tempVec2.size()){
-//        for(int i =0; i < tempVec1.size(); i++){
-//            for(int j = 0; j < tempVec2.size(); j++){
-//                if(tempVec1[i] == tempVec2[j]){
-//                    finalVec.push_back(tempVec1[i]);
-//                }
-//            }
-//        }
-//    }else{
-//        for(int i =0; i < tempVec2.size(); i++){
-//            for(int j = 0; j < tempVec1.size(); j++){
-//                if(tempVec2[i] == tempVec1[j]){
-//                    finalVec.push_back(tempVec2[i]);
-//                }
-//            }
-//        }
-//    }
-    cout << searchword << " Documents Amount: " << finalVec.size() << endl;
-    cout << "All Documents That Contain Both Search Words" << endl;
-    for(int i =0; i < finalVec.size(); i++){
-        cout << finalVec.at(i) << endl;
+    else{
+        Porter2Stemmer::stem(temp);
+        Word& find = tree.getContent(temp);
+        finalVec = find.getDocs();
+        getline(parse, temp, ' ');
     }
-
-}
-
-void QueryEngine::orSearch(string & searchTer) {
-    Porter2Stemmer::trim(searchTer);
-    stringstream check(searchTer);
-    string temp;
-    getline(check,temp,' ');
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    Word& find1 = tree.getContent(temp);
-    vector<string>& tempVec1 = find1.getDocs();
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    Word& find2 = tree.getContent(temp);
-    vector<string>& tempVec2 = find2.getDocs();
-    sort(tempVec1.begin(),tempVec1.end());
-    sort(tempVec2.begin(),tempVec2.end());
-    set_union(tempVec1.begin(),tempVec1.end(),tempVec2.begin(),tempVec2.end(),back_inserter(finalVec));
-    int bigBoy = tempVec1.size() + tempVec2.size();
-    cout << searchTer << " Documents Amount: " << bigBoy << endl;
-    cout << "All Documents That Contain Both Search Words" << endl;
-    for(int i = 0; i < finalVec.size(); i++){
-        cout << finalVec.at(i) << endl;
+    if(temp == "not"){
+        vector<string> tempFinal;
+        while(getline(parse, temp, ' ') && temp != "author") {
+            Porter2Stemmer::stem(temp);
+            Word &look = tree.getContent(temp);
+            vector<string> &tempVec = look.getDocs();
+            sort(tempVec.begin(), tempVec.end());
+            sort(finalVec.begin(), finalVec.end());
+            set_difference(finalVec.begin(), finalVec.end(), tempVec.begin(), tempVec.end(),back_inserter(tempFinal));
+            finalVec = tempFinal;
+            tempFinal.clear();
+        }
     }
-
-
-}
-
-void QueryEngine::andNotSearch(string & termSearchy) {
-    finalVec.clear();
-    vector<string> wordHolder;
-    Porter2Stemmer::trim(termSearchy);
-    stringstream check(termSearchy);
-    string temp;
-    getline(check,temp,' ');
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    Word& find1 = tree.getContent(temp);
-    vector<string>& tempVec1 = find1.getDocs();
-    getline(check,temp,' ');
-    Porter2Stemmer::stem(temp);
-    Word& find2 = tree.getContent(temp);
-    vector<string>& tempVec2 = find2.getDocs();
-    getline(check,temp,' ');
-    getline(check,temp,' ');
-    Word& find3 = tree.getContent(temp);
-    vector<string>& tempVec3 = find2.getDocs();
-    sort(tempVec1.begin(),tempVec1.end());
-    sort(tempVec2.begin(),tempVec2.end());
-    sort(tempVec3.begin(),tempVec3.end());
-    set_intersection(tempVec1.begin(),tempVec1.end(),tempVec2.begin(),tempVec2.end(),back_inserter(wordHolder));
-    set_difference(wordHolder.begin(),wordHolder.end(),tempVec3.begin(),tempVec3.end(),back_inserter(finalVec));
-    cout << termSearchy << " Documents Amount: " << finalVec.size() << endl;
-    cout << "All Documents That Contain Both Search Words and Not the others" << endl;
-    for(int i = 0; i < finalVec.size(); i++){
-        cout << finalVec.at(i) << endl;
+    if(temp == "author"){
+        getline(parse, temp, ' ');
+        Porter2Stemmer::stem(temp);
+        if(!tableofHash.emptyAt(temp)) {
+            vector<string> tempVec;
+            LinkedList<string>& docs = tableofHash.getDataList(temp);
+            for (int i = 0; i < finalVec.size(); i++) {
+                if (docs.findValue(finalVec.at(i))) {
+                    tempVec.push_back(finalVec.at(i));
+                }
+            }
+            finalVec = tempVec;
+        }
     }
-
-}
-
-string QueryEngine::searchPhrase(string & x) {
-   if(binary_search(searchPrases.begin(),searchPrases.end(),x)){
-       return x;
-   }else {
-       return "NULL";
-   }
+    cout << "All Documents Found with Search: " << query << endl;
+    cout << "Total Documents: " << finalVec.size() << endl;
+    for(auto it = begin(finalVec); it != end(finalVec); ++it){
+        cout << it->data() << endl;
+    }
 }
 
