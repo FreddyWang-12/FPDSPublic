@@ -107,7 +107,6 @@ void DocumentParser::tokenization() {
         }else{
                 Porter2Stemmer::stem(temp);
                 frequency[temp]++;
-//                vecOfWords.emplace_back(temp,paperid);
         }
     }
 
@@ -152,6 +151,9 @@ void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
         if(avl.ifExists(vecOfWord)){
             if(!avl.getContent(vecOfWord).findDoc(paperid)){
                 avl.getContent(vecOfWord).addDoc(paperid);
+                map<string,int>::iterator itter;
+                itter = frequency.find(vecOfWord.getWord());
+                avl.getContent(vecOfWord).addFrequency(itter->second);
             }
         }else{
             avl.addNode(vecOfWord);

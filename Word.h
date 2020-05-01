@@ -33,7 +33,7 @@ public:
     int operator < (const Word& other);
     int operator > (const Word& other);
     void addDoc(string& docID);
-    void addFrequency(int&);
+    void addFrequency(int);
     int getDocSize();
     string& getWord();
     void printDocs();

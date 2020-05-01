@@ -27,7 +27,7 @@ void Word::addDoc(string& docID) {
     docIDs.push_back(docID);
 }
 
-void Word::addFrequency(int& x) {
+void Word::addFrequency(int x) {
     frequency.push_back(x);
 }
 
@@ -36,11 +36,13 @@ Word::~Word()= default;
 Word::Word(const Word& other){
     data = other.data;
     docIDs = other.docIDs;
+    frequency = other.frequency;
 }
 
 Word& Word::operator = (const Word& copy){
     data = copy.data;
     docIDs = copy.docIDs;
+    frequency = copy.frequency;
     return *this;
 }
 
