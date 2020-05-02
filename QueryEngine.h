@@ -16,6 +16,7 @@ private:
     int totalUniqueWords;
     vector<string> finalVec;
     string userSearch;
+    AVLTree<DocumentOBJ> docTree;
     AVLTree<Word> tree;
     hashTable<string,string> tableofHash;
     vector<Word> vecofWordss;

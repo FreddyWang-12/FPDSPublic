@@ -21,10 +21,10 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
         cout << "Error("<< errno <<") opening " << fileDirectory << endl;
     }
     int count = 0;
-//    dirp = readdir(dp);
-//    while(dirp){
-    while(count != 20){
-        dirp = readdir(dp);
+    dirp = readdir(dp);
+    while(dirp){
+//    while(count != 1000){
+//        dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         string sha = dirp->d_name;
         string extension;
@@ -35,6 +35,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
             if(stat(filepath.c_str(), &filestat)) continue;
             if(S_ISDIR(filestat.st_mode)) continue;
             d.parseDocument(filepath);
+            d.createDocOBJ(docTree);
             d.trimTokens();
             d.tokenization();
             d.setupVecofWords();
@@ -155,6 +156,7 @@ void QueryEngine::getTreeFromFile() {
         cout << "Could not Inserte information into AVLTree from output.txt file!" << endl;
     }
     vector<string> tempVec;
+    vector<int> tempVecFreq;
 //    char buffer[60];
 //    char word[50];
     while(!into.eof()){
@@ -163,23 +165,45 @@ void QueryEngine::getTreeFromFile() {
         into.getline(word,50,'[');
         into.getline(word,50,']');
         into.getline(buffer,50,',');
+        if(strlen(buffer) <= 1){
+            delete[] word;
+            delete[] buffer;
+            break;
+        }
         bool haspip = false;
+        bool getFreq = false;
             while(haspip == false){
                 for(int i =0; i < 50; i++) {
                     if (buffer[i] == '|') {
                         haspip = true;
                         break;
                     }
-
                 }
                 if(haspip == false) {
                     tempVec.push_back(buffer);
                     into.getline(buffer, 50, ',');
+//                    cout <<  "Working";
                 }
             }
-        Word* temp = new Word(word,tempVec);
+            while(haspip == true){
+//                into.getline(buffer,50,',');
+                for(int i = 0; i < 3; i++) {
+                    if (buffer[i] == '|' && buffer[i + 1] == '|') {
+                        getFreq = true;
+                        haspip = false;
+                        break;
+                    }
+                }
+                if(getFreq == false){
+                    int x = atoi(buffer);
+                    tempVecFreq.push_back(x);
+                    into.getline(buffer, 50, ',');
+                }
+            }
+        Word* temp = new Word(word,tempVec,tempVecFreq);
         tree.addNode(*temp);
         tempVec.clear();
+        tempVecFreq.clear();
         delete temp;
         delete[] word;
         delete[] buffer;

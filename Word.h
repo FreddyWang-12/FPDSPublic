@@ -26,7 +26,7 @@ public:
     Word(string);
     Word(string,string);
     Word(string,string,int);
-    Word(string,vector<string>);
+    Word(string,vector<string>,vector<int>);
     ~Word();
     Word(const Word& other);
     Word& operator = (const Word& copy);

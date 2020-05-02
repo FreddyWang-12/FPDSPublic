@@ -23,9 +23,10 @@ Word::Word(string word, string docID){
     this->addDoc(docID);
 }
 
-Word::Word(string word, vector<string> docids) {
+Word::Word(string word, vector<string> docids, vector<int> docFreq) {
     data = word;
     docIDs = docids;
+    frequency = docFreq;
 }
 
 void Word::addDoc(string& docID) {
@@ -117,6 +118,13 @@ std::ofstream &operator<<(std::ofstream &output, const Word &obj) {
                 output << obj.docIDs[i].c_str() << ",|,";
             } else {
                 output << obj.docIDs[i].c_str() << ',';
+            }
+        }
+        for(int i = 0; i < obj.frequency.size(); i++){
+            if(i == obj.frequency.size()-1){
+                output << obj.frequency[i] << ",||,";
+            }else{
+                output << obj.frequency[i] << ',';
             }
         }
 //        output << endl;

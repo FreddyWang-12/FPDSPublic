@@ -10,7 +10,7 @@ void DocumentParser::parseDocument(string& file) {
     FileReadStream is(fp,readingBuffer, sizeof(readingBuffer));
     Document d;
     d.ParseStream(is);
-    string title,text,bodytext;
+    string text,bodytext;
     string lastname{};
     assert(d.IsObject());
     assert(d.HasMember("paper_id"));
@@ -52,11 +52,17 @@ void DocumentParser::parseDocument(string& file) {
         if(authors_array_OBJ.HasMember("last")){
             const Value& authors_last = authors_array_OBJ["last"];
             lastname = authors_last.GetString();
-            Porter2Stemmer::trim(lastname);
-            Porter2Stemmer::stem(lastname);
-            lastname_author.push_back(lastname);
+            if(lastname == ""){
+                continue;
+            }else {
+                formattedAutors.push_back(lastname);
+                Porter2Stemmer::trim(lastname);
+                Porter2Stemmer::stem(lastname);
+                lastname_author.push_back(lastname);
+            }
         }
     }
+
 
     fclose(fp);
 //    allDocText = title + text + bodytext;
@@ -130,6 +136,7 @@ void DocumentParser::clearVector() {
     vecOfWords.clear();
     lastname_author.clear();
     frequency.clear();
+    formattedAutors.clear();
 }
 
 int DocumentParser::gettheFrequency(){
@@ -201,37 +208,43 @@ void DocumentParser::stemtrimAuthorNames() {
     }
 }
 
-void DocumentParser::insertIntoAVLTreeFromFile(AVLTree<Word> &avl) {
-    ifstream into;
-    into.open("output.txt");
-    if(!into){
-        cout << "Could not Inserte information into AVLTree from output.txt file!" << endl;
-    }
-
-
-    while(!into.eof()){
-        vector<string> tempVec;
-        char* word = new char[50];
-        char* buffer = new char[50];
-        into.getline(word,50,'[');
-        into.getline(word,50,']');
-//        while(strcmp(buffer,"|") != 0){
-            into.getline(buffer,50,',');
-            if(strcmp(buffer,"|") != 0) {
-                tempVec.push_back(buffer);
-            }else{
-                break;
-            }
-//        }
-        Word* temp = new Word(word,tempVec);
-//        vecOfWords.emplace_back(word,tempVec);
-        avl.addNode(*temp);
-        delete temp;
-        delete[] word;
-        delete[] buffer;
-//        tempVec.clear();
-//        vecOfWords.clear();
-    }
-    into.close();
+void DocumentParser::createDocOBJ(AVLTree<DocumentOBJ>& docTree) {
+    DocumentOBJ* tempDocOBJ = new DocumentOBJ(paperid,title,formattedAutors);
+    docTree.addNode(*tempDocOBJ);
+    delete tempDocOBJ;
 }
+
+//void DocumentParser::insertIntoAVLTreeFromFile(AVLTree<Word> &avl) {
+//    ifstream into;
+//    into.open("output.txt");
+//    if(!into){
+//        cout << "Could not Inserte information into AVLTree from output.txt file!" << endl;
+//    }
+//
+//
+//    while(!into.eof()){
+//        vector<string> tempVec;
+//        char* word = new char[50];
+//        char* buffer = new char[50];
+//        into.getline(word,50,'[');
+//        into.getline(word,50,']');
+////        while(strcmp(buffer,"|") != 0){
+//            into.getline(buffer,50,',');
+//            if(strcmp(buffer,"|") != 0) {
+//                tempVec.push_back(buffer);
+//            }else{
+//                break;
+//            }
+////        }
+//        Word* temp = new Word(word,tempVec,tempVec);
+////        vecOfWords.emplace_back(word,tempVec);
+//        avl.addNode(*temp);
+//        delete temp;
+//        delete[] word;
+//        delete[] buffer;
+////        tempVec.clear();
+////        vecOfWords.clear();
+//    }
+//    into.close();
+//}
 

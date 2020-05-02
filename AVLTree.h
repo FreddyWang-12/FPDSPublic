@@ -252,11 +252,12 @@ void AVLTree<T>::insertNode(T & x, AVLNode<T> *& node) {
     }else{};
 
     node->height = max(height(node->left), height(node->right))+1;
-    size++;
+
 }
 template <typename T>
 void AVLTree<T>::addNode(T & info) {
     insertNode(info,cur);
+    size++;
 }
 
 template <typename T>

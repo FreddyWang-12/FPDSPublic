@@ -17,6 +17,7 @@
 #include <string>
 #include "hashTable.h"
 #include "porter2_stemmer.h"
+#include "DocumentOBJ.h"
 #include "vector"
 #include <bits/stdc++.h>
 #include "AVLTree.h"
@@ -28,7 +29,8 @@ using namespace std;
 
 class DocumentParser{
 private:
-
+    vector<string> formattedAutors;
+    string title;
     map<string,int> frequency;
     string paperid;
     string allDocText;
@@ -114,6 +116,7 @@ public:
     int gettheFrequency();
     void setupVecofWords();
     void insertIntoAVLTreeFromFile(AVLTree<Word>&);
+    void createDocOBJ(AVLTree<DocumentOBJ>&);
 };
 
 
