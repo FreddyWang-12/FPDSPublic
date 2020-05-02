@@ -26,6 +26,7 @@ public:
     Word(string);
     Word(string,string);
     Word(string,string,int);
+    Word(string,vector<string>);
     ~Word();
     Word(const Word& other);
     Word& operator = (const Word& copy);
@@ -44,6 +45,8 @@ public:
     void sortMaxtoMin();
     void insertintoMap(string&,int&);
     map<string,int>& getMap();
+    friend std::ostream& operator<<(std::ostream&, const Word&);
+    friend std::ofstream& operator<<(std::ofstream&, const Word&);
 };
 
 

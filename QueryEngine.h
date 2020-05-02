@@ -18,6 +18,7 @@ private:
     string userSearch;
     AVLTree<Word> tree;
     hashTable<string,string> tableofHash;
+    vector<Word> vecofWordss;
     vector<pair<string, int>> wordFreq;
 public:
     QueryEngine();
@@ -25,6 +26,9 @@ public:
     void getDirectoryandParse(char*);
     void searchQuery(string& query);
     void printStatistics();
+    void outputTree();
+    void outputTreetoFile();
+    void getTreeFromFile();
 };
 
 

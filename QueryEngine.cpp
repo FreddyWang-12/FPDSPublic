@@ -23,7 +23,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
     int count = 0;
 //    dirp = readdir(dp);
 //    while(dirp){
-    while(count != 1000){
+    while(count != 20){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         string sha = dirp->d_name;
@@ -131,5 +131,60 @@ void QueryEngine::searchQuery(string &query) {
     for(auto it = begin(finalVec); it != end(finalVec); ++it){
         cout << it->data() << endl;
     }
+}
+
+void QueryEngine::outputTree() {
+    tree.printerFunc();
+}
+
+void QueryEngine::outputTreetoFile() {
+    ofstream out;
+    out.open("output.txt");
+    if(!out){
+        cout << "Output.txt could not open." << endl;
+    }else{
+        tree.printtofileLVLFUNC(out);
+    }
+    out.close();
+}
+
+void QueryEngine::getTreeFromFile() {
+    ifstream into;
+    into.open("output.txt");
+    if(!into){
+        cout << "Could not Inserte information into AVLTree from output.txt file!" << endl;
+    }
+    vector<string> tempVec;
+//    char buffer[60];
+//    char word[50];
+    while(!into.eof()){
+        char* word = new char[50];
+        char* buffer = new char[60];
+        into.getline(word,50,'[');
+        into.getline(word,50,']');
+        into.getline(buffer,50,',');
+        bool haspip = false;
+            while(haspip == false){
+                for(int i =0; i < 50; i++) {
+                    if (buffer[i] == '|') {
+                        haspip = true;
+                        break;
+                    }
+
+                }
+                if(haspip == false) {
+                    tempVec.push_back(buffer);
+                    into.getline(buffer, 50, ',');
+                }
+            }
+        Word* temp = new Word(word,tempVec);
+        tree.addNode(*temp);
+        tempVec.clear();
+        delete temp;
+        delete[] word;
+        delete[] buffer;
+    }
+
+    into.close();
 }
 

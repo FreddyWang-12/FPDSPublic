@@ -23,6 +23,11 @@ Word::Word(string word, string docID){
     this->addDoc(docID);
 }
 
+Word::Word(string word, vector<string> docids) {
+    data = word;
+    docIDs = docids;
+}
+
 void Word::addDoc(string& docID) {
     docIDs.push_back(docID);
 }
@@ -90,6 +95,34 @@ int Word::getDocSize() {
 string& Word::getWord() {
     return data;
 }
+
+std::ostream &operator<<(std::ostream & output, const Word & obj) {
+    output <<'[' << obj.data << ']' << ',';
+    for(int i = 0; i < obj.docIDs.size(); i++){
+        if(i == obj.docIDs.size()-1){
+            output << obj.docIDs[i] << "|";
+        }else {
+            output << obj.docIDs[i] << ',';
+        }
+    }
+//    output << endl;
+    return output;
+}
+
+std::ofstream &operator<<(std::ofstream &output, const Word &obj) {
+//        output << '"' << obj.data.c_str() << '"' << ',';
+        output <<'[' << obj.data << ']';
+        for(int i = 0; i < obj.docIDs.size(); i++) {
+            if (i == obj.docIDs.size() - 1) {
+                output << obj.docIDs[i].c_str() << ",|,";
+            } else {
+                output << obj.docIDs[i].c_str() << ',';
+            }
+        }
+//        output << endl;
+    return output;
+}
+
 
 //void Word::insertintoMap(string & newword, int & x) {
 //    auto it = frequency.end();

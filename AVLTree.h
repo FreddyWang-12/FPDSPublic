@@ -21,9 +21,11 @@ private:
     void r2RightChild(AVLNode<T>*&);
     void insertNode(T&,AVLNode<T> *&);
     T& getContent(T&,AVLNode<T>*);
-    void printNode(ofstream&,AVLNode<T>*);
     bool ifExists(T&,AVLNode<T>*);
     int size = 0;
+    void printCOUTree(AVLNode<T>*);
+    void printToFile(ofstream&, AVLNode<T>*);
+    void printtoFileLEVEL(ofstream&,AVLNode<T>*,int);
 public:
     AVLTree();
     AVLTree(AVLNode<T>&);
@@ -39,9 +41,96 @@ public:
     bool ifExists(T&);
     int getSize();
     void getTreeSize();
+    void printerFunc();
+    void printtoFileFunc(ofstream&);
+    int height2(AVLNode<T>*);
+    void printtofileLVLFUNC(ofstream&);
 
 
 };
+template <typename T>
+void AVLTree<T>::printtoFileFunc(ofstream & output) {
+    if(cur == nullptr){
+        cout << "There is nothing in your tree!" << endl;
+    }else{
+        printToFile(output,cur);
+    }
+}
+
+
+template <typename T>
+void AVLTree<T>::printToFile(ofstream & output, AVLNode<T> *nodey) {
+    if(nodey != nullptr){
+        printToFile(output,nodey->left);
+        output << nodey->data;
+        printToFile(output,nodey->right);
+    }
+}
+template <typename T>
+void AVLTree<T>::printtofileLVLFUNC(ofstream &output) {
+    int h = height2(cur);
+    int i;
+    for(i = 1; i <= h; i++){
+        printtoFileLEVEL(output,cur,i);
+    }
+}
+
+template <typename T>
+void AVLTree<T>::printtoFileLEVEL(ofstream &output, AVLNode<T> *nodey, int lvl) {
+    if(nodey == nullptr){
+        return;
+    }
+    if(lvl == 1){
+        output << nodey->data;
+    }else if(lvl >1){
+        printtoFileLEVEL(output,nodey->left, lvl-1);
+        printtoFileLEVEL(output,nodey->right, lvl-1);
+    }
+}
+
+template <typename T>
+int AVLTree<T>::height2(AVLNode<T> *nodey) {
+    if(nodey == nullptr){
+        return 0;
+    }else{
+        int lheight = height2(nodey->left);
+        int rheight = height2(nodey->right);
+        if(lheight>rheight){
+            return (lheight+1);
+        }else{
+            return (rheight+1);
+        }
+    }
+}
+
+
+
+template <typename T>
+void AVLTree<T>::printerFunc() {
+    if(cur == nullptr){
+       cout << "There is nothing in your tree!" << endl;
+    }else{
+        printCOUTree(cur);
+    }
+}
+
+
+template <typename T>
+void AVLTree<T>::printCOUTree(AVLNode<T> *nodey) {
+    ofstream out;
+    out.open("output.txt");
+    if(!out){
+        cout << "Was not able to open output.txt file to insert elements in AVL Word Tree" << endl;
+    }
+    if(nodey != nullptr){
+        printCOUTree(nodey->left);
+        cout << nodey->data << endl;
+        printCOUTree(nodey->right);
+    }
+}
+
+
+
 template <typename T>
 bool AVLTree<T>::isEmpty() {
     if(cur == nullptr){
@@ -222,23 +311,7 @@ void AVLTree<T>::getTreeSize() {
 }
 
 
-//template <typename T>
-//void AVLTree<T>::printNode(ofstream& out,AVLNode<T> *nodey) {
-//    if(nodey != nullptr){
-//        printNode(out ,nodey->left);
-//        out << nodey->data << endl;
-//        printNode(out ,nodey->right);
-//    }
-//}
-//
-//template <typename T>
-//void AVLTree<T>::printTree(ofstream& outt) {
-//    if(cur == nullptr){
-//        cout << "The AVL Tree IS EMPTY!" << endl;
-//    }else{
-//        printNode(outt,cur);
-//    }
-//}
+
 
 
 #endif //FINALPROJECT_AVLTREE_H

@@ -79,7 +79,7 @@ void DocumentParser::getDocumentsinDirectory(string& directory) {
 
 //    while(dirp = readdir(dp)){
 int count = 0;
-    while(count != 100){
+    while(count != 1){
         dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         if(stat(filepath.c_str(), &filestat)) continue;
@@ -102,11 +102,13 @@ void DocumentParser::tokenization() {
     string temp;
     while(!check.eof()){
         getline(check,temp,' ');
-        if(findInStopWord(temp) || temp.empty()){
+        if(findInStopWord(temp) || temp.empty() || temp.size() > 20){
             continue;
         }else{
                 Porter2Stemmer::stem(temp);
-                frequency[temp]++;
+                if(temp.size() > 1) {
+                    frequency[temp]++;
+                }
         }
     }
 
@@ -129,6 +131,7 @@ void DocumentParser::clearVector() {
     lastname_author.clear();
     frequency.clear();
 }
+
 int DocumentParser::gettheFrequency(){
     int count = 0;
     for(int i = 0; i < vecOfWords.size(); i++){
@@ -198,6 +201,37 @@ void DocumentParser::stemtrimAuthorNames() {
     }
 }
 
+void DocumentParser::insertIntoAVLTreeFromFile(AVLTree<Word> &avl) {
+    ifstream into;
+    into.open("output.txt");
+    if(!into){
+        cout << "Could not Inserte information into AVLTree from output.txt file!" << endl;
+    }
 
 
+    while(!into.eof()){
+        vector<string> tempVec;
+        char* word = new char[50];
+        char* buffer = new char[50];
+        into.getline(word,50,'[');
+        into.getline(word,50,']');
+//        while(strcmp(buffer,"|") != 0){
+            into.getline(buffer,50,',');
+            if(strcmp(buffer,"|") != 0) {
+                tempVec.push_back(buffer);
+            }else{
+                break;
+            }
+//        }
+        Word* temp = new Word(word,tempVec);
+//        vecOfWords.emplace_back(word,tempVec);
+        avl.addNode(*temp);
+        delete temp;
+        delete[] word;
+        delete[] buffer;
+//        tempVec.clear();
+//        vecOfWords.clear();
+    }
+    into.close();
+}
 
