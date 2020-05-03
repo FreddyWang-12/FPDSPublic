@@ -57,6 +57,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
 
 void QueryEngine::searchQuery(string &query) {
     map<string,int> bigboy;
+    multimap<int,string,greater<int>> holder;
     finalVec.clear();
     vector<string> finalVecTemper;
     Porter2Stemmer::trim(query);
@@ -105,10 +106,9 @@ void QueryEngine::searchQuery(string &query) {
         Porter2Stemmer::stem(temp);
         Word& find = tree.getContent(temp);
         finalVecTemper = find.getDocs();
-        vector<int>& tempVecFreq = find.getFrequency();
-        for(int i = 0; i<finalVecTemper.size(); i++){
-//                bigboy[tempVecIDs[i]] = tempVecFreq[i]++;
-            bigboy[finalVecTemper[i]] += tempVecFreq[i];
+        vector<int> tempVecFreq = calculateIDF(find);
+        for(int i = 0; i < finalVecTemper.size(); i++){
+            holder.insert(make_pair(tempVecFreq[i],finalVecTemper[i]));
         }
         getline(parse, temp, ' ');
     }
@@ -140,32 +140,39 @@ void QueryEngine::searchQuery(string &query) {
         }
     }
 
-    multimap<int,string,greater<int>> finalMultiMap = getWhatMatters(bigboy,finalVecTemper);
-    map<int,string>::iterator itter;
-    for(itter = finalMultiMap.begin(); itter != finalMultiMap.end(); itter++){
-        finalVec.push_back((itter->second));
-    }
-    cout << "All Documents Found with Search: " << query << endl;
-    cout << "Total Documents: " << finalVec.size() << endl;
-    for(int i = 0; i < 15; i++){
+    for(auto iter = holder.begin(); iter != holder.end(); iter++){
+//        DocumentOBJ tempDoc = docTree.getDocContent(iter->second);
+//        cout << "Title: " << tempDoc.getTitle() << endl;
+//        cout << "Authors: ";
+//        tempDoc.printAuthors();
+//        cout << "DocID: " << tempDoc.getID() << endl;
+//        string tempDocID = iter->second;
+//        cout << tempDocID << endl;
+//        docTree.getDocContent(tempDocID);
+        cout << (*iter).first << "," << (*iter).second << endl;
 
-        DocumentOBJ tempPoinDoc = docTree.getDocContent(finalVec.at(i));
-        if(docTree.ifExists(tempPoinDoc)) {
-//            if(!tempPoinDoc.getTitle().empty()) {
-            cout << "[" << i+1 << "]" << endl;
-            for(int z= 0; z < 50; z++){
-                cout << '-';
-            }
-            cout << endl;
-            cout << "Title: " << tempPoinDoc.getTitle() << endl;
-            cout << "Authors: ";
-            tempPoinDoc.printAuthors();
-            cout << "ID of Doc: " << tempPoinDoc.getID() << endl;
-            for(int z= 0; z < 50; z++){
-                cout << '-';
-            }
-            cout << endl;
-        }
+    }
+//    cout << "All Documents Found with Search: " << query << endl;
+//    cout << "Total Documents: " << finalVec.size() << endl;
+//    for(int i = 0; i < finalVec.size(); i++){
+//
+//        DocumentOBJ tempPoinDoc = docTree.getDocContent(finalVec.at(i));
+//        if(docTree.ifExists(tempPoinDoc)) {
+////            if(!tempPoinDoc.getTitle().empty()) {
+//            cout << "[" << i+1 << "]" << endl;
+//            for(int z= 0; z < 50; z++){
+//                cout << '-';
+//            }
+//            cout << endl;
+//            cout << "Title: " << tempPoinDoc.getTitle() << endl;
+//            cout << "Authors: ";
+//            tempPoinDoc.printAuthors();
+//            cout << "ID of Doc: " << tempPoinDoc.getID() << endl;
+//            for(int z= 0; z < 50; z++){
+//                cout << '-';
+//            }
+//            cout << endl;
+//        }
 //            }else{
 //                continue;
 //            }
@@ -181,7 +188,7 @@ void QueryEngine::searchQuery(string &query) {
 //    for(auto it = begin(finalVec); it != end(finalVec); ++it){
 //        cout << it->data() << endl;
 //    }
-}
+
 
 void QueryEngine::outputTree() {
     tree.printerFunc();
@@ -331,6 +338,20 @@ multimap<int,string,greater<int>> QueryEngine::getWhatMatters(map<string, int> &
             newMap.insert(make_pair(freq,id));
         }
         return newMap;
+}
+
+vector<int> QueryEngine::calculateIDF(Word& searchWord) {
+    int amountofDocs = docTree.getSize();
+    int docwithTerm = searchWord.getDocSize();
+    vector<int> tempFreq = searchWord.getFrequency();
+    vector<int> idfVec;
+    for(int i = 0; i < tempFreq.size(); i++){
+        int tf = tempFreq[i];
+        int idf = tf*log(amountofDocs/docwithTerm);
+        idfVec.push_back(idf);
+    }
+    return idfVec;
+
 }
 
 

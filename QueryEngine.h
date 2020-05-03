@@ -2,6 +2,8 @@
 #define QUERY_ENGINE_H
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <cstdio>
 #include "cstring"
 #include "dirent.h"
 #include "porter2_stemmer.h"
@@ -33,6 +35,7 @@ public:
     void getTreeFromFile();
     void getDocTreeFromFile();
     multimap<int,string,greater<int>> getWhatMatters(map<string,int>&,vector<string>&);
+    vector<int> calculateIDF(Word&);
 };
 
 

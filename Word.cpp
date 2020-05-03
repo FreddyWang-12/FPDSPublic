@@ -152,6 +152,10 @@ vector<int>& Word::getFrequency() {
     return frequency;
 }
 
+int Word::getFreqSize() {
+    return frequency.size();
+}
+
 
 //void Word::insertintoMap(string & newword, int & x) {
 //    auto it = frequency.end();

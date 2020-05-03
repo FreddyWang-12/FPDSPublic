@@ -37,6 +37,7 @@ public:
     void addDoc(string& docID);
     void addFrequency(int&);
     int getDocSize();
+    int getFreqSize();
     string& getWord();
     void printDocs();
     void setWordData(string newOne);
