@@ -3,11 +3,14 @@
 #include <iostream>
 #include <functional>
 #include <cstring>
+#include <fstream>
+#include <vector>
 #include "LinkedList.h"
 using namespace std;
 template <class V, class K>
 class hashTable {
 private:
+    vector<V> values;
     int size;
     int capacity;
     LinkedList<K>* table;
@@ -23,11 +26,13 @@ public:
     int getPositionOf(V val);
     int getSize();
     int getCapacity();
+    void printToFile(ofstream& output);
+    void printToTerminal();
 };
 template <class V, class K>
 hashTable<V, K>::hashTable(){
     size = 0;
-    capacity = 250000;
+    capacity = 10000;
     table = new LinkedList<K>[capacity];
 }
 template <class V, class K>
@@ -60,6 +65,15 @@ hashTable<V, K>& hashTable<V, K>:: operator = (const hashTable<V,K> &copy){
 }
 template <class V, class K>
 void hashTable<V,K>::addNewKey(V val, K data){
+//    if(values.empty()){
+//        values.push_back(val);
+//    }
+//    else {
+//        typename std::vector<V>::iterator ptr = find(values.begin(), values.end(), val);
+//        if (*ptr != val) {
+//            values.push_back(val);
+//        }
+//    }
     int hashCode = getPositionOf(val);
     table[hashCode].add(data);
     size++;
@@ -98,4 +112,48 @@ template <class V, class K>
 int hashTable<V,K>::getCapacity() {
     return capacity;
 }
+
+
+template <class V, class K>
+void hashTable<V,K>::printToFile(ofstream& output){
+    for(int i = 0; i < values.size(); i++) {
+        output << '[' << values[i] << ']';
+        LinkedList<K>& ids = getDataList(values[i]);
+        if(!ids.isEmpty()){
+            ids.resetIter();
+            output << ids.currIterValue() << ',';
+            if(!ids.hasNext()){
+                output << "|,";
+            }
+            else {
+                while (ids.hasNext()) {
+                    ids.nextValue();
+                    if (!ids.hasNext()) {
+                        output << ids.currIterValue() << ",|,";
+                    } else {
+                        output << ids.currIterValue() << ',';
+                    }
+                }
+            }
+        }
+        output << endl;
+    }
+}
+//template <class V, class K>
+//void hashTable<V,K>::printToTerminal(){
+//    for(int i = 0; i < values.size(); i++) {
+//        cout << '[' << values[i] << ']';
+//        LinkedList<K>& ids = getDataList(values[i]);
+//        if(!ids.isEmpty()){
+//            for (int i = 0; i < ids.getSize(); i++) {
+//                if (!ids.hasNext()) {
+//                    cout << ids.currIterValue() << ",|,";
+//                } else {
+//                    cout << ids.currIterValue() << ',';
+//                    ids.nextValue();
+//                }
+//            }
+//        }
+//    }
+//}
 #endif //UNTITLED_HASHTABLE_H

@@ -5,8 +5,10 @@
 #ifndef FINALPROJECT_DOCUMENTOBJ_H
 #define FINALPROJECT_DOCUMENTOBJ_H
 
+#include <iostream>
 #include <string>
 #include <cstring>
+#include <fstream>
 #include <vector>
 using namespace std;
 class DocumentOBJ{
@@ -16,6 +18,7 @@ private:
     vector<string> authors;
 public:
     DocumentOBJ();
+    DocumentOBJ(string);
     DocumentOBJ(string id, string title, vector<string> authors);
     DocumentOBJ(string id, string title);
     DocumentOBJ(const DocumentOBJ& other);
@@ -27,9 +30,13 @@ public:
     void setTitle(string newTitle);
     void setAuthors(vector<string> newAuthors);
     void addAuthor(string& newAuth);
+    void printAuthors();
     string& getID();
     string& getTitle();
+    bool iftitleExists(string&);
     vector<string>& getAuthors();
+    friend std::ostream& operator<<(std::ostream&, const DocumentOBJ&);
+    friend std::ofstream& operator<<(std::ofstream&, const DocumentOBJ&);
 };
 
 

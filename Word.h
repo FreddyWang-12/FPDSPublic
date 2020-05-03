@@ -30,11 +30,12 @@ public:
     ~Word();
     Word(const Word& other);
     Word& operator = (const Word& copy);
-
+    vector<string> topElements;
     int operator < (const Word& other);
     int operator > (const Word& other);
+    vector<string>& getTop15Docs(vector<string>&);
     void addDoc(string& docID);
-    void addFrequency(int);
+    void addFrequency(int&);
     int getDocSize();
     string& getWord();
     void printDocs();
@@ -42,6 +43,7 @@ public:
     bool findDoc(string& );
     string& getWordData();
     vector<string>& getDocs();
+    vector<int>& getFrequency();
     void sortMaxtoMin();
     void insertintoMap(string&,int&);
     map<string,int>& getMap();

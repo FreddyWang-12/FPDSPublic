@@ -33,7 +33,7 @@ void Word::addDoc(string& docID) {
     docIDs.push_back(docID);
 }
 
-void Word::addFrequency(int x) {
+void Word::addFrequency(int& x) {
     frequency.push_back(x);
 }
 
@@ -129,6 +129,27 @@ std::ofstream &operator<<(std::ofstream &output, const Word &obj) {
         }
 //        output << endl;
     return output;
+}
+
+vector<string>& Word::getTop15Docs(vector<string>& finalVecTop) {
+    vector<string> tempDocIds;
+    tempDocIds = finalVecTop;
+    vector<int> tempFrequency;
+    tempFrequency = frequency;
+    int counter = 0;
+    while(counter != 15 && counter != finalVecTop.size()){
+        int maxEleIndex = max_element(tempFrequency.begin(), tempFrequency.end()) - tempFrequency.begin();
+        string tempID = tempDocIds[maxEleIndex];
+        topElements.push_back(tempID);
+        tempDocIds.erase(tempDocIds.begin() + maxEleIndex);
+        tempFrequency.erase(tempFrequency.begin() + maxEleIndex);
+        counter++;
+    }
+    return topElements;
+}
+
+vector<int>& Word::getFrequency() {
+    return frequency;
 }
 
 

@@ -9,6 +9,7 @@
 #include "DocumentParser.h"
 #include "QueryEngine.h"
 #include "hashTable.h"
+#include "DocumentOBJ.h"
 using namespace std;
 class QueryEngine{
 private:
@@ -30,6 +31,8 @@ public:
     void outputTree();
     void outputTreetoFile();
     void getTreeFromFile();
+    void getDocTreeFromFile();
+    multimap<int,string,greater<int>> getWhatMatters(map<string,int>&,vector<string>&);
 };
 
 

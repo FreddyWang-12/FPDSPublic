@@ -29,12 +29,11 @@ using namespace std;
 
 class DocumentParser{
 private:
-    vector<string> formattedAutors;
-    string title;
     map<string,int> frequency;
     string paperid;
     string allDocText;
     vector<string> lastname_author;
+    DocumentOBJ docOBJ;
     vector<Word> vecOfWords;
     vector<string> stopword = {"0o","0s","3a","3b","3d","6b","6o","a","a's","a1","a2","a3","a4","ab","able","about","above","abst","ac","accordance",
                                "according","accordingly","across","act","actually","ad","added","adj","ae","af","affected","affecting","affects","after","afterwards","ag","again","against","ah",
@@ -116,7 +115,10 @@ public:
     int gettheFrequency();
     void setupVecofWords();
     void insertIntoAVLTreeFromFile(AVLTree<Word>&);
-    void createDocOBJ(AVLTree<DocumentOBJ>&);
+    void createDocOBJ(vector<string>&,string&);
+    void addDocOBJtoTree(AVLTree<DocumentOBJ>&);
+    void trim(string&);
+    void addFreqToWord(AVLTree<Word>&);
 };
 
 

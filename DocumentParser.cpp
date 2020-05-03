@@ -10,8 +10,8 @@ void DocumentParser::parseDocument(string& file) {
     FileReadStream is(fp,readingBuffer, sizeof(readingBuffer));
     Document d;
     d.ParseStream(is);
-    string text,bodytext;
-    string lastname{};
+    string text,bodytext,lastname,title;
+    vector<string> formattedAutors;
     assert(d.IsObject());
     assert(d.HasMember("paper_id"));
     assert(d["paper_id"].IsString());
@@ -52,21 +52,21 @@ void DocumentParser::parseDocument(string& file) {
         if(authors_array_OBJ.HasMember("last")){
             const Value& authors_last = authors_array_OBJ["last"];
             lastname = authors_last.GetString();
-            if(lastname == ""){
-                continue;
-            }else {
-                formattedAutors.push_back(lastname);
+            if(!lastname.empty() ){
                 Porter2Stemmer::trim(lastname);
+                string temp = lastname;
+                temp[0] = toupper(temp[0]);
+                formattedAutors.push_back(temp);
                 Porter2Stemmer::stem(lastname);
                 lastname_author.push_back(lastname);
             }
+            }
         }
-    }
-
 
     fclose(fp);
 //    allDocText = title + text + bodytext;
 //    Porter2Stemmer::trim(allDocText);
+    createDocOBJ(formattedAutors,title);
     addStrings(title,text,bodytext);
 }
 
@@ -122,9 +122,10 @@ void DocumentParser::tokenization() {
 
 void DocumentParser::setupVecofWords() {
     map<string,int>::iterator itter;
-    for(auto const& x : frequency){
-        vecOfWords.emplace_back(x.first,paperid,x.second);
+    for(itter = frequency.begin(); itter != frequency.end(); itter++) {
+        vecOfWords.emplace_back(itter->first, paperid,itter->second);
     }
+
 }
 
 void DocumentParser::trimTokens() {
@@ -136,7 +137,6 @@ void DocumentParser::clearVector() {
     vecOfWords.clear();
     lastname_author.clear();
     frequency.clear();
-    formattedAutors.clear();
 }
 
 int DocumentParser::gettheFrequency(){
@@ -208,10 +208,43 @@ void DocumentParser::stemtrimAuthorNames() {
     }
 }
 
-void DocumentParser::createDocOBJ(AVLTree<DocumentOBJ>& docTree) {
-    DocumentOBJ* tempDocOBJ = new DocumentOBJ(paperid,title,formattedAutors);
-    docTree.addNode(*tempDocOBJ);
-    delete tempDocOBJ;
+void DocumentParser::trim(std::string& word)
+{
+    if (word == "<s>" || word == "</s>")
+        return;
+
+    auto it
+            = std::remove_if(word.begin(), word.end(), [](char ch)
+            {
+                return !((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch == ' ');
+            });
+
+    word.erase(it, word.end());
+}
+
+void DocumentParser::createDocOBJ(vector<string>& data,string& title) {
+    if(title.empty()){
+        title = "NO TITLE";
+    }
+    if(data.empty()){
+        string temp = "NO AUTHOR";
+        data.push_back(temp);
+    }
+            trim(title);
+            DocumentOBJ *tempDocOBJ = new DocumentOBJ(paperid, title, data);
+            docOBJ = *tempDocOBJ;
+            delete tempDocOBJ;
+}
+
+void DocumentParser::addDocOBJtoTree(AVLTree<DocumentOBJ> & docTree) {
+        docTree.addNode(docOBJ);
+}
+
+void DocumentParser::addFreqToWord(AVLTree<Word>& wordTree) {
+    map<string,int>::iterator itter;
+    for(itter = frequency.begin(); itter != frequency.end(); itter++){
+        wordTree.getContent((Word &) itter->first).addFrequency(itter->second);
+    }
 }
 
 //void DocumentParser::insertIntoAVLTreeFromFile(AVLTree<Word> &avl) {

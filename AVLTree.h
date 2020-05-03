@@ -8,6 +8,7 @@
 #include <iostream>
 #include "AVLNode.h"
 #include "Word.h"
+#include "DocumentOBJ.h"
 using namespace std;
 
 template <typename T>
@@ -32,8 +33,10 @@ public:
     AVLTree(AVLTree<T>&);
     ~AVLTree();
     void dump();
-    Word & getContent(Word &);
+    Word& getContent(Word &);
     Word& getContent(string&);
+    DocumentOBJ getDocContent(string&);
+    DocumentOBJ& getDocContent(DocumentOBJ&);
     void addNode(T&);
     void addFirstNodes(T&);
     int height(AVLNode<T>*);
@@ -281,6 +284,16 @@ template <typename T>
 Word& AVLTree<T>::getContent(string& x) {
     Word words(x);
     return getContent(words, cur);
+}
+template  <typename  T>
+DocumentOBJ AVLTree<T>::getDocContent(string &x) {
+    DocumentOBJ doc(x);
+    DocumentOBJ result = getContent(doc,cur);
+    return result;
+}
+template  <typename  T>
+DocumentOBJ& AVLTree<T>::getDocContent(DocumentOBJ &te) {
+    return getContent(te,cur);
 }
 
 template <typename T>

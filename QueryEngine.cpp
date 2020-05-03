@@ -23,7 +23,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
     int count = 0;
     dirp = readdir(dp);
     while(dirp){
-//    while(count != 1000){
+//    while(count != 2000){
 //        dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         string sha = dirp->d_name;
@@ -35,7 +35,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
             if(stat(filepath.c_str(), &filestat)) continue;
             if(S_ISDIR(filestat.st_mode)) continue;
             d.parseDocument(filepath);
-            d.createDocOBJ(docTree);
+            d.addDocOBJtoTree(docTree);
             d.trimTokens();
             d.tokenization();
             d.setupVecofWords();
@@ -56,7 +56,9 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
 
 
 void QueryEngine::searchQuery(string &query) {
+    map<string,int> bigboy;
     finalVec.clear();
+    vector<string> finalVecTemper;
     Porter2Stemmer::trim(query);
     stringstream parse(query);
     string temp;
@@ -66,15 +68,20 @@ void QueryEngine::searchQuery(string &query) {
         while(getline(parse, temp, ' ') && temp != "author" && temp != "not"){
             Porter2Stemmer::stem(temp);
             Word& find = tree.getContent(temp);
-            vector<string>& tempVec = find.getDocs();
-            Porter2Stemmer::stem(temp);
-            sort(tempVec.begin(),tempVec.end());
+            vector<string>& tempVecIDs = find.getDocs();
+            vector<int>& tempVecFreq = find.getFrequency();
+            for(int i = 0; i<tempVecIDs.size(); i++){
+//                bigboy[tempVecIDs[i]] = tempVecFreq[i]++;
+                bigboy[tempVecIDs[i]] += tempVecFreq[i];
+            }
+            sort(tempVecIDs.begin(),tempVecIDs.end());
             if(tempFinal.empty()){
-                tempFinal = tempVec;
+                tempFinal = tempVecIDs;
             }
             else{
                 sort(tempFinal.begin(), tempFinal.end());
-                set_intersection(tempFinal.begin(),tempFinal.end(),tempVec.begin(),tempVec.end(),back_inserter(finalVec));
+                set_intersection(tempFinal.begin(),tempFinal.end(),tempVecIDs.begin(),tempVecIDs.end(),back_inserter(finalVecTemper));
+
             }
         }
     }
@@ -127,11 +134,48 @@ void QueryEngine::searchQuery(string &query) {
             finalVec = tempVec;
         }
     }
+
+    multimap<int,string,greater<int>> finalMultiMap = getWhatMatters(bigboy,finalVecTemper);
+    map<int,string>::iterator itter;
+    for(itter = finalMultiMap.begin(); itter != finalMultiMap.end(); itter++){
+        finalVec.push_back((itter->second));
+    }
     cout << "All Documents Found with Search: " << query << endl;
     cout << "Total Documents: " << finalVec.size() << endl;
-    for(auto it = begin(finalVec); it != end(finalVec); ++it){
-        cout << it->data() << endl;
+    for(int i = 0; i < 15; i++){
+
+        DocumentOBJ tempPoinDoc = docTree.getDocContent(finalVec.at(i));
+        if(docTree.ifExists(tempPoinDoc)) {
+//            if(!tempPoinDoc.getTitle().empty()) {
+            cout << "[" << i+1 << "]" << endl;
+            for(int z= 0; z < 50; z++){
+                cout << '-';
+            }
+            cout << endl;
+            cout << "Title: " << tempPoinDoc.getTitle() << endl;
+            cout << "Authors: ";
+            tempPoinDoc.printAuthors();
+            cout << "ID of Doc: " << tempPoinDoc.getID() << endl;
+            for(int z= 0; z < 50; z++){
+                cout << '-';
+            }
+            cout << endl;
+        }
+//            }else{
+//                continue;
+//            }
+
     }
+//    for(int j = 0; j < doctemps.size(); j++){
+//        cout << "Title: " << doctemps[j].getTitle() << endl;
+//        cout << "Authors: ";
+//        doctemps[j].printAuthors();
+//        cout << "ID of Doc: " << doctemps[j].getID() << endl;
+//        cout << endl;
+//    }
+//    for(auto it = begin(finalVec); it != end(finalVec); ++it){
+//        cout << it->data() << endl;
+//    }
 }
 
 void QueryEngine::outputTree() {
@@ -139,21 +183,37 @@ void QueryEngine::outputTree() {
 }
 
 void QueryEngine::outputTreetoFile() {
-    ofstream out;
+    ofstream out,docout,hashout;
+    docout.open("outputDoc.txt");
     out.open("output.txt");
+    hashout.open("hashtable.txt");
+    if(!docout){
+        cout << "outputDoc.txt could not open." << endl;
+    }else{
+        docTree.printtofileLVLFUNC(docout);
+    }
     if(!out){
         cout << "Output.txt could not open." << endl;
     }else{
         tree.printtofileLVLFUNC(out);
     }
+
+//    if(!hashout){
+//        cout << "hashtable.txt could not open." << endl;
+//    }else{
+//        tableofHash.printToFile(hashout);
+//    }
+
+    docout.close();
     out.close();
+    hashout.close();
 }
 
 void QueryEngine::getTreeFromFile() {
     ifstream into;
     into.open("output.txt");
     if(!into){
-        cout << "Could not Inserte information into AVLTree from output.txt file!" << endl;
+        cout << "Could not Insert information into AVLTree from output.txt file!" << endl;
     }
     vector<string> tempVec;
     vector<int> tempVecFreq;
@@ -173,7 +233,7 @@ void QueryEngine::getTreeFromFile() {
         bool haspip = false;
         bool getFreq = false;
             while(haspip == false){
-                for(int i =0; i < 50; i++) {
+                for(int i =0; i < 4; i++) {
                     if (buffer[i] == '|') {
                         haspip = true;
                         break;
@@ -187,7 +247,7 @@ void QueryEngine::getTreeFromFile() {
             }
             while(haspip == true){
 //                into.getline(buffer,50,',');
-                for(int i = 0; i < 3; i++) {
+                for(int i = 0; i < 4; i++) {
                     if (buffer[i] == '|' && buffer[i + 1] == '|') {
                         getFreq = true;
                         haspip = false;
@@ -211,4 +271,62 @@ void QueryEngine::getTreeFromFile() {
 
     into.close();
 }
+
+void QueryEngine::getDocTreeFromFile() {
+    ifstream into;
+    into.open("outputDoc.txt");
+    if(!into){
+        cout << "Could not open up outputDoc.txt to insert back into avl tree!" << endl;
+    }
+    vector<string> tempVec;
+    while(!into.eof()){
+        char* id = new char[50];
+        char* title = new char[5000];
+        char* buffer = new char[1000];
+        into.getline(id,50,'~');
+        into.getline(id,50,'~');
+        into.getline(title,5000,'~');
+        into.getline(title,5000,'~');
+        into.getline(buffer,1000,',');
+        if(strlen(buffer) == 0){
+            delete[] id;
+            delete[] title;
+            delete[] buffer;
+            break;
+        }
+        bool haspipes = false;
+        while(haspipes == false){
+            for(int i = 0; i < 4; i++){
+                if(buffer[i] == '~' && buffer[i+1] == '~' && buffer[i+2] == '~'){
+                    haspipes = true;
+                    break;
+                }
+            }
+            if(haspipes == false){
+                tempVec.push_back(buffer);
+                into.getline(buffer,1000,',');
+            }
+        }
+        DocumentOBJ* docOb = new DocumentOBJ(id,title,tempVec);
+        docTree.addNode(*docOb);
+        tempVec.clear();
+        delete docOb;
+        delete[] id;
+        delete[] title;
+        delete[] buffer;
+    }
+    into.close();
+}
+
+multimap<int,string,greater<int>> QueryEngine::getWhatMatters(map<string, int> &mappy, vector<string> &veccey) {
+        multimap<int,string,greater<int>> newMap;
+        for(int i = 0; i < veccey.size(); i++){
+            string id = mappy.find(veccey[i])->first;
+            int freq = mappy.find(veccey[i])->second;
+            newMap.insert(make_pair(freq,id));
+        }
+        return newMap;
+}
+
+
 
