@@ -104,7 +104,12 @@ void QueryEngine::searchQuery(string &query) {
     else{
         Porter2Stemmer::stem(temp);
         Word& find = tree.getContent(temp);
-        finalVec = find.getDocs();
+        finalVecTemper = find.getDocs();
+        vector<int>& tempVecFreq = find.getFrequency();
+        for(int i = 0; i<finalVecTemper.size(); i++){
+//                bigboy[tempVecIDs[i]] = tempVecFreq[i]++;
+            bigboy[finalVecTemper[i]] += tempVecFreq[i];
+        }
         getline(parse, temp, ' ');
     }
     if(temp == "not"){

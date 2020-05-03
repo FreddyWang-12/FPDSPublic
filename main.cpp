@@ -9,12 +9,12 @@ int main(int argc, char* argv[]) {
     auto start = high_resolution_clock::now();
     QueryEngine engine;
 
-    engine.getDirectoryandParse(argv[1]);
-    engine.outputTreetoFile();
+//    engine.getDirectoryandParse(argv[1]);
+//    engine.outputTreetoFile();
 
 
-//    engine.getTreeFromFile();
-//    engine.getDocTreeFromFile();
+    engine.getTreeFromFile();
+    engine.getDocTreeFromFile();
 
 
     int choice;

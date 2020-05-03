@@ -113,7 +113,7 @@ void DocumentParser::tokenization() {
         }else{
                 Porter2Stemmer::stem(temp);
                 if(temp.size() > 1) {
-                    frequency[temp]++;
+                    ++frequency[temp];
                 }
         }
     }
