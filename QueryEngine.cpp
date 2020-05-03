@@ -57,7 +57,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
 
 void QueryEngine::searchQuery(string &query) {
     map<string,int> bigboy;
-    multimap<int,string,greater<int>> holder;
+    multimap<int,string,greater<>> holder;
     finalVec.clear();
     vector<string> finalVecTemper;
     Porter2Stemmer::trim(query);
@@ -141,53 +141,10 @@ void QueryEngine::searchQuery(string &query) {
     }
 
     for(auto iter = holder.begin(); iter != holder.end(); iter++){
-//        DocumentOBJ tempDoc = docTree.getDocContent(iter->second);
-//        cout << "Title: " << tempDoc.getTitle() << endl;
-//        cout << "Authors: ";
-//        tempDoc.printAuthors();
-//        cout << "DocID: " << tempDoc.getID() << endl;
-//        string tempDocID = iter->second;
-//        cout << tempDocID << endl;
-//        docTree.getDocContent(tempDocID);
         cout << (*iter).first << "," << (*iter).second << endl;
 
     }
-//    cout << "All Documents Found with Search: " << query << endl;
-//    cout << "Total Documents: " << finalVec.size() << endl;
-//    for(int i = 0; i < finalVec.size(); i++){
-//
-//        DocumentOBJ tempPoinDoc = docTree.getDocContent(finalVec.at(i));
-//        if(docTree.ifExists(tempPoinDoc)) {
-////            if(!tempPoinDoc.getTitle().empty()) {
-//            cout << "[" << i+1 << "]" << endl;
-//            for(int z= 0; z < 50; z++){
-//                cout << '-';
-//            }
-//            cout << endl;
-//            cout << "Title: " << tempPoinDoc.getTitle() << endl;
-//            cout << "Authors: ";
-//            tempPoinDoc.printAuthors();
-//            cout << "ID of Doc: " << tempPoinDoc.getID() << endl;
-//            for(int z= 0; z < 50; z++){
-//                cout << '-';
-//            }
-//            cout << endl;
-//        }
-//            }else{
-//                continue;
-//            }
-
-    }
-//    for(int j = 0; j < doctemps.size(); j++){
-//        cout << "Title: " << doctemps[j].getTitle() << endl;
-//        cout << "Authors: ";
-//        doctemps[j].printAuthors();
-//        cout << "ID of Doc: " << doctemps[j].getID() << endl;
-//        cout << endl;
-//    }
-//    for(auto it = begin(finalVec); it != end(finalVec); ++it){
-//        cout << it->data() << endl;
-//    }
+}
 
 
 void QueryEngine::outputTree() {
@@ -195,10 +152,10 @@ void QueryEngine::outputTree() {
 }
 
 void QueryEngine::outputTreetoFile() {
-    ofstream out,docout,hashout;
+    ofstream out,docout;
     docout.open("outputDoc.txt");
     out.open("output.txt");
-    hashout.open("hashtable.txt");
+//    hashout.open("hashtable.txt");
     if(!docout){
         cout << "outputDoc.txt could not open." << endl;
     }else{
@@ -218,7 +175,7 @@ void QueryEngine::outputTreetoFile() {
 
     docout.close();
     out.close();
-    hashout.close();
+//    hashout.close();
 }
 
 void QueryEngine::getTreeFromFile() {
@@ -245,7 +202,7 @@ void QueryEngine::getTreeFromFile() {
         bool haspip = false;
         bool getFreq = false;
             while(haspip == false){
-                for(int i =0; i < 4; i++) {
+                for(int i =0; i < 6; i++) {
                     if (buffer[i] == '|') {
                         haspip = true;
                         break;
@@ -259,7 +216,7 @@ void QueryEngine::getTreeFromFile() {
             }
             while(haspip == true){
 //                into.getline(buffer,50,',');
-                for(int i = 0; i < 4; i++) {
+                for(int i = 0; i < 6; i++) {
                     if (buffer[i] == '|' && buffer[i + 1] == '|') {
                         getFreq = true;
                         haspip = false;
@@ -341,17 +298,16 @@ multimap<int,string,greater<int>> QueryEngine::getWhatMatters(map<string, int> &
 }
 
 vector<int> QueryEngine::calculateIDF(Word& searchWord) {
-    int amountofDocs = docTree.getSize();
+    int amountofDocs = 12000;
     int docwithTerm = searchWord.getDocSize();
     vector<int> tempFreq = searchWord.getFrequency();
     vector<int> idfVec;
     for(int i = 0; i < tempFreq.size(); i++){
-        int tf = tempFreq[i];
+        int tf = tempFreq.at(i);
         int idf = tf*log(amountofDocs/docwithTerm);
         idfVec.push_back(idf);
     }
     return idfVec;
-
 }
 
 

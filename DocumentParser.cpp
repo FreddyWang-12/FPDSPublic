@@ -163,8 +163,8 @@ void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
                 avl.getContent(vecOfWord).addDoc(paperid);
                 map<string,int>::iterator itter;
                 itter = frequency.find(vecOfWord.getWord());
-                int feq = itter->second;
-                avl.getContent(vecOfWord).addFrequency(feq);
+//                int feq = itter->second;
+                avl.getContent(vecOfWord).addFrequency(itter->second);
             }
         }else{
             avl.addNode(vecOfWord);
