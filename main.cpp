@@ -8,7 +8,7 @@ using namespace std::chrono;
 int main(int argc, char* argv[]) {
     auto start = high_resolution_clock::now();
     QueryEngine engine;
-
+//
 //    engine.getDirectoryandParse(argv[1]);
 //    engine.outputTreetoFile();
 
@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
     engine.getTreeFromFile();
     engine.getDocTreeFromFile();
 
+//    engine.getAuthorsQuick(argv[1]);
 
     int choice;
     cout << "Welcome to the Covid-19 Search Engine!" << endl;

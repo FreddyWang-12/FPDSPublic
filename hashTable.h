@@ -13,7 +13,7 @@ private:
     vector<V> values;
     int size;
     int capacity;
-    LinkedList<K>* table;
+    Linkedlist<K>* table;
 public:
     hashTable<V, K>();
     ~hashTable();
@@ -21,7 +21,7 @@ public:
     hashTable<V, K>& operator = (const hashTable<V,K> &copy);
     void addNewKey(V val, K data);
     bool emptyAt(V val);
-    LinkedList<K>& getDataList(V val);
+    Linkedlist<K>& getDataList(V val);
     void clear();
     int getPositionOf(V val);
     int getSize();
@@ -32,8 +32,8 @@ public:
 template <class V, class K>
 hashTable<V, K>::hashTable(){
     size = 0;
-    capacity = 10000;
-    table = new LinkedList<K>[capacity];
+    capacity = 30000;
+    table = new Linkedlist<K>[capacity];
 }
 template <class V, class K>
 hashTable<V,K>::~hashTable(){
@@ -45,7 +45,7 @@ template <class V, class K>
 hashTable<V, K>::hashTable (const hashTable<V, K> &copy){
     size = copy.size;
     capacity = copy.capacity;
-    table = new LinkedList<K>[capacity];
+    table = new Linkedlist<K>[capacity];
     for(int i = 0; i < capacity; i++){
         table[i] = copy.table[i];
     }
@@ -57,7 +57,7 @@ hashTable<V, K>& hashTable<V, K>:: operator = (const hashTable<V,K> &copy){
     if(table != nullptr){
         delete[] table;
     }
-    table = new LinkedList<K>[capacity];
+    table = new Linkedlist<K>[capacity];
     for(int i = 0; i < capacity; i++){
         table[i] = copy.table[i];
     }
@@ -75,7 +75,7 @@ void hashTable<V,K>::addNewKey(V val, K data){
 //        }
 //    }
     int hashCode = getPositionOf(val);
-    table[hashCode].add(data);
+    table[hashCode].push_back(data);
     size++;
 }
 template <class V, class K>
@@ -87,7 +87,7 @@ bool hashTable<V, K>::emptyAt(V val) {
     return false;
 }
 template <class V, class K>
-LinkedList<K>& hashTable<V,K>:: getDataList(V val){
+Linkedlist<K>& hashTable<V,K>:: getDataList(V val){
     int hashCode = getPositionOf(val);
     return table[hashCode];
 }
@@ -102,7 +102,7 @@ void hashTable<V,K>::clear(){
     if(table != nullptr){
         delete[] table;
     }
-    table = new LinkedList<K>[capacity];
+    table = new Linkedlist<K>[capacity];
 }
 template <class V, class K>
 int hashTable<V,K>::getSize() {
@@ -118,7 +118,7 @@ template <class V, class K>
 void hashTable<V,K>::printToFile(ofstream& output){
     for(int i = 0; i < values.size(); i++) {
         output << '[' << values[i] << ']';
-        LinkedList<K>& ids = getDataList(values[i]);
+        Linkedlist<K>& ids = getDataList(values[i]);
         if(!ids.isEmpty()){
             ids.resetIter();
             output << ids.currIterValue() << ',';

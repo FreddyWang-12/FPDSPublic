@@ -121,6 +121,8 @@ public:
     void addDocOBJtoTree(AVLTree<DocumentOBJ>&);
     void trim(string&);
     void addFreqToWord(AVLTree<Word>&);
+    void getAuthorQuickey(string&);
+    void authorIntoHashReParse(hashTable<string,string>&);
 };
 
 

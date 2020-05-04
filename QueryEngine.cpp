@@ -7,6 +7,38 @@ QueryEngine::QueryEngine(QueryEngine &data) {
     userSearch = data.userSearch;
 }
 
+void QueryEngine::getAuthorsQuick(char* dir){
+    DocumentParser d;
+    ofstream out;
+    string filepath = dir;
+    string directory = dir;
+    DIR *dp;
+    struct dirent *dirp;
+    struct stat filestat;
+    dp = opendir(dir);
+    if(dp == NULL){
+        cout << "Error("<< errno <<") opening " << dir << endl;
+    }
+    int count = 0;
+    dirp = readdir(dp);
+    while(dirp) {
+        filepath = directory + "/" + dirp->d_name;
+        string sha = dirp->d_name;
+        string extension;
+        if (strlen(sha.c_str()) > 4) {
+            extension = sha.substr(sha.length() - 5);
+        }
+        if (extension == ".json") {
+            if (stat(filepath.c_str(), &filestat)) continue;
+            if (S_ISDIR(filestat.st_mode)) continue;
+            d.getAuthorQuickey(filepath);
+            d.authorIntoHashReParse(tableofHash);
+        }
+        dirp = readdir(dp);
+    }
+    closedir(dp);
+}
+
 
 void QueryEngine::getDirectoryandParse(char* fileDirectory) {
     DocumentParser d;
@@ -21,10 +53,10 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
         cout << "Error("<< errno <<") opening " << fileDirectory << endl;
     }
     int count = 0;
-//    dirp = readdir(dp);
-//    while(dirp){
-    while(count != 100){
-        dirp = readdir(dp);
+    dirp = readdir(dp);
+    while(dirp){
+//    while(count != 100){
+//        dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         string sha = dirp->d_name;
         string extension;
@@ -95,58 +127,104 @@ void QueryEngine::searchQuery(string &query) {
         while(getline(parse, temp, ' ') && temp != "author" && temp != "not") {
             Porter2Stemmer::stem(temp);
             Word &find = tree.getContent(temp);
-            vector<string> &tempVec = find.getDocs();
-            sort(tempVec.begin(), tempVec.end());
-            if(tempFinal.empty()){
-                tempFinal = tempVec;
+            vector<string> &tempVecIDs = find.getDocs();
+            vector<int> tempVecFreq = calculateIDF(find);
+            for(int i = 0; i < tempVecIDs.size(); i++){
+                if(bigboy.find(tempVecIDs[i].c_str()) != bigboy.end()){
+                    bigboy[tempVecIDs[i]] += tempVecFreq[i];
+                }else{
+                    bigboy[tempVecIDs[i]] = tempVecFreq[i];
+                }
             }
-            else{
-                sort(tempFinal.begin(), tempFinal.end());
-                set_union(tempVec.begin(),tempVec.end(),tempFinal.begin(),tempFinal.end(),back_inserter(finalVec));
+            doubleVeccy.push_back(tempVecIDs);
+            for (int i = 1 ; i < doubleVeccy.size() ; i++)
+            {
+                sort(doubleVeccy[i].begin(), doubleVeccy[i].end());
+            }
+            map<string,int>::iterator itter;
+            for(itter = bigboy.begin(); itter != bigboy.end(); itter++){
+                holder.insert(make_pair(itter->second,itter->first));
             }
         }
     }
     else{
         Porter2Stemmer::stem(temp);
         Word& find = tree.getContent(temp);
-        finalVecTemper = find.getDocs();
+        vector<string>& tempVecIDs = find.getDocs();
         vector<int> tempVecFreq = calculateIDF(find);
-        for(int i = 0; i < finalVecTemper.size(); i++){
-            holder.insert(make_pair(tempVecFreq[i],finalVecTemper[i]));
+        for(int i = 0; i < tempVecIDs.size(); i++){
+            holder.insert(make_pair(tempVecFreq[i],tempVecIDs[i]));
         }
         getline(parse, temp, ' ');
+        if(temp == "author"){
+            for(int i =0; i < tempVecIDs.size(); i++){
+                bigboy.insert(make_pair(tempVecIDs[i],tempVecFreq[i]));
+            }
+        }
     }
     if(temp == "not"){
+        holder.clear();
         vector<string> tempFinal;
         while(getline(parse, temp, ' ') && temp != "author") {
             Porter2Stemmer::stem(temp);
-            Word &look = tree.getContent(temp);
-            vector<string> &tempVec = look.getDocs();
-            sort(tempVec.begin(), tempVec.end());
-            sort(finalVec.begin(), finalVec.end());
-            set_difference(finalVec.begin(), finalVec.end(), tempVec.begin(), tempVec.end(),back_inserter(tempFinal));
-            finalVec = tempFinal;
-            tempFinal.clear();
+            Word &find = tree.getContent(temp);
+            vector<string> &tempVec = find.getDocs();
+            for(int i = 0; i < tempVec.size(); i++){
+                if(bigboy.find(tempVec[i]) != bigboy.end()) {
+                    map<string, int>::iterator itter;
+                    itter = bigboy.find(tempVec.at(i));
+                    bigboy.erase(itter);
+                }else{
+                    continue;
+                }
+            }
+            map<string,int>::iterator itter;
+            for(itter = bigboy.begin(); itter != bigboy.end(); itter++){
+                holder.insert(make_pair(itter->second,itter->first));
+            }
         }
     }
     if(temp == "author"){
         getline(parse, temp, ' ');
+        multimap<int,string,greater<int>> forAuthor;
         Porter2Stemmer::stem(temp);
         if(!tableofHash.emptyAt(temp)) {
             vector<string> tempVec;
-            LinkedList<string>& docs = tableofHash.getDataList(temp);
-            for (int i = 0; i < finalVec.size(); i++) {
-                if (docs.findValue(finalVec.at(i))) {
-                    tempVec.push_back(finalVec.at(i));
+            Linkedlist<string>& docs = tableofHash.getDataList(temp);
+            for(int i = 0; i < docs.size(); i++){
+                tempVec.push_back(docs[i]);
+            }
+            for(int j = 0; j < tempVec.size(); j++){
+                if(bigboy.find(tempVec[j]) != bigboy.end()) {
+                    map<string,int >::iterator itter;
+                    itter = bigboy.find(tempVec.at(j));
+                    forAuthor.insert(make_pair(itter->second,itter->first));
+                }else{
+                    continue;
                 }
             }
-            finalVec = tempVec;
         }
+        holder = forAuthor;
     }
-
-    for(auto iter = holder.begin(); iter != holder.end(); iter++){
-        cout << (*iter).first << "," << (*iter).second << endl;
-
+    auto iter = holder.begin();
+    int counter = 0;
+    while(counter != 15) {
+            DocumentOBJ temp = docTree.getDocContent(iter->second);
+            for (int i = 0; i < 20; i++) {
+                cout << "-";
+            }
+            cout << endl;
+            cout << "Title: " << temp.getTitle() << endl;
+            cout << "Authors: ";
+            temp.printAuthors();
+            cout << "Doc-ID: " << temp.getID() << endl;
+            for (int i = 0; i < 20; i++) {
+                cout << "-";
+            }
+            cout << endl;
+//        cout << (*iter).first << "," << (*iter).second << endl;
+            counter++;
+            iter++;
     }
 }
 

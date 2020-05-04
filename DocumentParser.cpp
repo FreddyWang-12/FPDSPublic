@@ -10,7 +10,7 @@ void DocumentParser::parseDocument(string& file) {
     FileReadStream is(fp,readingBuffer, sizeof(readingBuffer));
     Document d;
     d.ParseStream(is);
-    string text,bodytext,lastname,title;
+    string text,bodytext,lastname;
     assert(d.IsObject());
     assert(d.HasMember("paper_id"));
     assert(d["paper_id"].IsString());
@@ -69,36 +69,41 @@ void DocumentParser::parseDocument(string& file) {
     addStrings(title,text,bodytext);
 }
 
-
-
-void DocumentParser::getDocumentsinDirectory(string& directory) {
-    ifstream fin;
-    string filepath;
-    DIR *dp;
-    struct dirent *dirp;
-    struct stat filestat;
-    dp = opendir(directory.c_str());
-    if(dp == NULL){
-        cout << "Error("<< errno <<") opening " << directory << endl;
+void DocumentParser::getAuthorQuickey(string& file) {
+    FILE* fp = fopen(file.c_str(),"rb");
+    char readingBuffer[3000];
+    FileReadStream is(fp,readingBuffer, sizeof(readingBuffer));
+    Document d;
+    d.ParseStream(is);
+    vector<string> lastnameVec;
+    string lastname;
+    assert(d.IsObject());
+    assert(d.HasMember("paper_id"));
+    assert(d["paper_id"].IsString());
+    paperid = d["paper_id"].GetString();
+    const Value& authors_array = d["metadata"]["authors"];
+    assert(authors_array.IsArray());
+    for(SizeType t = 0; t < authors_array.Size(); t++){
+        const Value& authors_array_OBJ = authors_array[t];
+        if(authors_array_OBJ.HasMember("last")){
+            const Value& authors_last = authors_array_OBJ["last"];
+            lastname = authors_last.GetString();
+            if(!lastname.empty() ){
+                Porter2Stemmer::trim(lastname);
+                Porter2Stemmer::stem(lastname);
+                lastname_author.push_back(lastname);
+            }
+        }
     }
+    fclose(fp);
 
-//    while(dirp = readdir(dp)){
-int count = 0;
-    while(count != 1){
-        dirp = readdir(dp);
-        filepath = directory + "/" + dirp->d_name;
-        if(stat(filepath.c_str(), &filestat)) continue;
-        if(S_ISDIR(filestat.st_mode)) continue;
-        string sha = dirp->d_name;
-//        string get = sha.erase(sha.find("."));
-//        string get = sha.erase(sha.find('.')-4);
-//        if(csvreader.ifExists(get)){
-            parseDocument(filepath);
-//        }
-        count++;
+}
+
+void DocumentParser::authorIntoHashReParse(hashTable<string,string>& hasheyTable){
+    for(int i = 0; i < lastname_author.size(); i++){
+        hasheyTable.addNewKey(lastname_author[i],paperid);
     }
-
-    closedir(dp);
+    lastname_author.clear();
 }
 
 
@@ -252,6 +257,8 @@ void DocumentParser::addFreqToWord(AVLTree<Word>& wordTree) {
         wordTree.getContent((Word &) itter->first).addFrequency(itter->second);
     }
 }
+
+
 
 //void DocumentParser::insertIntoAVLTreeFromFile(AVLTree<Word> &avl) {
 //    ifstream into;

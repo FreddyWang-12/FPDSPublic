@@ -1,326 +1,278 @@
 #ifndef S20_PA04_FLIGHTPLANNER_LINKEDLIST_H
 #define S20_PA04_FLIGHTPLANNER_LINKEDLIST_H
 
+#include "Node.h"
 #include <iostream>
-#include <stdexcept>
 using namespace std;
-
-template<class T>
-class LinkedList {
-    struct node{
-        T data;
-        node* nextNode;
-        node* prevNode;
-        node(){
-            nextNode = nullptr;
-            prevNode = nullptr;
-        }
-        node(T data){
-            this->data = data;
-            nextNode = nullptr;
-            prevNode = nullptr;
-        }
-    };
-    node* mainNode;
-    node* iter;
+template <typename T>
+class Linkedlist{
+private:
+    ///private member variables
+    Node<T>* head;
+    Node<T>* tail;
+    Node<T>* iterator = nullptr;
+    int elementsInLL;
+///public member variables
 public:
-    LinkedList<T>();
-    ~LinkedList<T>();
-    LinkedList<T>(const LinkedList<T> &copy);
-    LinkedList<T>& operator = (const LinkedList<T> &copy);
-
-    void add(T data);
-    void deleteValue(T data);
-    void readList();
-    void deleteLastValue();
-    T& topValue();
-    T& firstValue();
+    Linkedlist();
+    Linkedlist(const Linkedlist<T>&);
+    ~Linkedlist();
+    void push_back(T);
+    void addFront(T);
     bool isEmpty();
-    int getSize();
-    T& nextValue();
-    T& prevValue();
-    T& currIterValue();
-    bool hasNext();
-    bool hasPrev();
-    void resetIter();
-    bool findValue(T value);
-    bool isNullPtr();
+    T&operator[] (int);
+    void remove(int);
+    void insert(int,T);
+    Node<T>* getHead();
+    Node<T>* getTail();
+    Node<T>* getIterator();
+    void resetIterorator();
+    int size();
+    Linkedlist<T>&operator=(Linkedlist<T>&);
+    bool checkNext();
+    void moveToNext();
+    void setiteratBegining();
+
+
+    //Object
+    //Source and Destination Class
+    //Adjacency Class
+    //Stack Class
+
+
+
 };
 
-template<class T>
-LinkedList<T>::LinkedList(){
-    mainNode = nullptr;
-    iter = mainNode;
+///adds a node to the linklist at a certain index
+template <typename T>
+void Linkedlist<T>::insert(int index, T type) {
+    Node<T>* tempNode = new Node<T>(type);
+    if(index == 0) {
+        ///check if the legth is 0
+        if (elementsInLL == 0) {
+            head = tempNode;
+            tail = tempNode;
+            elementsInLL++;
+        } else {
+            ///arrange pointers to add new Node to the list
+            Node<T> *temp = head;
+            temp->setprevNode(tempNode);
+            tempNode->setprevNode(nullptr);
+            tempNode->setnextNode(temp);
+            head = tempNode;
+            elementsInLL++;
+        }
+        ///looks to see if the index is at the end of the list
+    }else if(index == elementsInLL){
+        Node<T>* temp3 = tail;
+        tail = tempNode;
+        tempNode->setnextNode(nullptr);
+        tempNode->setprevNode(temp3);
+        temp3->setnextNode(tempNode);
+        elementsInLL++;
+        ///looks to see if the index is bewtween first and last elements of the linked list
+    }else if(index > 0 && index < elementsInLL){
+        Node<T>* c = head;
+        for(int i = 1; i <index; i++){
+            c = c->getnextNode();
+        }
+        ///rearanges nodes so that the previous and next nodes point to the correct other nodes
+        ///this part was terrible
+        tempNode->setnextNode(c->getnextNode());
+        tempNode->setprevNode(c);
+        c->setnextNode(tempNode);
+        tempNode->getnextNode()->setprevNode(tempNode);
+        elementsInLL++;
+    }else{
+        cout << "Insert Function for LL is out of Bounds!" << endl;
+    }
 }
 
-template<class T>
-LinkedList<T>::~LinkedList<T>(){
-    if(mainNode != nullptr) {
-        while (mainNode->nextNode != nullptr) {
-            mainNode = mainNode->nextNode;
-            delete mainNode->prevNode;
-        }
+///constructor
+template <typename T>
+Linkedlist<T>::Linkedlist(){
+    head = nullptr;
+    tail = nullptr;
+    elementsInLL = 0;
+}
+
+///copy constrctor
+template <typename T>
+Linkedlist<T>::Linkedlist(const Linkedlist<T> &data){
+    elementsInLL = data.elementsInLL;
+    Node<T>* temp = data.head;
+    while(temp != nullptr){
+        push_back(temp->getdata());
+        temp = temp->next;
     }
-    if(mainNode != nullptr){
-        delete mainNode;
+}
+///de-constructor
+template <typename T>
+Linkedlist<T>::~Linkedlist() {
+    if(head != nullptr){
+        while(tail != nullptr){
+            Node<T>* temp = tail->prev;
+            delete tail;
+            tail = temp;
+        }
     }
 }
 
-template<class T>
-LinkedList<T>::LinkedList(const LinkedList<T> &copy){
-    if(copy.mainNode == nullptr){
-        mainNode == nullptr;
-    }
-    else {
-        mainNode = new node(copy.mainNode->data);
-        if (copy.mainNode->nextNode != nullptr) {
-            node *temp = copy.mainNode->nextNode;
-            while (temp->nextNode != nullptr) {
-                T dat = temp->data;
-                this->add(dat);
-                temp = temp->nextNode;
-            }
-            add(temp->data);
-        }
-    }
-    iter = mainNode;
+
+///push back leverages the functionality of insert
+template <typename T>///pushed back T at last index;
+void Linkedlist<T>::push_back(T x) {
+    insert(elementsInLL,x);
+
 }
 
-template<class T>
-LinkedList<T>& LinkedList<T>::operator = (const LinkedList<T> &copy){
-    if(mainNode != nullptr) {
-        while (mainNode->nextNode != nullptr) {
-            mainNode = mainNode->nextNode;
-            delete mainNode->prevNode;
-        }
+template <typename T>
+///adds an element to the front of the LL
+void Linkedlist<T>::addFront(T x) {
+    Node<T>* temp = new Node<T>(x);
+    if(tail == nullptr){
+        tail = temp;
+        head = temp;
+        temp->next = nullptr;
+        temp->prev = nullptr;
+    }else{
+        head->prev = temp;
+        temp->next = head;
+        temp = head;
     }
-    if(mainNode != nullptr){
-        mainNode = nullptr;
-    }
-    if(copy.mainNode == nullptr){
-        return *this;
-    }
-    mainNode = new node(copy.mainNode->data);
-    if(copy.mainNode->nextNode != nullptr) {
-        node *temp = copy.mainNode->nextNode;
-        while (temp->nextNode != nullptr) {
-            T dat = temp->data;
-            this->add(dat);
-            temp = temp->nextNode;
-        }
-        add(temp->data);
-    }
-    iter = mainNode;
-    return *this;
 }
-
-template<class T>
-void LinkedList<T>:: add(T data) {
-    node* newNode = new node();
-    newNode->data = data;
-
-    if(mainNode == nullptr){
-        mainNode = newNode;
-    }
-    else{
-        if(mainNode->nextNode != nullptr){
-            iter = mainNode;
-            while(iter->nextNode != nullptr){
-                iter = iter->nextNode;
-            }
-            iter->nextNode = newNode;
-            newNode->prevNode = iter;
-        }
-        else{
-            newNode->prevNode = mainNode;
-            mainNode->nextNode = newNode;
-        }
-    }
-    iter = mainNode;
-}
-
-template<class T>
-void LinkedList<T>:: deleteValue(T data) {
-    if(mainNode == nullptr){
-        return;
-    }
-    if(mainNode->data == data){
-        if(mainNode->nextNode == nullptr){
-            mainNode = nullptr;
-        }
-        else {
-            mainNode = mainNode->nextNode;
-            mainNode->prevNode = nullptr;
-        }
-    }
-
-    else {
-        iter = mainNode;
-        while (iter != nullptr) {
-            if (iter->data == data) {
-                if(iter->nextNode == nullptr){
-                    iter = iter->prevNode;
-                    iter->nextNode = nullptr;
-                }
-                else {
-                    iter = iter->prevNode;
-                    iter->nextNode = iter->nextNode->nextNode;
-                }
-                break;
-            }
-            iter = iter->nextNode;
-        }
-    }
-    iter = mainNode;
-}
-
-template<class T>
-void LinkedList<T>::readList() {
-    iter = mainNode;
-    while(iter != nullptr){
-        cout << iter->data << " ";
-        iter = iter->nextNode;
-    }
-    cout << endl;
-}
-
-template<class T>
-void LinkedList<T>::deleteLastValue() {
-    if (mainNode == nullptr) {
-        return;
-    }
-    if (mainNode->nextNode == nullptr) {
-        mainNode = nullptr;
-    }
-    else{
-        iter = mainNode;
-        while (iter->nextNode->nextNode != nullptr) {
-            iter = iter->nextNode;
-        }
-        delete iter->nextNode;
-        iter->nextNode = nullptr;
-        iter = mainNode;
-    }
-    iter = mainNode;
-}
-
-template<class T>
-T& LinkedList<T>::topValue() {
-    iter = mainNode;
-    while(iter->nextNode != nullptr){
-        iter = iter->nextNode;
-    }
-    return iter->data;
-}
-
-template<class T> // Delete function
-T& LinkedList<T>::firstValue() {
-    return mainNode->data;
-}
-
-template<class T>
-bool LinkedList<T>::isEmpty() {
-    if(mainNode == nullptr){
+///checks to see if LL is empty
+template <typename T>
+bool Linkedlist<T>::isEmpty() {
+    if(head == nullptr){
         return true;
-    }
-    else{
+    }else{
         return false;
     }
 }
 
-template<class T>
-int LinkedList<T>::getSize() {
-    iter = mainNode;
-    int length = 0;
-    while(iter != nullptr){
-        length++;
-        if(iter->nextNode == nullptr){
-            break;
-        }
-        else{
-            iter = iter->nextNode;
+template <typename T> ///returns an elements at a index that is passed
+T& Linkedlist<T>::operator[](int index) {
+    if(index < elementsInLL && index >= 0){
+        Node<T>* temp = head;
+        if(temp != nullptr){
+            for(int i = 0; i < index; i++){
+                temp = temp->getnextNode();
+            }
+            return temp->getdata();
+        }else{
+            cout << "Out of bounds!" << endl;
         }
     }
-    iter = mainNode;
-    return length;
 }
 
-template<class T>
-T& LinkedList<T>::nextValue() {
-    //if(iter->nextNode == nullptr){
-    //    return iter->data;
-    //}
-    //else {
-    iter = iter->nextNode;
-    return iter->data;
-    //}
-}
-
-template<class T>
-T& LinkedList<T>::prevValue() {
-    //if (iter->prevNode == nullptr) {
-    //  return iter->data;
-    //}
-    //else {
-    iter = iter->prevNode;
-    return iter->data;
-    //}
-}
-
-template<class T>
-T& LinkedList<T>::currIterValue(){
-    if(iter == nullptr){
-        iter = mainNode;
+///removes a element at a certain index
+template <typename T>
+void Linkedlist<T>::remove(int index) {
+    //first sees if index is 0
+    if (index == 0) {
+        if (elementsInLL == 0) {
+            //then checks to see number of elements in list are 0
+            cout << "Nothing to remove!" << endl;
+        } else {
+            //removes the head and replaces it with the next node
+            head = head->getnextNode();
+            head->next = nullptr;
+            --elementsInLL;
+        }
+    } else if (index == (elementsInLL - 1)) {
+        tail = tail->getprevNode();
+        tail->next = nullptr;
+        --elementsInLL;
+    } else if (index > 0 && index < elementsInLL - 1) {
+        Node<T> *holder = head;
+        for (int i = 1; i <= index; i++) {
+            holder = holder->getnextNode();
+        }
+        Node<T> *replacer = holder->getprevNode();
+        holder->getprevNode() == holder->getnextNode();
+        holder->getnextNode() == replacer->getprevNode();
+        --elementsInLL;
+    }else{
+        cout << "Removing this node is not possible. It is not in bounds." << endl;
     }
-    return iter->data;
 }
-
-template<class T>
-bool LinkedList<T>::hasNext() {
-    if(iter->nextNode == nullptr){
-        return false;
+///return head of LL
+template <typename T>
+Node<T>* Linkedlist<T>::getHead() {
+    return head;
+}
+///retuns tail of the LL
+template <typename T>
+Node<T>* Linkedlist<T>::getTail() {
+    return tail;
+}
+///return the size by returning the number of elements
+template <typename T>
+int Linkedlist<T>::size() {
+    return elementsInLL;
+}
+///Assignment Operator
+template <typename T>
+Linkedlist<T>& Linkedlist<T>::operator=(Linkedlist<T>& arg){
+//    if(this == &arg)
+//        return *this;
+    if(arg.elementsInLL == 0){
+        Node<T>* temp = head;
+        while(temp!= nullptr){
+            Node<T>* temp2 = temp->getprevNode();
+            delete temp;
+            temp = temp2;
+        }
+        elementsInLL = 0;
+        head = nullptr;
+        tail = nullptr;
     }
     else{
-        return true;
-    }
-}
-
-template<class T>
-bool LinkedList<T>::hasPrev() {
-    if(iter->prevNode == nullptr){
-        return false;
-    }
-    else{
-        return true;
-    }
-}
-
-template<class T>
-void LinkedList<T>::resetIter() {
-    iter = mainNode;
-}
-
-template<class T>
-bool LinkedList<T>::findValue(T value) {
-    resetIter();
-    if(currIterValue() == value){
-        return true;
-    }
-    while(hasNext()){
-        nextValue();
-        if(currIterValue() == value){
-            return true;
+        Node<T>* temp = head;
+        while(temp != nullptr){
+            Node<T>* next = temp->getnextNode();
+            delete temp;
+            temp = next;
+        }
+        elementsInLL = 0;
+        Node<T>* newArg = arg.head;
+        while(newArg != nullptr){
+            push_back(newArg->getdata());
+            newArg = newArg->getnextNode();
         }
     }
-    return false;
 }
 
-template<class T>
-bool LinkedList<T>::isNullPtr() {
-    if(iter == nullptr){
-        return true;
+///Checks next interator if it is nullptr then it is set to nullptr and returns false
+template <typename T>
+bool Linkedlist<T>::checkNext() {
+    if(iterator->getnextNode() == nullptr){
+        iterator = nullptr;
+        return false;
     }
-    return false;
+    return true;
+}
+
+///moves iterator to the next Node
+template  <typename T>
+void Linkedlist<T>::moveToNext() {
+    iterator = iterator->getnextNode();
+}
+///sets iterator to the head AKA the begining
+template <typename T>
+void Linkedlist<T>::setiteratBegining() {
+    iterator = head;
+}
+///returns itorator
+template <typename  T>
+Node<T>* Linkedlist<T>::getIterator() {
+    return iterator;
+}
+///resets the iterator back to nullptr
+template <typename  T>
+void Linkedlist<T>::resetIterorator() {
+    iterator = nullptr;
 }
 
 #endif //S20_PA04_FLIGHTPLANNER_LINKEDLIST_H

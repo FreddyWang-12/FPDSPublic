@@ -28,6 +28,7 @@ public:
     QueryEngine();
     QueryEngine(QueryEngine&);
     void getDirectoryandParse(char*);
+    void getAuthorsQuick(char*);
     void searchQuery(string& query);
     void printStatistics();
     void outputTree();
@@ -37,6 +38,7 @@ public:
     multimap<int,string,greater<int>> getWhatMatters(map<string,int>&,vector<string>&);
     vector<int> calculateIDF(Word&);
     vector <string> getIntersection(vector<vector<string>>&);
+
 };
 
 
