@@ -11,7 +11,6 @@ void DocumentParser::parseDocument(string& file) {
     Document d;
     d.ParseStream(is);
     string text,bodytext,lastname,title;
-    vector<string> formattedAutors;
     assert(d.IsObject());
     assert(d.HasMember("paper_id"));
     assert(d["paper_id"].IsString());
@@ -66,7 +65,7 @@ void DocumentParser::parseDocument(string& file) {
     fclose(fp);
 //    allDocText = title + text + bodytext;
 //    Porter2Stemmer::trim(allDocText);
-    createDocOBJ(formattedAutors,title);
+//    createDocOBJ(formattedAutors,title);
     addStrings(title,text,bodytext);
 }
 
@@ -113,7 +112,12 @@ void DocumentParser::tokenization() {
         }else{
                 Porter2Stemmer::stem(temp);
                 if(temp.size() > 1) {
-                    ++frequency[temp];
+                    if(frequency.find(temp) != frequency.end()){
+                        ++frequency[temp];
+                    }else{
+                        frequency[temp] = 1;
+                    }
+
                 }
         }
     }
@@ -137,6 +141,7 @@ void DocumentParser::clearVector() {
     vecOfWords.clear();
     lastname_author.clear();
     frequency.clear();
+    formattedAutors.clear();
 }
 
 int DocumentParser::gettheFrequency(){
@@ -223,23 +228,23 @@ void DocumentParser::trim(std::string& word)
     word.erase(it, word.end());
 }
 
-void DocumentParser::createDocOBJ(vector<string>& data,string& title) {
+void DocumentParser::createDocOBJ(AVLTree<DocumentOBJ>& yep) {
     if(title.empty()){
         title = "NO TITLE";
     }
-    if(data.empty()){
+    if(formattedAutors.empty()){
         string temp = "NO AUTHOR";
-        data.push_back(temp);
+        formattedAutors.push_back(temp);
     }
             trim(title);
-            DocumentOBJ *tempDocOBJ = new DocumentOBJ(paperid, title, data);
-            docOBJ = *tempDocOBJ;
+            auto *tempDocOBJ = new DocumentOBJ(paperid, title, formattedAutors);
+            yep.addNode(*tempDocOBJ);
             delete tempDocOBJ;
 }
 
-void DocumentParser::addDocOBJtoTree(AVLTree<DocumentOBJ> & docTree) {
-        docTree.addNode(docOBJ);
-}
+//void DocumentParser::addDocOBJtoTree(AVLTree<DocumentOBJ> & docTree) {
+//        docTree.addNode(docOBJ);
+//}
 
 void DocumentParser::addFreqToWord(AVLTree<Word>& wordTree) {
     map<string,int>::iterator itter;

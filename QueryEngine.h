@@ -10,6 +10,8 @@
 #include "QueryEngine.h"
 #include "hashTable.h"
 #include "DocumentOBJ.h"
+#include <cmath>
+#include <stdio.h>
 using namespace std;
 class QueryEngine{
 private:
@@ -34,6 +36,7 @@ public:
     void getDocTreeFromFile();
     multimap<int,string,greater<int>> getWhatMatters(map<string,int>&,vector<string>&);
     vector<int> calculateIDF(Word&);
+    vector <string> getIntersection(vector<vector<string>>&);
 };
 
 

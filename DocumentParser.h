@@ -30,6 +30,8 @@ using namespace std;
 class DocumentParser{
 private:
     map<string,int> frequency;
+    string title;
+    vector<string> formattedAutors;
     string paperid;
     string allDocText;
     vector<string> lastname_author;
@@ -115,7 +117,7 @@ public:
     int gettheFrequency();
     void setupVecofWords();
     void insertIntoAVLTreeFromFile(AVLTree<Word>&);
-    void createDocOBJ(vector<string>&,string&);
+    void createDocOBJ(AVLTree<DocumentOBJ>&);
     void addDocOBJtoTree(AVLTree<DocumentOBJ>&);
     void trim(string&);
     void addFreqToWord(AVLTree<Word>&);

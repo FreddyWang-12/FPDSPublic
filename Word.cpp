@@ -120,11 +120,11 @@ std::ofstream &operator<<(std::ofstream &output, const Word &obj) {
                 output << obj.docIDs[i].c_str() << ',';
             }
         }
-        for(int i = 0; i < obj.frequency.size(); i++){
-            if(i == obj.frequency.size()-1){
-                output << obj.frequency[i] << ",||,";
+        for(int j = 0; j < obj.frequency.size(); j++){
+            if(j == obj.frequency.size()-1){
+                output << obj.frequency[j] << ",||,";
             }else{
-                output << obj.frequency[i] << ',';
+                output << obj.frequency[j] << ',';
             }
         }
 //        output << endl;

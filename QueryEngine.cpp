@@ -21,10 +21,10 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
         cout << "Error("<< errno <<") opening " << fileDirectory << endl;
     }
     int count = 0;
-    dirp = readdir(dp);
-    while(dirp){
-//    while(count != 2000){
-//        dirp = readdir(dp);
+//    dirp = readdir(dp);
+//    while(dirp){
+    while(count != 100){
+        dirp = readdir(dp);
         filepath = directory + "/" + dirp->d_name;
         string sha = dirp->d_name;
         string extension;
@@ -35,7 +35,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
             if(stat(filepath.c_str(), &filestat)) continue;
             if(S_ISDIR(filestat.st_mode)) continue;
             d.parseDocument(filepath);
-            d.addDocOBJtoTree(docTree);
+            d.createDocOBJ(docTree);
             d.trimTokens();
             d.tokenization();
             d.setupVecofWords();
@@ -57,12 +57,15 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
 
 void QueryEngine::searchQuery(string &query) {
     map<string,int> bigboy;
-    multimap<int,string,greater<>> holder;
+    multimap<int,string,greater<int>> holder;
+    vector<vector<string>> doubleVeccy;
+    vector<string> interSectVec;
     finalVec.clear();
     vector<string> finalVecTemper;
     Porter2Stemmer::trim(query);
     stringstream parse(query);
     string temp;
+    int count = 0;
     getline(parse, temp, ' ');
     if(temp == "and"){
         vector<string> tempFinal;
@@ -70,19 +73,20 @@ void QueryEngine::searchQuery(string &query) {
             Porter2Stemmer::stem(temp);
             Word& find = tree.getContent(temp);
             vector<string>& tempVecIDs = find.getDocs();
-            vector<int>& tempVecFreq = find.getFrequency();
-            for(int i = 0; i<tempVecIDs.size(); i++){
-//                bigboy[tempVecIDs[i]] = tempVecFreq[i]++;
-                bigboy[tempVecIDs[i]] += tempVecFreq[i];
+            vector<int> tempVecFreq = calculateIDF(find);
+            for(int i = 0; i < tempVecIDs.size(); i++){
+                if(bigboy.find(tempVecIDs[i].c_str()) != bigboy.end()){
+                    bigboy[tempVecIDs[i]] += tempVecFreq[i];
+                }else{
+                    bigboy[tempVecIDs[i]] = tempVecFreq[i];
+                }
             }
-            sort(tempVecIDs.begin(),tempVecIDs.end());
-            if(tempFinal.empty()){
-                tempFinal = tempVecIDs;
-            }
-            else{
-                sort(tempFinal.begin(), tempFinal.end());
-                set_intersection(tempFinal.begin(),tempFinal.end(),tempVecIDs.begin(),tempVecIDs.end(),back_inserter(finalVecTemper));
-
+            doubleVeccy.push_back(tempVecIDs);
+            interSectVec = getIntersection(doubleVeccy);
+                for(int i= 0; i< interSectVec.size(); i++){
+                    string tempid = bigboy.find(interSectVec[i])->first;
+                    int tempFre = bigboy.find(interSectVec[i])->second;
+                    holder.insert(make_pair(tempFre,tempid));
             }
         }
     }
@@ -224,9 +228,13 @@ void QueryEngine::getTreeFromFile() {
                     }
                 }
                 if(getFreq == false){
-                    int x = atoi(buffer);
-                    tempVecFreq.push_back(x);
-                    into.getline(buffer, 50, ',');
+                    if(buffer[0] != '|') {
+                        int x = atoi(buffer);
+                        tempVecFreq.push_back(x);
+                        into.getline(buffer, 50, ',');
+                    }else{
+                        into.getline(buffer, 50, ',');
+                    }
                 }
             }
         Word* temp = new Word(word,tempVec,tempVecFreq);
@@ -247,7 +255,7 @@ void QueryEngine::getDocTreeFromFile() {
     if(!into){
         cout << "Could not open up outputDoc.txt to insert back into avl tree!" << endl;
     }
-    vector<string> tempVec;
+    vector<string> tempV;
     while(!into.eof()){
         char* id = new char[50];
         char* title = new char[5000];
@@ -272,13 +280,16 @@ void QueryEngine::getDocTreeFromFile() {
                 }
             }
             if(haspipes == false){
-                tempVec.push_back(buffer);
+                tempV.push_back(buffer);
                 into.getline(buffer,1000,',');
             }
         }
-        DocumentOBJ* docOb = new DocumentOBJ(id,title,tempVec);
+        DocumentOBJ* docOb = new DocumentOBJ(id,title,tempV);
+//        cout << docOb->getID() << endl;
+//        cout << docOb->getTitle();
+//        docOb->printAuthors();
         docTree.addNode(*docOb);
-        tempVec.clear();
+        tempV.clear();
         delete docOb;
         delete[] id;
         delete[] title;
@@ -298,16 +309,96 @@ multimap<int,string,greater<int>> QueryEngine::getWhatMatters(map<string, int> &
 }
 
 vector<int> QueryEngine::calculateIDF(Word& searchWord) {
-    int amountofDocs = 12000;
+    int amountofDocs = docTree.getSize();
     int docwithTerm = searchWord.getDocSize();
     vector<int> tempFreq = searchWord.getFrequency();
     vector<int> idfVec;
     for(int i = 0; i < tempFreq.size(); i++){
-        int tf = tempFreq.at(i);
-        int idf = tf*log(amountofDocs/docwithTerm);
-        idfVec.push_back(idf);
+        int tf = tempFreq[i];
+        idfVec.push_back(tf);
     }
     return idfVec;
+}
+
+///Source: https://www.geeksforgeeks.org/intersection-of-n-sets/
+vector <string> QueryEngine::getIntersection(vector < vector <string> > &sets)
+{
+    vector <string> result;  // To store the reaultant set
+    int smallSetInd = 0;  // Initialize index of smallest set
+    int minSize = sets[0].size(); // Initialize size of smallest set
+
+    // sort all the sets, and also find the smallest set
+    for (int i = 1 ; i < sets.size() ; i++)
+    {
+        // sort this set
+        sort(sets[i].begin(), sets[i].end());
+
+        // update minSize, if needed
+        if (minSize > sets[i].size())
+        {
+            minSize = sets[i].size();
+            smallSetInd = i;
+        }
+    }
+
+    map<string,int> elementsMap;
+
+    // Add all the elements of smallest set to a map, if already present,
+    // update the frequency
+    for (int i = 0; i < sets[smallSetInd].size(); i++)
+    {
+        if (elementsMap.find( sets[smallSetInd][i] ) == elementsMap.end())
+            elementsMap[ sets[smallSetInd][i] ] = 1;
+        else
+            elementsMap[ sets[smallSetInd][i] ]++;
+    }
+
+    // iterate through the map elements to see if they are present in
+    // remaining sets
+    map<string,int>::iterator it;
+    for (it = elementsMap.begin(); it != elementsMap.end(); ++it)
+    {
+        string elem = it->first;
+        int freq = it->second;
+
+        bool bFound = true;
+
+        // Iterate through all sets
+        for (int j = 0 ; j < sets.size() ; j++)
+        {
+            // If this set is not the smallest set, then do binary search in it
+            if (j != smallSetInd)
+            {
+                // If the element is found in this set, then find its frequency
+                if (binary_search( sets[j].begin(), sets[j].end(), elem ))
+                {
+                    int lInd = lower_bound(sets[j].begin(), sets[j].end(), elem)
+                               - sets[j].begin();
+                    int rInd = upper_bound(sets[j].begin(), sets[j].end(), elem)
+                               - sets[j].begin();
+
+                    // Update the minimum frequency, if needed
+                    if ((rInd - lInd) < freq)
+                        freq = rInd - lInd;
+                }
+                    // If the element is not present in any set, then no need
+                    // to proceed for this element.
+                else
+                {
+                    bFound = false;
+                    break;
+                }
+            }
+        }
+
+        // If element was found in all sets, then add it to result 'freq' times
+        if (bFound)
+        {
+            for (int k = 0; k < freq; k++)
+                result.push_back(elem);
+        }
+    }
+    return result;
 }
 
 

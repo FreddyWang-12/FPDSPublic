@@ -63,7 +63,12 @@ int DocumentOBJ::operator>(const DocumentOBJ &other) {
 }
 
 std::ofstream &operator<<(std::ofstream &output, const DocumentOBJ &obj) {
-    output << "~" << obj.id << "~";
+    if(obj.id.empty()){
+        output << "~" << "NO ID" << "~" << endl;
+    }else{
+        output << "~" << obj.id << "~";
+    }
+
     output << "~" << obj.title << "~";
     for(int i = 0; i < obj.authors.size(); i++){
         if(i == obj.authors.size()-1){
