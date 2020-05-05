@@ -29,6 +29,7 @@ using namespace std;
 
 class DocumentParser{
 private:
+    map<string,int> allAuthors;
     map<string,int> frequency;
     string title;
     vector<string> formattedAutors;

@@ -208,12 +208,15 @@ void QueryEngine::searchQuery(string &query) {
     }
     auto iter = holder.begin();
     int counter = 0;
+    cout << "You search for: " << query << endl;
     while(counter != 15) {
             DocumentOBJ temp = docTree.getDocContent(iter->second);
+
             for (int i = 0; i < 20; i++) {
                 cout << "-";
             }
             cout << endl;
+            cout << "[" << counter+1 << "]" << endl;
             cout << "Title: " << temp.getTitle() << endl;
             cout << "Authors: ";
             temp.printAuthors();
@@ -226,6 +229,9 @@ void QueryEngine::searchQuery(string &query) {
             counter++;
             iter++;
     }
+    parse.clear();
+    bigboy.clear();
+    holder.clear();
 }
 
 
@@ -479,5 +485,51 @@ vector <string> QueryEngine::getIntersection(vector < vector <string> > &sets)
     return result;
 }
 
+void QueryEngine::searchMenue() {
+    string searchTerm;
+    cout << "If you want to search for a single term. Type in the term you wish to search for." << endl;
+    cout << "Example: Virus" << endl;
+    cout << endl;
+    cout << "To search multiple terms and return all documents those terms are in prefix search with OR" << endl;
+    cout << "Example: OR RNA Virus" << endl;
+    cout << endl;
+    cout << "To search multiple terms and return documents that only contain those terms prefix search with AND" << endl;
+    cout << "Example: AND Cell DNA" << endl;
+    cout << endl;
+    cout << "If you would like to do any of the above but exclude documents with a specific term prefix before that term NOT" << endl;
+    cout << "Example: RNA NOT Cell" << endl;
+    cout << "Example 2: AND RNA Cell NOT virus" <<  endl;
+    cout << "Example 3: OR Cell RNA NOT Mitochondria" << endl;
+    cout << endl;
+    cout << "To Return documents of a specific author prefix with AUTHOR" << endl;
+    cout << "Example: AUTHOR Chen" << endl;
+    cout << "Example 2: virus AUTHOR jonas" << endl;
+    cout << "Example 3: AUTHOR chen" << endl;
+    cout << "Example 4: AND virus rna AUTHOR Freddy" << endl;
+    cout << endl;
+    cout << "Search:    ";
+    cin.ignore();
+    getline(cin,searchTerm);
+    searchQuery(searchTerm);
+    int choice2;
+    cout << "Would You like to Search Again? " << endl;
+    cout << "Press 1 for Yes or 2 for No" << endl;
+    cin >> choice2;
+    if(choice2 != 1 && choice2 != 2){
+        cout << "Invalid Entry!" << endl;
+        cout << "Press 1 to search again." << endl;
+        cout << "Press 2 to return to main menu." << endl;
+        cin >> choice2;
+    }
+    if(choice2 == 1){
+        searchMenue();
+    }
+}
 
+void QueryEngine::statisticsPrint() {
+    cout << "Program Statistics! " << endl;
+    cout << "Total Number of Individual numbers indexed: " << docTree.getSize() << endl;
+    cout << "Average Number of Words indexed per article: " << (tree.getSize()/docTree.getSize()) << endl;
+    cout << "Total Number of unique words indexed: " << tree.getSize() << endl;
+}
 

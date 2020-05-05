@@ -53,6 +53,7 @@ void DocumentParser::parseDocument(string& file) {
             lastname = authors_last.GetString();
             if(!lastname.empty() ){
                 Porter2Stemmer::trim(lastname);
+                allAuthors[lastname]++;
                 string temp = lastname;
                 temp[0] = toupper(temp[0]);
                 formattedAutors.push_back(temp);

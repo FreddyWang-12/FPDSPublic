@@ -15,15 +15,11 @@
 using namespace std;
 class QueryEngine{
 private:
-    int allArticlesIndexed;
-    int totalUniqueWords;
     vector<string> finalVec;
     string userSearch;
     AVLTree<DocumentOBJ> docTree;
     AVLTree<Word> tree;
     hashTable<string,string> tableofHash;
-    vector<Word> vecofWordss;
-    vector<pair<string, int>> wordFreq;
 public:
     QueryEngine();
     QueryEngine(QueryEngine&);
@@ -38,6 +34,8 @@ public:
     multimap<int,string,greater<int>> getWhatMatters(map<string,int>&,vector<string>&);
     vector<int> calculateIDF(Word&);
     vector <string> getIntersection(vector<vector<string>>&);
+    void searchMenue();
+    void statisticsPrint();
 
 };
 
