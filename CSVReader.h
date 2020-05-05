@@ -2,6 +2,7 @@
 // Created by jonas on 4/14/2020.
 //
 ///Domentation related to code that was used
+// No longer in use
 ///https://thispointer.com/how-to-read-data-from-a-csv-file-in-c/
 #ifndef FINALPROJECT_CSVREADER_H
 #define FINALPROJECT_CSVREADER_H

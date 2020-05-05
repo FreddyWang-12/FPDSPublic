@@ -1,12 +1,16 @@
 #include "QueryEngine.h"
+// Takes in a query string, parses it, and
+// Finds results of documents based on it. Stores
+// all words and documents on AVL Trees and all
+// author info on a hash table
 
-
+// Default constructor
 QueryEngine::QueryEngine() {}
-
+//Copy Constructor
 QueryEngine::QueryEngine(QueryEngine &data) {
     userSearch = data.userSearch;
 }
-
+//Grabs an author and his/her info from the author hash table
 void QueryEngine::getAuthorsQuick(char* dir){
     DocumentParser d;
     ofstream out;
@@ -39,7 +43,7 @@ void QueryEngine::getAuthorsQuick(char* dir){
     closedir(dp);
 }
 
-
+// Takes a directory of json files, parses them, and then stores their info on the AVL Trees and hahs tables
 void QueryEngine::getDirectoryandParse(char* fileDirectory) {
     DocumentParser d;
     ofstream out;
@@ -86,7 +90,7 @@ void QueryEngine::getDirectoryandParse(char* fileDirectory) {
 
 }
 
-
+//Takes a query search and finds all documents associated with that search
 void QueryEngine::searchQuery(string &query) {
     map<string,int> bigboy;
     multimap<int,string,greater<int>> holder;
@@ -234,11 +238,11 @@ void QueryEngine::searchQuery(string &query) {
     holder.clear();
 }
 
-
+// Outputs the word AVL Tree
 void QueryEngine::outputTree() {
     tree.printerFunc();
 }
-
+//Puts all of the word AVL Tree's data into an output file
 void QueryEngine::outputTreetoFile() {
     ofstream out,docout;
     docout.open("outputDoc.txt");
@@ -265,7 +269,7 @@ void QueryEngine::outputTreetoFile() {
     out.close();
 //    hashout.close();
 }
-
+//Grabs that output file and repopulates the word AVL Tree
 void QueryEngine::getTreeFromFile() {
     ifstream into;
     into.open("output.txt");
@@ -332,7 +336,7 @@ void QueryEngine::getTreeFromFile() {
 
     into.close();
 }
-
+//Grabs that output file and repopulates the documentOBJ AVL Tree
 void QueryEngine::getDocTreeFromFile() {
     ifstream into;
     into.open("outputDoc.txt");
@@ -381,7 +385,7 @@ void QueryEngine::getDocTreeFromFile() {
     }
     into.close();
 }
-
+// Grabs the most revalent documentOBJs
 multimap<int,string,greater<int>> QueryEngine::getWhatMatters(map<string, int> &mappy, vector<string> &veccey) {
         multimap<int,string,greater<int>> newMap;
         for(int i = 0; i < veccey.size(); i++){
@@ -391,7 +395,7 @@ multimap<int,string,greater<int>> QueryEngine::getWhatMatters(map<string, int> &
         }
         return newMap;
 }
-
+// Calculates the frequencies for a given document and its words
 vector<int> QueryEngine::calculateIDF(Word& searchWord) {
     int amountofDocs = docTree.getSize();
     int docwithTerm = searchWord.getDocSize();
@@ -404,6 +408,7 @@ vector<int> QueryEngine::calculateIDF(Word& searchWord) {
     return idfVec;
 }
 
+//Finds intersecting values in the "AND" part of searchQuery
 ///Source: https://www.geeksforgeeks.org/intersection-of-n-sets/
 vector <string> QueryEngine::getIntersection(vector < vector <string> > &sets)
 {
@@ -484,7 +489,7 @@ vector <string> QueryEngine::getIntersection(vector < vector <string> > &sets)
     }
     return result;
 }
-
+// Menu for the program
 void QueryEngine::searchMenue() {
     string searchTerm;
     cout << "If you want to search for a single term. Type in the term you wish to search for." << endl;
@@ -525,7 +530,7 @@ void QueryEngine::searchMenue() {
         searchMenue();
     }
 }
-
+// Prints some basic statistics
 void QueryEngine::statisticsPrint() {
     cout << "Program Statistics! " << endl;
     cout << "Total Number of Individual numbers indexed: " << docTree.getSize() << endl;

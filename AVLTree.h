@@ -2,6 +2,8 @@
 // Created by jonas on 4/18/2020.
 //
 
+// The AVL Tree is a sorted binary search tree that acts as the container for
+// the word objects and documentObj objects in this project
 #ifndef FINALPROJECT_AVLTREE_H
 #define FINALPROJECT_AVLTREE_H
 
@@ -14,40 +16,40 @@ using namespace std;
 template <typename T>
 class AVLTree{
 private:
-    AVLNode<T>* cur;
-    void dump(AVLNode<T>*&);
-    void r1LeftChild(AVLNode<T>*&);
-    void r2LeftChild(AVLNode<T>*&);
-    void r1RightChild(AVLNode<T>*&);
-    void r2RightChild(AVLNode<T>*&);
-    void insertNode(T&,AVLNode<T> *&);
-    T& getContent(T&,AVLNode<T>*);
-    bool ifExists(T&,AVLNode<T>*);
-    int size = 0;
-    void printCOUTree(AVLNode<T>*);
-    void printToFile(ofstream&, AVLNode<T>*);
-    void printtoFileLEVEL(ofstream&,AVLNode<T>*,int);
+    AVLNode<T>* cur; // The first object of the AVL Tree
+    void dump(AVLNode<T>*&); // Clears all memory in a part of the AVL Tree, usually all of the information
+    void r1LeftChild(AVLNode<T>*&); // A Case 1 Insertion in case the left side of the tree is unbalanced
+    void r2LeftChild(AVLNode<T>*&); // A Case 2 Insertion in case the right side of the tree is unbalanced
+    void r1RightChild(AVLNode<T>*&); // A Case 3 Insertion in case the left side of the tree is unbalanced
+    void r2RightChild(AVLNode<T>*&); // A Case 4 Insertion in case the right side of the tree is unbalanced
+    void insertNode(T&,AVLNode<T> *&); // Inserts a new node into the tree, recursively
+    T& getContent(T&,AVLNode<T>*); // Retrieves the data with a specific value
+    bool ifExists(T&,AVLNode<T>*); // Determines if an element is inside the AVL Tree
+    int size = 0; // Default size of an empty AVL Tree
+    void printCOUTree(AVLNode<T>*); // Prints out all elements in the AVL Tree
+    void printToFile(ofstream&, AVLNode<T>*); // Makes a file of the AVL Tree's elements
+    void printtoFileLEVEL(ofstream&,AVLNode<T>*,int); // Traverse the AVL in Level Traversal and prints out the AVL Tree's data onto a file
 public:
-    AVLTree();
-    AVLTree(AVLNode<T>&);
-    AVLTree(AVLTree<T>&);
-    ~AVLTree();
-    void dump();
-    Word& getContent(Word &);
-    Word& getContent(string&);
-    DocumentOBJ getDocContent(string&);
-    DocumentOBJ& getDocContent(DocumentOBJ&);
-    void addNode(T&);
-    void addFirstNodes(T&);
-    int height(AVLNode<T>*);
-    bool isEmpty();
-    bool ifExists(T&);
-    int getSize();
-    void getTreeSize();
-    void printerFunc();
-    void printtoFileFunc(ofstream&);
-    int height2(AVLNode<T>*);
-    void printtofileLVLFUNC(ofstream&);
+    AVLTree(); // Default constructor for AVL Tree
+    AVLTree(AVLNode<T>&); // Constructor that inserts the first element of the tree
+    AVLTree(AVLTree<T>&); // Copy Constructor for the AVL Tree
+    ~AVLTree(); // Destructor
+    void dump(); // Public fucntion that dumps all of AVL Tree's data
+    Word& getContent(Word &); // Grabs a specific word from an AVL Tree of word objects
+    Word& getContent(string&); // Grabs a specific word from an AVL Tree of word objects via the word's string data
+    DocumentOBJ getDocContent(string&); //Grabs a specific document from an AVL Tree of documentOBj objects via the document's string id
+    DocumentOBJ& getDocContent(DocumentOBJ&); // Grabs a specific document from an AVL Tree of documentObj objects
+    void addNode(T&); // Public function to add a new node
+    void addFirstNodes(T&); // Initial insertion of nodes
+    int height(AVLNode<T>*); //Returns the height of the AVL Tree
+    bool isEmpty(); // Determines if the tree is empty
+    bool ifExists(T&); // Determines if the tree has a specific element T&
+    int getSize(); //Returns the size of the AVL Tree
+    void getTreeSize(); //Prints out the size of the AVL Tree
+    void printerFunc(); //Prints out all of the elements of the AVL Tree
+    void printtoFileFunc(ofstream&); //Prints all elements to a file
+    int height2(AVLNode<T>*); //Returns the height of the entire AVL Tree
+    void printtofileLVLFUNC(ofstream&); //Prints all elements with Level Traversal
 
 
 };

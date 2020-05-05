@@ -4,6 +4,10 @@
 #include "chrono"
 using namespace std;
 using namespace std::chrono;
+
+/* The final version of the Search Engine, by Jonas Moros
+ *  and Frederick Wang
+ */
 vector<int> checker;
 int choice;
 int main(int argc, char* argv[]) {

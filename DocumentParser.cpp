@@ -3,7 +3,12 @@
 //
 
 #include "DocumentParser.h"
+// Takes a document from the directory, creates word objects and
+// documentOBJs from it, and stores them into the inverted indexes
+// in the query engine
 
+
+// Opens up a file with a given name (string&) and parses all of its information
 void DocumentParser::parseDocument(string& file) {
     FILE* fp = fopen(file.c_str(),"rb");
     char readingBuffer[3000];
@@ -69,7 +74,7 @@ void DocumentParser::parseDocument(string& file) {
 //    createDocOBJ(formattedAutors,title);
     addStrings(title,text,bodytext);
 }
-
+//Find an author in the document
 void DocumentParser::getAuthorQuickey(string& file) {
     FILE* fp = fopen(file.c_str(),"rb");
     char readingBuffer[3000];
@@ -99,7 +104,7 @@ void DocumentParser::getAuthorQuickey(string& file) {
     fclose(fp);
 
 }
-
+// Stores all author information into the AVL Tree
 void DocumentParser::authorIntoHashReParse(hashTable<string,string>& hasheyTable){
     for(int i = 0; i < lastname_author.size(); i++){
         hasheyTable.addNewKey(lastname_author[i],paperid);
@@ -107,7 +112,7 @@ void DocumentParser::authorIntoHashReParse(hashTable<string,string>& hasheyTable
     lastname_author.clear();
 }
 
-
+// Trims and stems all unique words with a parsed document
 void DocumentParser::tokenization() {
     stringstream check(allDocText);
     string temp;
@@ -129,7 +134,7 @@ void DocumentParser::tokenization() {
     }
 
 }
-
+// Creates a series of word objects and places them in vecOfWords
 void DocumentParser::setupVecofWords() {
     map<string,int>::iterator itter;
     for(itter = frequency.begin(); itter != frequency.end(); itter++) {
@@ -137,19 +142,19 @@ void DocumentParser::setupVecofWords() {
     }
 
 }
-
+// Trims all unique words
 void DocumentParser::trimTokens() {
     Porter2Stemmer::trim(allDocText);
 
 }
-
+// Clears all paper ids from "paperid"
 void DocumentParser::clearVector() {
     vecOfWords.clear();
     lastname_author.clear();
     frequency.clear();
     formattedAutors.clear();
 }
-
+// Grabs the frequency of a given word inside the document
 int DocumentParser::gettheFrequency(){
     int count = 0;
     for(int i = 0; i < vecOfWords.size(); i++){
@@ -166,7 +171,7 @@ int DocumentParser::gettheFrequency(){
         }
     }
 }
-
+// Inserts a new word object into the word AVL Tree
 void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
     for(auto & vecOfWord : vecOfWords){
         if(avl.ifExists(vecOfWord)){
@@ -184,42 +189,44 @@ void DocumentParser::insertIntoAVLTree(AVLTree<Word>& avl) {
 }
 
 
-
+// Initial insertion of word objects into the word AVL Tree
 void DocumentParser::initialAdditonToAVLTree(AVLTree<Word> & obj) {
         for (int i = 0; i < vecOfWords.size(); i++) {
             obj.addNode(vecOfWords[i]);
         }
 }
 
-
+// Combines all of the text within a document and stores them in "allDocText"
 void DocumentParser::addStrings(string&a,string&b,string&c) {
     allDocText = a + b + c;
 }
-
+// Determines if a word is a given stop word
 bool DocumentParser::findInStopWord(string& x){
     return binary_search(stopword.begin(), stopword.end(), x);
 }
+// Frees all memory from all containers
 void DocumentParser::freeMem(){
     paperid.clear();
 }
-
+// Deletes all document text for later usage
 void DocumentParser::deleteAllDocText() {
     allDocText.clear();
 }
-
+// Adds authors to the hash table
 void DocumentParser::initialAuthorInserttoHashTable(hashTable<string,string>& hash) {
     for(int i = 0; i < lastname_author.size(); i++){
         hash.addNewKey(lastname_author[i],paperid);
     }
 }
 
+// Trims and stems all authors' name in a given document
 void DocumentParser::stemtrimAuthorNames() {
     for(int i = 0; i < lastname_author.size(); i++){
         Porter2Stemmer::trim(lastname_author[i]);
         Porter2Stemmer::stem(lastname_author[i]);
     }
 }
-
+//Trim a given term
 void DocumentParser::trim(std::string& word)
 {
     if (word == "<s>" || word == "</s>")
@@ -233,7 +240,7 @@ void DocumentParser::trim(std::string& word)
 
     word.erase(it, word.end());
 }
-
+// Creates a documentOBJ out of a given document
 void DocumentParser::createDocOBJ(AVLTree<DocumentOBJ>& yep) {
     if(title.empty()){
         title = "NO TITLE";
@@ -252,6 +259,7 @@ void DocumentParser::createDocOBJ(AVLTree<DocumentOBJ>& yep) {
 //        docTree.addNode(docOBJ);
 //}
 
+// Adds a frequency to a given word in the word AVL Tree
 void DocumentParser::addFreqToWord(AVLTree<Word>& wordTree) {
     map<string,int>::iterator itter;
     for(itter = frequency.begin(); itter != frequency.end(); itter++){

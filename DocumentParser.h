@@ -27,17 +27,22 @@
 using namespace rapidjson;
 using namespace std;
 
+// Takes a document from the directory, creates word objects and
+// documentOBJs from it, and stores them into the inverted indexes
+// in the query engine
 class DocumentParser{
 private:
-    map<string,int> allAuthors;
-    map<string,int> frequency;
-    string title;
-    vector<string> formattedAutors;
-    string paperid;
-    string allDocText;
-    vector<string> lastname_author;
-    DocumentOBJ docOBJ;
-    vector<Word> vecOfWords;
+    map<string,int> allAuthors; // A map of all unique authors
+    map<string,int> frequency; // A map of all frequencies for every word
+    string title; // Temp title of a documentOBJ
+    vector<string> formattedAutors; // Temp formatted set of authors
+    string paperid; // Temp paperid
+    string allDocText; // Stores all document information within a document
+    vector<string> lastname_author; // Temp set of authors by their last names
+    DocumentOBJ docOBJ; // Temp documentOBJ
+    vector<Word> vecOfWords; // A vector of all unique terms in a document as word objects
+
+    // A vector containing all possible stop words in a file
     vector<string> stopword = {"0o","0s","3a","3b","3d","6b","6o","a","a's","a1","a2","a3","a4","ab","able","about","above","abst","ac","accordance",
                                "according","accordingly","across","act","actually","ad","added","adj","ae","af","affected","affecting","affects","after","afterwards","ag","again","against","ah",
                                "ain","ain't","aj","al","all","allow","allows","almost","alone","along","already","also","although","always","am","among","amongst","amoungst","amount",
@@ -102,28 +107,28 @@ private:
 
 
 public:
-    void parseDocument(string&);
-    void tokenization();
-    void addStrings(string&a,string&,string&);
-    void trimTokens();
-    void clearVector();
-    void insertIntoAVLTree(AVLTree<Word>&);
-    void initialAdditonToAVLTree(AVLTree<Word>&);
-    bool findInStopWord(string&);
-    void freeMem();
-    void stemtrimAuthorNames();
-    void deleteAllDocText();
-    void initialAuthorInserttoHashTable(hashTable<string,string>&);
+    void parseDocument(string&); // Opens up a file with a given name (string&) and parses all of its information
+    void tokenization(); // Trims and stems all unique words with a parsed document
+    void addStrings(string&a,string&,string&); // Combines all of the text within a document and stores them in "allDocText"
+    void trimTokens(); // Trims all unique words
+    void clearVector(); // Clears all paper ids from "paperid"
+    void insertIntoAVLTree(AVLTree<Word>&); // Inserts a new word object into the word AVL Tree
+    void initialAdditonToAVLTree(AVLTree<Word>&); // Initial insertion of word objects into the word AVL Tree
+    bool findInStopWord(string&); // Determines if a word is a given stop word
+    void freeMem(); // Frees all memory from all containers
+    void stemtrimAuthorNames(); // Trims and stems all authors' name in a given document
+    void deleteAllDocText(); // Deletes all document text for later usage
+    void initialAuthorInserttoHashTable(hashTable<string,string>&); // Adds authors to the hash table
     void getDocumentsinDirectory(string&);
-    int gettheFrequency();
-    void setupVecofWords();
+    int gettheFrequency(); // Grabs the frequency of a given word inside the document
+    void setupVecofWords(); // Creates a series of word objects and places them in vecOfWords
     void insertIntoAVLTreeFromFile(AVLTree<Word>&);
-    void createDocOBJ(AVLTree<DocumentOBJ>&);
+    void createDocOBJ(AVLTree<DocumentOBJ>&); // Creates a documentOBJ out of a given document
     void addDocOBJtoTree(AVLTree<DocumentOBJ>&);
-    void trim(string&);
-    void addFreqToWord(AVLTree<Word>&);
-    void getAuthorQuickey(string&);
-    void authorIntoHashReParse(hashTable<string,string>&);
+    void trim(string&); //Trim a given term
+    void addFreqToWord(AVLTree<Word>&); // Adds a frequency to a given word in the word AVL Tree
+    void getAuthorQuickey(string&); //Find an author in the document
+    void authorIntoHashReParse(hashTable<string,string>&); // Stores all author information into the AVL Tree
 };
 
 

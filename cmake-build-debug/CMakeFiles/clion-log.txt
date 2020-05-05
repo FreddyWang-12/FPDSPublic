@@ -1,0 +1,7 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/frederickwang/Documents/GitHub/FPDS
+-- Setting up BOOST
+--  Includes - /usr/local/include
+--  Library  - /usr/local/lib
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/frederickwang/Documents/GitHub/FPDS/cmake-build-debug

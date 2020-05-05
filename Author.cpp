@@ -2,6 +2,9 @@
 // Created by jonas on 4/27/2020.
 //
 
+// This object was originally going to be used as a means of storing the
+// authors' information, but has since then been scrapped as an idea. We
+// do not use this class in the final project.
 #include "Author.h"
 
 //Author::Author(std::string name, std::vector<std::string> docIDS) {
